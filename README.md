@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shark Digital — site institucional
 
-## Getting Started
+Site institucional da Shark Digital: página única, responsiva, em português.
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · Framer Motion (via `LazyMotion`) · Lucide Icons · fonte Geist (`next/font`, auto-hospedada no build).
+
+## Desenvolvimento
+
+Requisitos: Node.js 20.9+ e npm.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # opcional, veja "Formulário de contato"
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Qualidade e build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint        # ESLint
+npm run typecheck   # TypeScript (tsc --noEmit)
+npm run build       # build de produção
+npm start           # serve o build em http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Estrutura
 
-## Learn More
+```
+src/
+  app/
+    layout.tsx            metadados (SEO, OpenGraph), fontes, idioma pt-BR
+    page.tsx              ordem das seções
+    globals.css           tokens de cor (paleta da marca) e animações do diagrama
+    api/contact/route.ts  encaminhamento do formulário para o endpoint real
+    icon.png, apple-icon.png, favicon.ico, opengraph-image.png
+  components/
+    site-header.tsx       navbar (transparente → sólida ao rolar, menu mobile)
+    site-footer.tsx
+    logo.tsx              logo oficial (variações horizontal e empilhada)
+    hero-diagram.tsx      diagrama SVG/CSS do hero (sem JS)
+    contact-form.tsx      formulário com validação e estados
+    reveal.tsx            animação de entrada (Framer Motion)
+    ui.tsx                Container, Section, SectionHeader, ButtonLink, Card
+    sections/             uma seção por arquivo
+  lib/contact.ts          validação compartilhada entre cliente e servidor
+public/
+  logo-shark-digital.png             logo empilhada (rodapé)
+  logo-shark-digital-horizontal.png  logo horizontal (cabeçalho)
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Formulário de contato
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O formulário envia para `POST /api/contact`, que valida os dados e os encaminha
+para o destino configurado. **Não existe envio simulado**: sem destino
+configurado, ou se o destino não confirmar o recebimento, o visitante vê que os
+dados não foram enviados.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Variável | Obrigatória | Descrição |
+| --- | --- | --- |
+| `CONTACT_FORM_ENDPOINT` | sim | URL que recebe um `POST` JSON (webhook do CRM, n8n/Make/Zapier, Formspree etc.). |
+| `CONTACT_FORM_TOKEN` | não | Enviado como `Authorization: Bearer <token>`. |
+| `NEXT_PUBLIC_SITE_URL` | recomendado | URL pública do site, usada em canonical e OpenGraph. |
 
-## Deploy on Vercel
+Corpo enviado ao destino:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```json
+{
+  "nome": "…",
+  "empresa": "…",
+  "email": "…",
+  "whatsapp": "…",
+  "desafio": "…",
+  "origem": "site-shark-digital",
+  "enviadoEm": "2026-01-01T12:00:00.000Z"
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Respostas da API: `200 { ok: true }` quando o destino responde 2xx;
+`503 { code: "not_configured" }` sem `CONTACT_FORM_ENDPOINT` (mensagem exibida:
+"O envio ainda não está disponível. Seus dados não foram enviados.");
+`422 { code: "invalid", errors }` para dados inválidos;
+`502 { code: "upstream_error" }` quando o destino falha.
+
+Pendências marcadas com `TODO(contato)` em `src/app/api/contact/route.ts`:
+
+- definir o destino real e ajustar o formato do corpo, se necessário;
+- reforçar a validação no servidor conforme as regras do CRM;
+- proteção contra abuso: rate limit por IP e verificação anti-bot (ex.: Turnstile).
+  Hoje há apenas um campo honeypot.
+
+> A rota `/api/contact` precisa de um runtime de servidor (ex.: Vercel ou `npm start`).
+> Exportação estática (`output: "export"`) não é compatível com ela.
+
+## Conteúdo pendente
+
+- **Cases** — `src/components/sections/cases.tsx` (`TODO(cases)`): preencher a lista
+  `CASES` apenas com cases verificados e autorizados. Enquanto vazia, a seção mostra
+  a estrutura com placeholders explícitos.
+- Não há telefone, e-mail, endereço, CNPJ ou redes sociais no site: adicionar quando
+  houver dados oficiais.
+
+## Logo
+
+Os arquivos em `public/` foram gerados a partir do PNG oficial enviado pelo
+cliente (fundo já transparente). Foram removidos apenas resíduos quase invisíveis
+do recorte original (pixels com opacidade muito baixa fora do desenho), sem alterar
+o tubarão, as letras ou os sublinhados. A versão horizontal reposiciona os mesmos
+elementos (tubarão ao lado do nome) para caber no cabeçalho; se houver uma versão
+horizontal oficial, substitua `logo-shark-digital-horizontal.png` mantendo a
+proporção ou ajuste `width`/`height` em `src/components/logo.tsx`.
+
+## Acessibilidade e movimento
+
+- HTML semântico (`header`, `nav`, `main`, `section`, `footer`), link "Pular para o conteúdo" e foco visível.
+- Menu mobile com `aria-expanded`, fecha com Escape (devolvendo o foco ao botão) e ao escolher um link.
+- `prefers-reduced-motion` desativa as animações; sem JavaScript o conteúdo continua visível.
