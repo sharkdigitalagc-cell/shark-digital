@@ -28,7 +28,6 @@ export function Method() {
   return (
     <Section id="metodo" labelledBy="metodo-title">
       <SectionHeader
-        tone="accent"
         id="metodo-title"
         eyebrow="Método"
         lines={["Do entendimento aos ajustes."]}
@@ -45,14 +44,14 @@ export function Method() {
         />
 
         {STEPS.map((step, i) => (
-          <li key={step.title} className="relative pb-10 pl-16 last:pb-0 lg:pb-0 lg:pl-0">
+          <li key={step.title} className="group relative pb-10 pl-16 last:pb-0 lg:pb-0 lg:pl-0">
             <Reveal delay={i * 0.08}>
               <span
                 className={cn(
-                  "absolute left-0 top-0 flex size-[2.4rem] items-center justify-center rounded-full border bg-bg font-mono text-xs text-fg lg:relative",
+                  "absolute left-0 top-0 flex size-[2.4rem] items-center justify-center rounded-full border bg-bg font-mono text-xs text-fg transition-colors duration-200 lg:relative",
                   i === 0
                     ? "border-accent/60 shadow-[0_0_24px_-6px_rgba(61,240,110,0.45)]"
-                    : "border-line-strong",
+                    : "border-line-strong group-hover:border-accent/50",
                 )}
               >
                 {String(i + 1).padStart(2, "0")}

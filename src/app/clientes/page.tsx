@@ -33,14 +33,14 @@ export default function ClientesPage() {
                 Voltar ao início
               </Link>
               <div className="mt-10">
-                <Eyebrow>Clientes</Eyebrow>
+                <Eyebrow tone="brand">Clientes</Eyebrow>
               </div>
               <h1
                 id="clientes-title"
                 className="mt-5 text-balance text-[2.15rem] font-semibold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl md:text-[3.4rem]"
               >
                 Clientes que atendemos
-                <span className="block text-brand">e o que fazemos.</span>
+                <span className="block text-accent">e o que fazemos.</span>
               </h1>
             </Reveal>
 

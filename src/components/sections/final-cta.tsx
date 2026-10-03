@@ -9,7 +9,7 @@ export function FinalCta() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[36rem] w-[56rem] max-w-[140vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(251,197,2,0.08),transparent)]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[36rem] w-[56rem] max-w-[140vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(61,240,110,0.06),transparent)]"
       />
       <Container className="relative">
         <Reveal className="mx-auto max-w-3xl text-center">
@@ -24,15 +24,15 @@ export function FinalCta() {
           >
             <span className="block">Apresente sua empresa</span>
             <span className="block">e vamos conversar sobre</span>
-            <span className="mt-2 block text-brand">o seu marketing.</span>
+            <span className="mt-2 block text-accent">o seu marketing.</span>
           </h2>
           <p className="mx-auto mt-8 max-w-xl text-pretty leading-relaxed text-muted md:text-lg">
             Conte o que você oferece e conversamos sobre por onde começar.
           </p>
           <span aria-hidden className="mx-auto mt-10 flex w-40 items-center gap-2">
-            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-brand/60" />
-            <span className="size-1 rotate-45 bg-brand" />
-            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-brand/60" />
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-accent/60" />
+            <span className="size-1 rotate-45 bg-accent" />
+            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-accent/60" />
           </span>
           <ButtonLink href="#contato" arrow className="mt-10 shadow-[0_10px_40px_-12px_rgba(251,197,2,0.45)]">
             Conversar sobre meu marketing

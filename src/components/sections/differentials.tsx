@@ -14,7 +14,6 @@ export function Differentials() {
   return (
     <Section id="diferenciais" labelledBy="diferenciais-title" tone="raised">
       <SectionHeader
-        tone="accent"
         id="diferenciais-title"
         eyebrow="Engajamento e venda"
         lines={["O que leva o público", "a pedir contato."]}

@@ -49,12 +49,12 @@ export function Section({
   );
 }
 
-/** Accent of a section: brand orange (default) or the complementary green. */
+/** Accent of a section: complementary green (default) or brand orange. */
 export type Tone = "brand" | "accent";
 
 export function Eyebrow({
   children,
-  tone = "brand",
+  tone = "accent",
 }: {
   children: React.ReactNode;
   tone?: Tone;

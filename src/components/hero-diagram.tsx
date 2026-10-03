@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { cn } from "@/components/ui";
 
 const NODES = ["Google Ads", "Conteúdo", "Instagram Ads", "Atendimento", "Dados"];
@@ -20,10 +23,14 @@ const pct = (v: number) => `${(v / SIZE) * 100}%`;
 
 /**
  * Hero diagram: the business at the centre, connected to the five
- * disciplines of the operation. Pure SVG + CSS (no JS); motion is
- * disabled under prefers-reduced-motion.
+ * disciplines of the operation. Hovering a discipline lights its
+ * connection; motion is disabled under prefers-reduced-motion.
  */
 export function HeroDiagram({ className }: { className?: string }) {
+  const [active, setActive] = useState<number | null>(null);
+  const opacityFor = (i: number) =>
+    active === null ? 0.55 : active === i ? 1 : 0.18;
+
   return (
     <figure
       className={cn("relative mx-auto aspect-square w-full max-w-[34rem]", className)}
@@ -88,23 +95,24 @@ export function HeroDiagram({ className }: { className?: string }) {
               y2={C}
               pathLength={1}
               stroke="#3DF06E"
-              strokeOpacity="0.55"
-              strokeWidth="1.25"
+              strokeOpacity={opacityFor(i)}
+              strokeWidth={active === i ? 2 : 1.25}
               strokeLinecap="round"
-              className="line-draw"
+              className="line-draw transition-[stroke-opacity,stroke-width] duration-200"
               style={{ animationDelay: `${600 + i * 120}ms` }}
             />
           </g>
         ))}
 
         {/* Node markers */}
-        {points.map((p) => (
+        {points.map((p, i) => (
           <circle
             key={`${p.label}-dot`}
             cx={p.x}
             cy={p.y}
             r={4}
-            fill="#050505"
+            fill={active === i ? "#3DF06E" : "#050505"}
+            className="transition-[fill] duration-200"
             stroke="#3DF06E"
             strokeWidth="1.5"
           />
@@ -123,12 +131,17 @@ export function HeroDiagram({ className }: { className?: string }) {
 
       {/* Node labels */}
       <ul aria-hidden className="contents">
-        {points.map((p) => {
+        {points.map((p, i) => {
           const below = p.y > C + 10;
           return (
             <li
               key={p.label}
-              className="absolute -translate-x-1/2 whitespace-nowrap rounded-full border border-line bg-card/95 px-3 py-1.5 text-[clamp(0.7rem,2.2vw,0.85rem)] font-medium text-fg"
+              onMouseEnter={() => setActive(i)}
+              onMouseLeave={() => setActive(null)}
+              className={cn(
+                "absolute -translate-x-1/2 cursor-default whitespace-nowrap rounded-full border bg-card/95 px-3 py-1.5 text-[clamp(0.7rem,2.2vw,0.85rem)] font-medium text-fg transition-colors duration-200",
+                active === i ? "border-accent/60" : "border-line",
+              )}
               style={{
                 left: pct(p.x),
                 top: pct(p.y),

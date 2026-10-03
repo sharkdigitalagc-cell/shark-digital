@@ -1,5 +1,6 @@
 import { BarChart3, Compass, Megaphone, RefreshCcw } from "lucide-react";
 import { Reveal } from "@/components/reveal";
+import { ConnectedObjects } from "@/components/still-life";
 import { Section, SectionHeader } from "@/components/ui";
 
 const ROLES = [
@@ -28,34 +29,31 @@ const SUPPORT = [
   },
 ];
 
-/** Thin line of light joining the two roles: one operation, two halves. */
-function Connector() {
-  return (
-    <div aria-hidden className="flex items-center justify-center py-1 md:px-1 md:py-0">
-      <span className="relative block h-8 w-px bg-gradient-to-b from-line-strong via-brand/70 to-line-strong md:h-px md:w-14 md:bg-gradient-to-r">
-        <span className="absolute left-1/2 top-1/2 size-1.5 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-brand" />
-      </span>
-    </div>
-  );
-}
-
 export function Problem() {
   return (
     <Section labelledBy="problema-title">
-      <SectionHeader
-        id="problema-title"
-        eyebrow="Quem somos"
-        lines={["Assessoria e agência", "de marketing."]}
-        text="Planejamos com você e executamos."
-      />
+      <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
+        <SectionHeader
+          id="problema-title"
+          eyebrow="Quem somos"
+          lines={["Assessoria e agência", "de marketing."]}
+          text="Planejamos com você e executamos."
+        />
+        <Reveal delay={0.1}>
+          <ConnectedObjects className="aspect-[2/1]" />
+        </Reveal>
+      </div>
 
-      <Reveal className="mt-14 md:mt-16">
-        <ul className="grid items-stretch md:grid-cols-[1fr_auto_1fr]">
-          {ROLES.map(({ icon: Icon, title, text }, i) => (
-            <li key={title} className="contents">
-              {i > 0 ? <Connector /> : null}
-              <div className="lift rounded-2xl border border-line bg-[linear-gradient(160deg,#111_0%,#0b0b0b_60%)] p-7 md:p-9">
-                <Icon aria-hidden className="size-5 text-brand" strokeWidth={1.6} />
+      <Reveal className="mt-12 md:mt-14">
+        <ul className="grid gap-4 md:grid-cols-2">
+          {ROLES.map(({ icon: Icon, title, text }) => (
+            <li key={title}>
+              <div className="lift group h-full rounded-2xl border border-line bg-[linear-gradient(160deg,#111_0%,#0b0b0b_60%)] p-7 md:p-9">
+                <Icon
+                  aria-hidden
+                  className="size-5 text-accent transition-transform duration-200 group-hover:-translate-y-0.5"
+                  strokeWidth={1.6}
+                />
                 <h3 className="mt-8 text-2xl font-semibold tracking-tight text-fg">
                   {title}
                 </h3>
@@ -82,7 +80,7 @@ export function Problem() {
 
       <Reveal>
         <p className="mt-14 flex items-center gap-4 text-xl font-medium tracking-tight text-fg md:text-2xl">
-          <span aria-hidden className="h-px w-10 bg-brand" />
+          <span aria-hidden className="h-px w-10 bg-accent" />
           Tudo organizado em atração, engajamento e venda.
         </p>
       </Reveal>
