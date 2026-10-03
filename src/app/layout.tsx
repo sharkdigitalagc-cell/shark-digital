@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MotionProvider } from "@/components/motion-provider";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,18 +16,12 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// NEXT_PUBLIC_SITE_URL wins; on Vercel, fall back to the production domain it provides.
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000");
 const title = "Shark Digital | Assessoria e agência de marketing";
 const description =
   "Assessoria e agência de marketing que planeja e executa campanhas no Google e no Instagram, conteúdo e páginas de conversão, considerando a oferta e o atendimento comercial de cada empresa.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title,
   description,
   applicationName: "Shark Digital",

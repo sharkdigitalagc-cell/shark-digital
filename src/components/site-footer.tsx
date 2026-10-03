@@ -9,6 +9,7 @@ const FOOTER_LINKS = [
   { href: "/#metodo", label: "Método" },
   { href: "/#solucoes", label: "Soluções" },
   { href: "/clientes", label: "Projetos" },
+  { href: "/blog", label: "Blog" },
   { href: "/#faq", label: "Dúvidas" },
   { href: "/#contato", label: "Contato" },
 ];
