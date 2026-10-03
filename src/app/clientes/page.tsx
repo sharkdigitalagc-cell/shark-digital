@@ -40,7 +40,7 @@ export default function ClientesPage() {
                 className="mt-5 text-balance text-[2.15rem] font-semibold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl md:text-[3.4rem]"
               >
                 Clientes que atendemos
-                <span className="block text-accent">e o que fazemos.</span>
+                <span className="block text-brand">e o que fazemos.</span>
               </h1>
             </Reveal>
 
@@ -50,7 +50,7 @@ export default function ClientesPage() {
                 return (
                   <li key={client.name}>
                     <Reveal delay={i * 0.06} className="h-full">
-                      <article className="flex h-full flex-col rounded-3xl border border-line bg-card p-6 md:p-8">
+                      <article className="lift flex h-full flex-col rounded-3xl border border-line bg-card p-6 md:p-8">
                         <header className="flex flex-wrap items-start justify-between gap-3">
                           <h2 className="text-xl font-semibold tracking-tight text-fg md:text-2xl">
                             {client.name}

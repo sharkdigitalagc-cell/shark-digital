@@ -32,7 +32,7 @@ export function Onboarding() {
             <li key={step.title} className="border-b border-line">
               <Reveal delay={i * 0.05}>
                 <div className="grid grid-cols-[3rem_1fr] gap-x-4 py-7 sm:grid-cols-[4rem_10rem_1fr] sm:items-baseline">
-                  <span className="font-mono text-sm text-accent">
+                  <span className="font-mono text-sm text-brand">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="text-lg font-semibold tracking-tight text-fg">

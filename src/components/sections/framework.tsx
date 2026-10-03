@@ -1,5 +1,6 @@
 import { MessageSquareText, Route, Target, Users } from "lucide-react";
 import { Reveal } from "@/components/reveal";
+import { StrategyPiece } from "@/components/strategy-piece";
 import { Section, SectionHeader } from "@/components/ui";
 
 const PILLARS = [
@@ -12,18 +13,23 @@ const PILLARS = [
 export function Framework() {
   return (
     <Section labelledBy="framework-title" tone="raised">
-      <SectionHeader
-        id="framework-title"
-        eyebrow="Planejamento da atração"
-        lines={["Quatro perguntas", "antes de anunciar."]}
-      />
+      <div className="grid items-end gap-10 md:grid-cols-[1fr_14rem] lg:grid-cols-[1fr_17rem]">
+        <SectionHeader
+          id="framework-title"
+          eyebrow="Planejamento da atração"
+          lines={["Quatro perguntas", "antes de anunciar."]}
+        />
+        <Reveal delay={0.1} className="hidden md:block">
+          <StrategyPiece className="aspect-[4/5]" />
+        </Reveal>
+      </div>
 
       <ul className="mt-14 grid overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4 [&>li]:bg-card md:mt-16 gap-px">
         {PILLARS.map(({ icon: Icon, title, question }, i) => (
-          <li key={title} className="p-6 md:p-8">
+          <li key={title} className="p-6 transition-colors duration-200 hover:!bg-[#111] md:p-8">
             <Reveal delay={i * 0.06}>
               <div className="flex items-center justify-between">
-                <Icon aria-hidden className="size-5 text-accent" strokeWidth={1.6} />
+                <Icon aria-hidden className="size-5 text-brand" strokeWidth={1.6} />
                 <span className="font-mono text-xs text-muted">
                   {String(i + 1).padStart(2, "0")}
                 </span>

@@ -64,15 +64,15 @@ export function Solutions() {
             <Reveal delay={(i % 4) * 0.06} className="h-full">
               <article
                 className={cn(
-                  "flex h-full flex-col rounded-2xl border p-6 md:p-7",
+                  "lift flex h-full flex-col rounded-2xl border p-6 md:p-7",
                   featured
-                    ? "border-accent/25 bg-[linear-gradient(135deg,rgba(61,240,110,0.07),rgba(13,13,13,1)_55%)]"
+                    ? "border-brand/25 bg-[linear-gradient(135deg,rgba(251,197,2,0.07),rgba(13,13,13,1)_55%)]"
                     : "border-line bg-card",
                 )}
               >
                 <Icon
                   aria-hidden
-                  className={cn("size-5", featured ? "text-accent" : "text-muted")}
+                  className={cn("size-5", featured ? "text-brand" : "text-muted")}
                   strokeWidth={1.6}
                 />
                 <h3

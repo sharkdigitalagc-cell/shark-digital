@@ -14,7 +14,7 @@ export function Contact() {
             text="Conte sobre sua empresa e seu desafio."
           />
           <Reveal delay={0.08}>
-            <p className="mt-10 border-l border-accent/60 pl-4 text-[0.95rem] leading-relaxed text-muted">
+            <p className="mt-10 border-l border-brand/60 pl-4 text-[0.95rem] leading-relaxed text-muted">
               Retornamos por e-mail ou WhatsApp.
             </p>
           </Reveal>
