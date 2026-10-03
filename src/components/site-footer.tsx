@@ -1,11 +1,12 @@
+import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Container } from "@/components/ui";
 
 const FOOTER_LINKS = [
-  { href: "#metodo", label: "Método" },
-  { href: "#solucoes", label: "Soluções" },
-  { href: "#cases", label: "Cases" },
-  { href: "#contato", label: "Contato" },
+  { href: "/#metodo", label: "Método" },
+  { href: "/#solucoes", label: "Soluções" },
+  { href: "/clientes", label: "Clientes" },
+  { href: "/#contato", label: "Contato" },
 ];
 
 export function SiteFooter() {
@@ -16,9 +17,9 @@ export function SiteFooter() {
       <Container>
         <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div>
-            <a href="#inicio" aria-label="Shark Digital — voltar ao início" className="inline-block">
+            <Link href="/#inicio" aria-label="Shark Digital — voltar ao início" className="inline-block">
               <Logo variant="stacked" />
-            </a>
+            </Link>
             <p className="mt-6 text-sm text-muted">Assessoria e agência de marketing.</p>
           </div>
 

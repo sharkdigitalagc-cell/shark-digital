@@ -2,15 +2,16 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { ButtonLink, cn } from "@/components/ui";
 
 export const NAV_LINKS = [
-  { href: "#metodo", label: "Método" },
-  { href: "#solucoes", label: "Soluções" },
-  { href: "#diferenciais", label: "Engajamento" },
-  { href: "#cases", label: "Cases" },
-  { href: "#contato", label: "Contato" },
+  { href: "/#metodo", label: "Método" },
+  { href: "/#solucoes", label: "Soluções" },
+  { href: "/#diferenciais", label: "Engajamento" },
+  { href: "/clientes", label: "Clientes" },
+  { href: "/#contato", label: "Contato" },
 ];
 
 export function SiteHeader() {
@@ -67,9 +68,9 @@ export function SiteHeader() {
       </a>
 
       <div className="mx-auto flex h-[4.5rem] w-full max-w-6xl items-center justify-between gap-6 px-5 sm:px-8">
-        <a href="#inicio" aria-label="Shark Digital — início" className="shrink-0">
+        <Link href="/#inicio" aria-label="Shark Digital — início" className="shrink-0">
           <Logo eager />
-        </a>
+        </Link>
 
         <nav aria-label="Principal" className="hidden lg:block">
           <ul className="flex items-center gap-8">
@@ -87,7 +88,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden lg:block">
-          <ButtonLink href="#contato" className="h-10 px-5 text-sm">
+          <ButtonLink href="/#contato" className="h-10 px-5 text-sm">
             Falar com a Shark
           </ButtonLink>
         </div>
@@ -129,7 +130,7 @@ export function SiteHeader() {
             ))}
           </ul>
           <ButtonLink
-            href="#contato"
+            href="/#contato"
             arrow
             className="mt-8 w-full"
             onClick={() => close()}
