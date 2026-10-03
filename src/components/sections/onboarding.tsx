@@ -2,16 +2,16 @@ import { Reveal } from "@/components/reveal";
 import { Section, SectionHeader } from "@/components/ui";
 
 const STEPS = [
-  { title: "Oferta e público", text: "Quais serviços você quer divulgar e quem costuma contratar a empresa." },
-  { title: "Campanhas", text: "O que já foi feito em Google Ads, Instagram Ads e conteúdo, e o que você observou." },
+  { title: "Oferta e público", text: "Serviço e cliente." },
+  { title: "Campanhas", text: "O que já foi feito." },
   {
     title: "Atendimento",
-    text: "Como os contatos chegam, quem responde e como são feitos orçamentos e propostas.",
+    text: "Como você atende os contatos.",
   },
-  { title: "Objetivos", text: "O que a empresa quer alcançar e quais frentes parecem prioritárias agora." },
+  { title: "Objetivos", text: "O que vem primeiro." },
   {
     title: "Dados",
-    text: "Quais informações de campanha e de vendas existem hoje para apoiar a avaliação.",
+    text: "Informações disponíveis.",
   },
 ];
 

@@ -4,23 +4,23 @@ import { Section, SectionHeader } from "@/components/ui";
 const STEPS = [
   {
     title: "Entendimento",
-    text: "Conhecemos a oferta, o público que você quer alcançar e como sua equipe atende os contatos hoje.",
+    text: "Oferta, público e atendimento.",
   },
   {
     title: "Planejamento",
-    text: "Definimos objetivos, prioridades e o que entra primeiro entre Google Ads, Instagram Ads e conteúdo.",
+    text: "Prioridades, canais e mensagens.",
   },
   {
     title: "Produção",
-    text: "Preparamos os conteúdos, criativos e páginas previstos no escopo combinado com a empresa.",
+    text: "Conteúdos, criativos e páginas.",
   },
   {
     title: "Publicação",
-    text: "Publicamos e gerenciamos as campanhas no Google Ads e no Instagram Ads, seguindo o plano definido.",
+    text: "Campanhas no Google e no Instagram.",
   },
   {
     title: "Avaliação",
-    text: "Avaliamos os dados disponíveis e o retorno do atendimento para decidir o que manter, mudar ou testar.",
+    text: "Dados orientam os ajustes.",
   },
 ];
 
@@ -31,7 +31,7 @@ export function Method() {
         id="metodo-title"
         eyebrow="Método"
         lines={["Do entendimento aos ajustes."]}
-        text="Cada etapa responde a uma pergunta prática: o que vamos divulgar, para quem, com qual objetivo e o que os dados mostram depois da publicação."
+        text="Base de trabalho já aplicada na Shark."
       />
 
       <ol className="relative mt-16 grid gap-0 md:mt-20 lg:grid-cols-5 lg:gap-6">

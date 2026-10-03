@@ -2,7 +2,7 @@ import { Reveal } from "@/components/reveal";
 import { Section, SectionHeader } from "@/components/ui";
 
 // Labels only: no values or charts that could be read as real results.
-const INDICATORS = ["Cliques", "Contatos", "Custo por contato", "Orçamentos", "Oportunidades", "Vendas"];
+const INDICATORS = ["Alcance", "Cliques", "Ações na página", "Contatos", "Perfil dos contatos", "Oportunidades"];
 
 export function Indicators() {
   return (
@@ -10,9 +10,9 @@ export function Indicators() {
       <div className="grid gap-14 xl:grid-cols-[1.15fr_1fr] xl:items-end xl:gap-16">
         <SectionHeader
           id="indicadores-title"
-          eyebrow="Indicadores"
-          lines={["Dados de campanha", "e dados comerciais."]}
-          text="Cliques e contatos ajudam a acompanhar as campanhas. Orçamentos, oportunidades e vendas dependem também das informações do atendimento e do processo comercial. O que é possível medir varia conforme os dados e a estrutura de cada empresa."
+          eyebrow="Acompanhamento"
+          lines={["Como o trabalho", "é acompanhado."]}
+          text="Do alcance às oportunidades, com o retorno da sua equipe."
         />
 
         <Reveal>

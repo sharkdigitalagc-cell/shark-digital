@@ -5,23 +5,23 @@ import { Card, Section, SectionHeader } from "@/components/ui";
 const PROBLEMS = [
   {
     icon: Compass,
-    title: "Clientes vindos de indicações",
-    text: "Boa parte dos novos clientes chega por recomendação. É um canal valioso, mas difícil de planejar e de ampliar quando a empresa quer atender mais.",
+    title: "Assessoria",
+    text: "Define prioridades, canais e mensagens.",
   },
   {
     icon: Megaphone,
-    title: "Contatos com perfis diferentes",
-    text: "Os anúncios trazem pedidos de orçamento, mas nem todos combinam com a oferta. Entender por quê ajuda a ajustar público, mensagem e página.",
+    title: "Agência",
+    text: "Executa campanhas, conteúdo e páginas.",
   },
   {
     icon: BarChart3,
-    title: "Pouca visão depois do anúncio",
-    text: "O relatório mostra cliques e contatos, mas não indica quantos viraram orçamento ou oportunidade. Sem essa ligação, as decisões sobre verba e mensagem ficam incompletas.",
+    title: "Leitura dos dados",
+    text: "Mostra o que ajustar.",
   },
   {
     icon: RefreshCcw,
-    title: "Marketing dividido com outras funções",
-    text: "O fundador ou um gestor cuida dos anúncios, do conteúdo e do dia a dia da empresa ao mesmo tempo, e o marketing acaba ficando para os intervalos.",
+    title: "Retorno do atendimento",
+    text: "Sua equipe comercial orienta os ajustes.",
   },
 ];
 
@@ -30,9 +30,9 @@ export function Problem() {
     <Section labelledBy="problema-title">
       <SectionHeader
         id="problema-title"
-        eyebrow="Contexto"
-        lines={["Situações comuns", "no dia a dia comercial."]}
-        text="São cenários de empresas que já têm uma oferta definida e querem organizar a forma como novos contatos chegam, são atendidos e viram orçamentos."
+        eyebrow="Quem somos"
+        lines={["Assessoria e agência", "de marketing."]}
+        text="Planejamos com você e executamos."
       />
 
       <ul className="mt-14 grid gap-4 sm:grid-cols-2 md:mt-16">
@@ -54,7 +54,7 @@ export function Problem() {
       <Reveal>
         <p className="mt-14 flex items-center gap-4 text-xl font-medium tracking-tight text-fg md:text-2xl">
           <span aria-hidden className="h-px w-10 bg-accent" />
-          O trabalho começa por entender qual desses cenários se aproxima do seu.
+          Tudo organizado em atração, engajamento e venda.
         </p>
       </Reveal>
     </Section>

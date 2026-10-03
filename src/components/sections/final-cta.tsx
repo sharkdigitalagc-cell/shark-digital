@@ -14,25 +14,23 @@ export function FinalCta() {
       <Container className="relative">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="mx-auto max-w-md font-mono text-[0.72rem] font-medium uppercase leading-relaxed tracking-[0.2em] text-muted">
-            Google Ads • Instagram Ads
+            Atração • Engajamento • Venda
             <br />
-            Conteúdo • Atendimento
+            Assessoria e agência
           </p>
           <h2
             id="cta-title"
             className="mt-8 text-balance text-[2.1rem] font-semibold leading-[1.1] tracking-[-0.03em] text-fg sm:text-5xl md:text-[3.4rem]"
           >
-            <span className="block">Uma conversa sobre</span>
-            <span className="block">a sua empresa e as</span>
-            <span className="mt-2 block text-accent">prioridades de marketing.</span>
+            <span className="block">Apresente sua empresa</span>
+            <span className="block">e vamos conversar sobre</span>
+            <span className="mt-2 block text-accent">o seu marketing.</span>
           </h2>
           <p className="mx-auto mt-8 max-w-xl text-pretty leading-relaxed text-muted md:text-lg">
-            Conte como os clientes chegam hoje, o que já foi testado e o que
-            você quer priorizar. A partir disso, avaliamos juntos por onde faz
-            sentido começar.
+            Conte o que você oferece e conversamos sobre por onde começar.
           </p>
           <ButtonLink href="#contato" arrow className="mt-10">
-            Falar com a Shark
+            Conversar sobre meu marketing
           </ButtonLink>
         </Reveal>
       </Container>
