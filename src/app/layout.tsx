@@ -15,7 +15,12 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+// NEXT_PUBLIC_SITE_URL wins; on Vercel, fall back to the production domain it provides.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
 const title = "Shark Digital | Estratégia, Marketing e Crescimento";
 const description =
   "A Shark Digital estrutura estratégia, conteúdo, aquisição e performance para transformar marketing em uma operação orientada ao crescimento do negócio.";
