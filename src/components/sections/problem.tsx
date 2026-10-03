@@ -32,7 +32,7 @@ const SUPPORT = [
 export function Problem() {
   return (
     <Section id="assessoria" labelledBy="problema-title">
-      <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
+      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
         <div>
           <SectionHeader
             id="problema-title"
@@ -46,7 +46,7 @@ export function Problem() {
             </ButtonLink>
           </Reveal>
         </div>
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} className="mx-auto w-full max-w-[28rem] lg:mr-0 lg:max-w-[27rem]">
           <SharkConnection />
         </Reveal>
       </div>
