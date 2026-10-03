@@ -10,6 +10,7 @@ export const NAV_LINKS = [
   { href: "/#metodo", label: "Método" },
   { href: "/#solucoes", label: "Soluções" },
   { href: "/clientes", label: "Projetos" },
+  { href: "/blog", label: "Blog" },
   { href: "/#contato", label: "Contato" },
 ];
 

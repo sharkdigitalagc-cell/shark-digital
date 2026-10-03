@@ -136,6 +136,8 @@ type ButtonLinkProps = {
   variant?: "primary" | "secondary";
   className?: string;
   arrow?: boolean;
+  /** Opens in a new tab (e.g. WhatsApp). */
+  external?: boolean;
   onClick?: () => void;
 };
 
@@ -145,12 +147,14 @@ export function ButtonLink({
   variant = "primary",
   className,
   arrow = false,
+  external = false,
   onClick,
 }: ButtonLinkProps) {
   return (
     <a
       href={href}
       onClick={onClick}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={cn(
         "group inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-medium transition-colors duration-200",
         variant === "primary"
