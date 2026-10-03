@@ -2,23 +2,23 @@ import { ArrowDown, ArrowRight, CornerDownLeft } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { Section, SectionHeader } from "@/components/ui";
 
-const FLOW = ["Estratégia", "Conteúdo", "Aquisição", "Conversão", "Análise"];
-const LOOP = ["Respostas", "Análise", "Próxima decisão"];
+const FLOW = ["Oferta", "Atração", "Engajamento", "Venda", "Avaliação"];
+const LOOP = ["Dados da campanha", "Retorno do atendimento", "Ajustes"];
 
 export function Operation() {
   return (
     <Section labelledBy="gestao-title" tone="raised">
       <SectionHeader
         id="gestao-title"
-        eyebrow="Gestão Shark"
-        lines={["Marketing funcionando", "como uma operação."]}
-        text="Conectamos estratégia, comunicação, aquisição e análise para que cada ação tenha contexto, objetivo e próxima decisão."
+        eyebrow="Estratégia de aquisição"
+        lines={["Atração, engajamento", "e venda."]}
+        text="Atração apresenta a oferta a quem pode ter interesse ou já busca a solução. Engajamento usa conteúdos que esclarecem dúvidas e ajudam a avaliar a empresa. Venda liga a comunicação ao próximo passo comercial, conduzido pela sua equipe. A ordem e o peso de cada etapa variam conforme o serviço e o ciclo de compra."
       />
 
       <Reveal className="mt-14 md:mt-16">
         <div className="rounded-3xl border border-line bg-card p-5 sm:p-8 md:p-10">
           <ol
-            aria-label="Fluxo da operação"
+            aria-label="Etapas da estratégia de aquisição"
             className="flex flex-col items-stretch gap-2 lg:flex-row lg:items-center lg:gap-0"
           >
             {FLOW.map((step, i) => (
@@ -45,10 +45,10 @@ export function Operation() {
           <div className="mt-8 flex flex-col gap-4 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
             <p className="flex items-center gap-2 text-sm text-muted">
               <CornerDownLeft aria-hidden className="size-4 text-accent" />
-              Cada ciclo alimenta o próximo
+              Como as campanhas são ajustadas
             </p>
             <ol
-              aria-label="Ciclo de decisão"
+              aria-label="Ciclo de ajustes"
               className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-medium text-fg"
             >
               {LOOP.map((step, i) => (

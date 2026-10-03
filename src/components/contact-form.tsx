@@ -218,7 +218,7 @@ export function ContactForm() {
             </>
           ) : (
             <>
-              Enviar diagnóstico
+              Solicitar diagnóstico
               <ArrowRight
                 aria-hidden
                 className="size-4 transition-transform duration-200 group-hover:translate-x-0.5"

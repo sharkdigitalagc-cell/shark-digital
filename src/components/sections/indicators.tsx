@@ -2,7 +2,7 @@ import { Reveal } from "@/components/reveal";
 import { Section, SectionHeader } from "@/components/ui";
 
 // Labels only: no values or charts that could be read as real results.
-const INDICATORS = ["CAC", "Conversão", "Oportunidades", "Pipeline", "Vendas", "ROI"];
+const INDICATORS = ["Cliques", "Contatos", "Custo por contato", "Orçamentos", "Oportunidades", "Vendas"];
 
 export function Indicators() {
   return (
@@ -11,13 +11,13 @@ export function Indicators() {
         <SectionHeader
           id="indicadores-title"
           eyebrow="Indicadores"
-          lines={["Curtidas são sinais.", "Negócio exige indicadores."]}
-          text="Acompanhamos os sinais que ajudam a entender se o marketing está contribuindo para aquisição, conversão e crescimento."
+          lines={["Dados de campanha", "e dados comerciais."]}
+          text="Cliques e contatos ajudam a acompanhar as campanhas. Orçamentos, oportunidades e vendas dependem também das informações do atendimento e do processo comercial. O que é possível medir varia conforme os dados e a estrutura de cada empresa."
         />
 
         <Reveal>
           <ul
-            aria-label="Indicadores acompanhados"
+            aria-label="Exemplos de indicadores"
             className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-3 xl:grid-cols-2"
           >
             {INDICATORS.map((label) => (

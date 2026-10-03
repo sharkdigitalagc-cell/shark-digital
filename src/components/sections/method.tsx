@@ -4,23 +4,23 @@ import { Section, SectionHeader } from "@/components/ui";
 const STEPS = [
   {
     title: "Entendimento",
-    text: "Entendemos o negócio, mercado, público, oferta, operação comercial e momento da empresa.",
+    text: "Conhecemos a oferta, o público que você quer alcançar e como sua equipe atende os contatos hoje.",
   },
   {
     title: "Planejamento",
-    text: "Transformamos contexto em prioridades, canais, mensagens, campanhas e indicadores.",
+    text: "Definimos objetivos, prioridades e o que entra primeiro entre Google Ads, Instagram Ads e conteúdo.",
   },
   {
     title: "Produção",
-    text: "Estratégia vira conteúdo, criativos, campanhas, páginas e ativos de aquisição.",
+    text: "Preparamos os conteúdos, criativos e páginas previstos no escopo combinado com a empresa.",
   },
   {
-    title: "Divulgação",
-    text: "Distribuímos cada ativo nos canais adequados, conectando mídia, conteúdo e jornada.",
+    title: "Publicação",
+    text: "Publicamos e gerenciamos as campanhas no Google Ads e no Instagram Ads, seguindo o plano definido.",
   },
   {
-    title: "Acompanhamento",
-    text: "Analisamos comportamento, oportunidades, conversões e resultados para orientar a próxima decisão.",
+    title: "Avaliação",
+    text: "Avaliamos os dados disponíveis e o retorno do atendimento para decidir o que manter, mudar ou testar.",
   },
 ];
 
@@ -29,9 +29,9 @@ export function Method() {
     <Section id="metodo" labelledBy="metodo-title">
       <SectionHeader
         id="metodo-title"
-        eyebrow="Método Shark"
-        lines={["Processo antes de volume."]}
-        text="Uma operação de marketing precisa saber por que está executando, o que está medindo e qual decisão será tomada depois."
+        eyebrow="Método"
+        lines={["Do entendimento aos ajustes."]}
+        text="Cada etapa responde a uma pergunta prática: o que vamos divulgar, para quem, com qual objetivo e o que os dados mostram depois da publicação."
       />
 
       <ol className="relative mt-16 grid gap-0 md:mt-20 lg:grid-cols-5 lg:gap-6">

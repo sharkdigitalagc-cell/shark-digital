@@ -1,6 +1,6 @@
 import { cn } from "@/components/ui";
 
-const NODES = ["Estratégia", "Conteúdo", "Aquisição", "Conversão", "Dados"];
+const NODES = ["Google Ads", "Conteúdo", "Instagram Ads", "Atendimento", "Dados"];
 
 const SIZE = 560;
 const C = SIZE / 2;
@@ -29,8 +29,8 @@ export function HeroDiagram({ className }: { className?: string }) {
       className={cn("relative mx-auto aspect-square w-full max-w-[34rem]", className)}
     >
       <figcaption className="sr-only">
-        Diagrama: seu negócio no centro da operação, conectado a Estratégia,
-        Conteúdo, Aquisição, Conversão e Dados.
+        Diagrama: sua empresa, com a oferta e o atendimento no centro, conectada
+        a Google Ads, Conteúdo, Instagram Ads, Atendimento e Dados.
       </figcaption>
       <svg
         viewBox={`0 0 ${SIZE} ${SIZE}`}
@@ -116,10 +116,10 @@ export function HeroDiagram({ className }: { className?: string }) {
       {/* Centre: the business — intentionally no logo here. */}
       <div aria-hidden className="absolute left-1/2 top-1/2 flex size-[35%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-line-strong bg-card text-center shadow-[0_0_0_10px_rgba(5,5,5,0.9)]">
         <span className="whitespace-nowrap text-[clamp(0.7rem,2.4vw,1.05rem)] font-semibold tracking-[0.1em] text-fg">
-          SEU NEGÓCIO
+          SUA EMPRESA
         </span>
         <span className="mt-1.5 px-3 text-[clamp(0.66rem,2vw,0.8rem)] leading-snug text-muted">
-          O centro da operação.
+          Oferta e atendimento
         </span>
       </div>
 

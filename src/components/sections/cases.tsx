@@ -39,7 +39,7 @@ export function Cases() {
       <SectionHeader
         id="cases-title"
         eyebrow="Cases"
-        lines={["Estratégia precisa", "aparecer no resultado."]}
+        lines={["Cases com contexto", "e dados verificados."]}
       />
 
       <ul className="mt-14 grid gap-4 md:mt-16 lg:grid-cols-2">
