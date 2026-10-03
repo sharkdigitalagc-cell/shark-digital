@@ -68,7 +68,6 @@ export function HeroDiagram({ className }: { className?: string }) {
           fill="none"
           stroke="rgba(255,255,255,0.07)"
           strokeDasharray="1 7"
-          className="orbit-spin-reverse"
         />
 
         {/* Ring connections between neighbouring nodes */}
@@ -78,7 +77,7 @@ export function HeroDiagram({ className }: { className?: string }) {
           stroke="rgba(255,255,255,0.05)"
         />
 
-        {/* Spokes + flowing signal */}
+        {/* Spokes: a faint base line, plus a green connection drawn once on load */}
         {points.map((p, i) => (
           <g key={p.label}>
             <line x1={C} y1={C} x2={p.x} y2={p.y} stroke="url(#hd-line)" />
@@ -87,29 +86,28 @@ export function HeroDiagram({ className }: { className?: string }) {
               y1={p.y}
               x2={C}
               y2={C}
+              pathLength={1}
               stroke="#3DF06E"
-              strokeOpacity="0.85"
-              strokeWidth="1.5"
+              strokeOpacity="0.55"
+              strokeWidth="1.25"
               strokeLinecap="round"
-              className="signal-flow"
-              style={{ animationDelay: `${i * -0.96}s` }}
+              className="line-draw"
+              style={{ animationDelay: `${600 + i * 120}ms` }}
             />
           </g>
         ))}
 
         {/* Node markers */}
-        {points.map((p, i) => (
-          <g key={`${p.label}-dot`}>
-            <circle
-              cx={p.x}
-              cy={p.y}
-              r={6}
-              fill="#3DF06E"
-              className="node-pulse"
-              style={{ animationDelay: `${i * 0.6}s` }}
-            />
-            <circle cx={p.x} cy={p.y} r={4} fill="#050505" stroke="#3DF06E" strokeWidth="1.5" />
-          </g>
+        {points.map((p) => (
+          <circle
+            key={`${p.label}-dot`}
+            cx={p.x}
+            cy={p.y}
+            r={4}
+            fill="#050505"
+            stroke="#3DF06E"
+            strokeWidth="1.5"
+          />
         ))}
       </svg>
 

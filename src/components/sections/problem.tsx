@@ -1,8 +1,8 @@
 import { BarChart3, Compass, Megaphone, RefreshCcw } from "lucide-react";
 import { Reveal } from "@/components/reveal";
-import { Card, Section, SectionHeader } from "@/components/ui";
+import { Section, SectionHeader } from "@/components/ui";
 
-const PROBLEMS = [
+const ROLES = [
   {
     icon: Compass,
     title: "Assessoria",
@@ -13,6 +13,9 @@ const PROBLEMS = [
     title: "Agência",
     text: "Executa campanhas, conteúdo e páginas.",
   },
+];
+
+const SUPPORT = [
   {
     icon: BarChart3,
     title: "Leitura dos dados",
@@ -25,6 +28,17 @@ const PROBLEMS = [
   },
 ];
 
+/** Thin line of light joining the two roles: one operation, two halves. */
+function Connector() {
+  return (
+    <div aria-hidden className="flex items-center justify-center py-1 md:px-1 md:py-0">
+      <span className="relative block h-8 w-px bg-gradient-to-b from-line-strong via-brand/70 to-line-strong md:h-px md:w-14 md:bg-gradient-to-r">
+        <span className="absolute left-1/2 top-1/2 size-1.5 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-brand" />
+      </span>
+    </div>
+  );
+}
+
 export function Problem() {
   return (
     <Section labelledBy="problema-title">
@@ -35,17 +49,32 @@ export function Problem() {
         text="Planejamos com você e executamos."
       />
 
-      <ul className="mt-14 grid gap-4 sm:grid-cols-2 md:mt-16">
-        {PROBLEMS.map(({ icon: Icon, title, text }, i) => (
-          <li key={title}>
-            <Reveal delay={i * 0.06} className="h-full">
-              <Card className="h-full">
-                <Icon aria-hidden className="size-5 text-muted" strokeWidth={1.6} />
-                <h3 className="mt-6 text-lg font-semibold tracking-tight text-fg">
+      <Reveal className="mt-14 md:mt-16">
+        <ul className="grid items-stretch md:grid-cols-[1fr_auto_1fr]">
+          {ROLES.map(({ icon: Icon, title, text }, i) => (
+            <li key={title} className="contents">
+              {i > 0 ? <Connector /> : null}
+              <div className="lift rounded-2xl border border-line bg-[linear-gradient(160deg,#111_0%,#0b0b0b_60%)] p-7 md:p-9">
+                <Icon aria-hidden className="size-5 text-brand" strokeWidth={1.6} />
+                <h3 className="mt-8 text-2xl font-semibold tracking-tight text-fg">
                   {title}
                 </h3>
                 <p className="mt-2 leading-relaxed text-muted">{text}</p>
-              </Card>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+
+      <ul className="mt-10 grid gap-x-12 gap-y-8 border-t border-line pt-10 sm:grid-cols-2">
+        {SUPPORT.map(({ icon: Icon, title, text }, i) => (
+          <li key={title}>
+            <Reveal delay={i * 0.06} className="flex gap-4">
+              <Icon aria-hidden className="mt-1 size-5 shrink-0 text-muted" strokeWidth={1.6} />
+              <div>
+                <h3 className="text-lg font-semibold tracking-tight text-fg">{title}</h3>
+                <p className="mt-1 leading-relaxed text-muted">{text}</p>
+              </div>
             </Reveal>
           </li>
         ))}

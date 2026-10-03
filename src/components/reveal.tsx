@@ -13,6 +13,30 @@ type RevealProps = {
  * Fades content in once it enters the viewport.
  * Content stays visible without JS or with reduced motion (see globals.css).
  */
+/** A connector line that draws once (scale from 0) when it enters the viewport. */
+export function DrawLine({
+  className,
+  axis = "x",
+}: {
+  className?: string;
+  axis?: "x" | "y";
+}) {
+  const from = axis === "x" ? { scaleX: 0 } : { scaleY: 0 };
+  const to = axis === "x" ? { scaleX: 1 } : { scaleY: 1 };
+  return (
+    <m.span
+      aria-hidden
+      data-reveal
+      className={className}
+      style={{ originX: 0, originY: 0 }}
+      initial={from}
+      whileInView={to}
+      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    />
+  );
+}
+
 export function Reveal({ children, className, delay = 0, y = 16 }: RevealProps) {
   return (
     <m.div

@@ -5,7 +5,7 @@ export function FinalCta() {
   return (
     <section
       aria-labelledby="cta-title"
-      className="relative overflow-hidden border-t border-line bg-bg py-28 md:py-40"
+      className="grain relative overflow-hidden border-t border-line bg-bg py-28 md:py-40"
     >
       <div
         aria-hidden
@@ -29,7 +29,12 @@ export function FinalCta() {
           <p className="mx-auto mt-8 max-w-xl text-pretty leading-relaxed text-muted md:text-lg">
             Conte o que você oferece e conversamos sobre por onde começar.
           </p>
-          <ButtonLink href="#contato" arrow className="mt-10">
+          <span aria-hidden className="mx-auto mt-10 flex w-40 items-center gap-2">
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-brand/60" />
+            <span className="size-1 rotate-45 bg-brand" />
+            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-brand/60" />
+          </span>
+          <ButtonLink href="#contato" arrow className="mt-10 shadow-[0_10px_40px_-12px_rgba(251,197,2,0.45)]">
             Conversar sobre meu marketing
           </ButtonLink>
         </Reveal>
