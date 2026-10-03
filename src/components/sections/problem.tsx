@@ -1,7 +1,7 @@
 import { BarChart3, Compass, Megaphone, RefreshCcw } from "lucide-react";
 import { Reveal } from "@/components/reveal";
-import { ConnectedObjects } from "@/components/still-life";
-import { Section, SectionHeader } from "@/components/ui";
+import { SharkConnection } from "@/components/shark-connection";
+import { ButtonLink, Section, SectionHeader } from "@/components/ui";
 
 const ROLES = [
   {
@@ -33,14 +33,21 @@ export function Problem() {
   return (
     <Section id="assessoria" labelledBy="problema-title">
       <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
-        <SectionHeader
-          id="problema-title"
-          eyebrow="Quem somos"
-          lines={["Assessoria e agência", "de marketing."]}
-          text="Planejamos com você e executamos."
-        />
+        <div>
+          <SectionHeader
+            id="problema-title"
+            eyebrow="Quem somos"
+            lines={["Assessoria e agência", "de marketing."]}
+            text="Planejamos com você e executamos."
+          />
+          <Reveal delay={0.05} className="mt-8">
+            <ButtonLink href="#contato" arrow>
+              Conectar minha empresa à Shark
+            </ButtonLink>
+          </Reveal>
+        </div>
         <Reveal delay={0.1}>
-          <ConnectedObjects className="aspect-[2/1]" />
+          <SharkConnection />
         </Reveal>
       </div>
 
