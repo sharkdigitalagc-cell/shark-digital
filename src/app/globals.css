@@ -214,3 +214,45 @@ html:not(.js) [data-reveal] {
     border-color: rgb(255 255 255 / 0.18);
   }
 }
+
+/*
+ * Marquee for the projects row: right to left, pauses on hover/focus.
+ * The track holds the list twice, so -50% lands on an identical frame.
+ */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  padding-block: 4px;
+  animation: marquee 40s linear infinite;
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  .marquee-track > [aria-hidden] {
+    display: none;
+  }
+}
