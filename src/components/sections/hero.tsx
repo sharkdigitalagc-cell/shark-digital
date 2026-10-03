@@ -1,5 +1,4 @@
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { HeroDiagram } from "@/components/hero-diagram";
 import { Reveal } from "@/components/reveal";
 import { ButtonLink, Container, Eyebrow } from "@/components/ui";
@@ -58,26 +57,24 @@ export function Hero() {
               <ButtonLink href="#contato" arrow>
                 Conversar sobre meu marketing
               </ButtonLink>
-              <ButtonLink href="#metodo" variant="secondary">
-                Conhecer o método
+              <ButtonLink href="/clientes" variant="secondary">
+                Ver projetos
               </ButtonLink>
             </div>
           </Reveal>
 
           <Reveal delay={0.21}>
-            <Link
-              href="/clientes"
-              className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent"
+            <a
+              href="#metodo"
+              className="group mt-6 inline-flex items-center gap-2 rounded-sm text-sm font-medium text-muted transition-colors duration-200 hover:text-fg"
             >
               <span aria-hidden className="size-1.5 rounded-full bg-accent" />
-              <span className="underline decoration-accent/40 underline-offset-4 group-hover:decoration-accent">
-                Veja os clientes que atendemos
-              </span>
+              Conhecer o método
               <ArrowRight
                 aria-hidden
                 className="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
               />
-            </Link>
+            </a>
           </Reveal>
 
           <Reveal delay={0.24}>

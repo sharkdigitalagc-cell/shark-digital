@@ -1,16 +1,14 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { Cases } from "@/components/sections/cases";
+import { ClientStrip } from "@/components/sections/client-strip";
 import { Contact } from "@/components/sections/contact";
-import { Differentials } from "@/components/sections/differentials";
-import { FinalCta } from "@/components/sections/final-cta";
-import { Framework } from "@/components/sections/framework";
+import { Faq } from "@/components/sections/faq";
 import { Hero } from "@/components/sections/hero";
 import { Indicators } from "@/components/sections/indicators";
 import { Method } from "@/components/sections/method";
 import { Onboarding } from "@/components/sections/onboarding";
-import { Operation } from "@/components/sections/operation";
 import { Problem } from "@/components/sections/problem";
+import { Projects } from "@/components/sections/projects";
 import { Solutions } from "@/components/sections/solutions";
 
 export default function Home() {
@@ -19,16 +17,14 @@ export default function Home() {
       <SiteHeader />
       <main id="conteudo">
         <Hero />
+        <ClientStrip />
         <Problem />
-        <Operation />
-        <Method />
-        <Framework />
         <Solutions />
-        <Differentials />
+        <Projects />
+        <Method />
         <Indicators />
-        <Cases />
         <Onboarding />
-        <FinalCta />
+        <Faq />
         <Contact />
       </main>
       <SiteFooter />

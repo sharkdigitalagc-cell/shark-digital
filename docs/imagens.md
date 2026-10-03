@@ -12,3 +12,11 @@ discreta (laranja da logo ou verde), sem pessoas, apertos de mão ou tubarões.
 | Seção "Pauta da primeira conversa" | Caderno ou agenda preta fechada, luz verde | `Planner` em `src/components/still-life.tsx` |
 
 Formato: JPG ou WebP, ~1600 px no lado maior, até ~250 KB, 4:5.
+
+## Projetos (/clientes e home)
+
+Os cards de projeto usam uma capa tipográfica (nome + entregas confirmadas)
+em `src/components/project-cover.tsx`. Quando houver imagens reais e
+autorizadas do trabalho (telas do site da Colen, do sistema da Arthemi,
+criativos aprovados etc.), elas podem substituir a capa. Não usar capturas
+fictícias.

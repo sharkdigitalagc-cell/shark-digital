@@ -9,8 +9,7 @@ import { ButtonLink, cn } from "@/components/ui";
 export const NAV_LINKS = [
   { href: "/#metodo", label: "Método" },
   { href: "/#solucoes", label: "Soluções" },
-  { href: "/#diferenciais", label: "Engajamento" },
-  { href: "/clientes", label: "Clientes" },
+  { href: "/clientes", label: "Projetos" },
   { href: "/#contato", label: "Contato" },
 ];
 

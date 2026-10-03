@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { AlertCircle, ArrowRight, CheckCircle2, Loader2, MessageCircle } from "lucide-react";
 import {
   CONTACT_LIMITS,
+  type ContactChannel,
   normalizeContact,
   validateContact,
   type ContactApiResponse,
@@ -17,7 +18,7 @@ import { whatsappLink } from "@/lib/whatsapp";
 type Status =
   | { kind: "idle" }
   | { kind: "submitting" }
-  | { kind: "success"; whatsapp: string | null }
+  | { kind: "success"; whatsapp: string | null; canal: ContactChannel }
   | { kind: "error"; message: string; whatsapp?: string | null };
 
 const NOT_CONFIGURED =
@@ -25,7 +26,7 @@ const NOT_CONFIGURED =
 const GENERIC_ERROR =
   "Não foi possível enviar agora. Seus dados não foram enviados. Tente novamente em instantes.";
 
-const FIELDS: Array<{
+type FieldDef = {
   name: ContactField;
   label: string;
   type?: string;
@@ -33,37 +34,50 @@ const FIELDS: Array<{
   inputMode?: "email" | "tel" | "text";
   placeholder?: string;
   multiline?: boolean;
-  span?: boolean;
-}> = [
+  optional?: boolean;
+};
+
+const NAME_FIELDS: FieldDef[] = [
   { name: "nome", label: "Nome", autoComplete: "name" },
   { name: "empresa", label: "Empresa", autoComplete: "organization" },
-  {
-    name: "email",
-    label: "E-mail",
-    type: "email",
-    autoComplete: "email",
-    inputMode: "email",
-  },
-  {
+];
+
+const CHANNEL_FIELDS: Record<ContactChannel, FieldDef> = {
+  whatsapp: {
     name: "whatsapp",
-    label: "WhatsApp",
+    label: "Seu WhatsApp",
     type: "tel",
     autoComplete: "tel",
     inputMode: "tel",
     placeholder: "(00) 00000-0000",
   },
-  {
-    name: "desafio",
-    label: "Qual é o principal desafio de marketing hoje?",
-    multiline: true,
-    span: true,
+  email: {
+    name: "email",
+    label: "Seu e-mail",
+    type: "email",
+    autoComplete: "email",
+    inputMode: "email",
   },
+};
+
+const CHALLENGE_FIELD: FieldDef = {
+  name: "desafio",
+  label: "Qual é o principal desafio de marketing hoje?",
+  multiline: true,
+  optional: true,
+};
+
+const CHANNELS: Array<{ value: ContactChannel; label: string }> = [
+  { value: "whatsapp", label: "WhatsApp" },
+  { value: "email", label: "E-mail" },
 ];
 
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState<ContactErrors>({});
   const [status, setStatus] = useState<Status>({ kind: "idle" });
+  const [canal, setCanal] = useState<ContactChannel>("whatsapp");
+  const fields = [...NAME_FIELDS, CHANNEL_FIELDS[canal], CHALLENGE_FIELD];
 
   const readForm = () => {
     const fd = new FormData(formRef.current!);
@@ -86,7 +100,7 @@ export function ContactForm() {
     const found = validateContact(data);
     setErrors(found);
 
-    const firstInvalid = FIELDS.find((f) => found[f.name]);
+    const firstInvalid = fields.find((f) => found[f.name]);
     if (firstInvalid) {
       formRef.current
         ?.querySelector<HTMLElement>(`[name="${firstInvalid.name}"]`)
@@ -101,9 +115,10 @@ export function ContactForm() {
       if (CONTACT_EMAIL) {
         const sent = await sendContactEmail(data, String(raw.site ?? ""));
         if (sent) {
-          setStatus({ kind: "success", whatsapp });
+          setStatus({ kind: "success", whatsapp, canal: data.canal });
           formRef.current?.reset();
-          if (whatsapp) window.open(whatsapp, "_blank", "noopener");
+          setCanal("whatsapp");
+          if (whatsapp && data.canal === "whatsapp") window.open(whatsapp, "_blank", "noopener");
         } else {
           setStatus({ kind: "error", message: GENERIC_ERROR, whatsapp });
         }
@@ -118,11 +133,11 @@ export function ContactForm() {
       const payload = (await res.json().catch(() => null)) as ContactApiResponse | null;
 
       if (res.ok && payload?.ok) {
-        setStatus({ kind: "success", whatsapp });
+        setStatus({ kind: "success", whatsapp, canal: data.canal });
         formRef.current?.reset();
         // Continue the conversation on WhatsApp; the button below covers
         // browsers that block opening a tab after the request.
-        if (whatsapp) window.open(whatsapp, "_blank", "noopener");
+        if (whatsapp && data.canal === "whatsapp") window.open(whatsapp, "_blank", "noopener");
         return;
       }
 
@@ -143,6 +158,53 @@ export function ContactForm() {
 
   const submitting = status.kind === "submitting";
 
+  function renderField(field: FieldDef) {
+    const id = `contato-${field.name}`;
+    const error = errors[field.name];
+    const errorId = `${id}-erro`;
+    const common = {
+      id,
+      name: field.name,
+      required: !field.optional,
+      maxLength: CONTACT_LIMITS[field.name],
+      "aria-invalid": error ? true : undefined,
+      "aria-describedby": error ? errorId : undefined,
+      onBlur: () => onBlur(field.name),
+      disabled: submitting,
+      className: cn(
+        "w-full rounded-xl border bg-bg-2 px-4 text-[0.95rem] text-fg placeholder:text-white/30 transition-colors duration-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-60",
+        error ? "border-red-400/70" : "border-line-strong hover:border-white/25",
+        field.multiline ? "min-h-32 resize-y py-3" : "h-12",
+      ),
+    };
+
+    return (
+      <div key={field.name}>
+        <label htmlFor={id} className="mb-2 block text-sm font-medium text-fg">
+          {field.label}
+          {field.optional ? <span className="ml-1.5 font-normal text-muted">(opcional)</span> : null}
+        </label>
+        {field.multiline ? (
+          <textarea rows={4} {...common} />
+        ) : (
+          <input
+            type={field.type ?? "text"}
+            autoComplete={field.autoComplete}
+            inputMode={field.inputMode}
+            placeholder={field.placeholder}
+            {...common}
+          />
+        )}
+        {error ? (
+          <p id={errorId} className="mt-2 flex items-center gap-1.5 text-sm text-red-300">
+            <AlertCircle aria-hidden className="size-3.5 shrink-0" />
+            {error}
+          </p>
+        ) : null}
+      </div>
+    );
+  }
+
   return (
     <form
       ref={formRef}
@@ -151,58 +213,45 @@ export function ContactForm() {
       aria-describedby="contato-status"
       className="relative rounded-3xl border border-line bg-card p-6 sm:p-8 md:p-10"
     >
+      {/* After a confirmed send the fields give way to the confirmation. */}
+      {status.kind !== "success" ? (
+        <>
       <div className="grid gap-5 sm:grid-cols-2">
-        {FIELDS.map((field) => {
-          const id = `contato-${field.name}`;
-          const error = errors[field.name];
-          const errorId = `${id}-erro`;
-          const common = {
-            id,
-            name: field.name,
-            required: true,
-            maxLength: CONTACT_LIMITS[field.name],
-            "aria-invalid": error ? true : undefined,
-            "aria-describedby": error ? errorId : undefined,
-            onBlur: () => onBlur(field.name),
-            disabled: submitting,
-            className: cn(
-              "w-full rounded-xl border bg-bg-2 px-4 text-[0.95rem] text-fg placeholder:text-white/30 transition-colors duration-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:opacity-60",
-              error ? "border-red-400/70" : "border-line-strong hover:border-white/25",
-              field.multiline ? "min-h-36 resize-y py-3" : "h-12",
-            ),
-          };
+        {NAME_FIELDS.map((field) => renderField(field))}
 
-          return (
-            <div key={field.name} className={cn(field.span && "sm:col-span-2")}>
-              <label htmlFor={id} className="mb-2 block text-sm font-medium text-fg">
-                {field.label}
-              </label>
-              {field.multiline ? (
-                <textarea rows={5} {...common} />
-              ) : (
+        <fieldset className="sm:col-span-2">
+          <legend className="mb-2 block text-sm font-medium text-fg">
+            Como prefere ser contatado?
+          </legend>
+          <div className="inline-flex rounded-full border border-line-strong bg-bg-2 p-1">
+            {CHANNELS.map((option) => (
+              <label
+                key={option.value}
+                className={cn(
+                  "relative cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-colors duration-200 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent",
+                  canal === option.value ? "bg-fg text-bg" : "text-muted hover:text-fg",
+                )}
+              >
                 <input
-                  type={field.type ?? "text"}
-                  autoComplete={field.autoComplete}
-                  inputMode={field.inputMode}
-                  placeholder={field.placeholder}
-                  {...common}
+                  type="radio"
+                  name="canal"
+                  value={option.value}
+                  checked={canal === option.value}
+                  onChange={() => {
+                    setCanal(option.value);
+                    setErrors((prev) => ({ ...prev, email: undefined, whatsapp: undefined }));
+                  }}
+                  disabled={submitting}
+                  className="sr-only"
                 />
-              )}
-              {error ? (
-                <p id={errorId} className="mt-2 flex items-center gap-1.5 text-sm text-red-300">
-                  <AlertCircle aria-hidden className="size-3.5 shrink-0" />
-                  {error}
-                </p>
-              ) : null}
-            </div>
-          );
-        })}
-      </div>
+                {option.label}
+              </label>
+            ))}
+          </div>
+        </fieldset>
 
-      {/* Honeypot (anti-spam): hidden from people and assistive tech. */}
-      <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label htmlFor="contato-site">Não preencha este campo</label>
-        <input id="contato-site" name="site" type="text" tabIndex={-1} autoComplete="off" />
+        <div className="sm:col-span-2">{renderField(CHANNEL_FIELDS[canal])}</div>
+        <div className="sm:col-span-2">{renderField(CHALLENGE_FIELD)}</div>
       </div>
 
       <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
@@ -227,8 +276,17 @@ export function ContactForm() {
           )}
         </button>
         <p className="text-xs leading-relaxed text-muted sm:max-w-[16rem] sm:text-right">
-          Todos os campos são obrigatórios.
+          Só pedimos o contato do canal escolhido.
         </p>
+      </div>
+
+        </>
+      ) : null}
+
+      {/* Honeypot (anti-spam): hidden from people and assistive tech. */}
+      <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <label htmlFor="contato-site">Não preencha este campo</label>
+        <input id="contato-site" name="site" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
       <div id="contato-status" role="status" aria-live="polite" className="empty:hidden">
@@ -236,11 +294,22 @@ export function ContactForm() {
           <div className="mt-6 rounded-xl border border-accent/30 bg-accent/[0.06] p-4 text-sm leading-relaxed text-fg">
             <p className="flex items-start gap-3">
               <CheckCircle2 aria-hidden className="mt-0.5 size-4 shrink-0 text-accent" />
-              {status.whatsapp
-                ? "Recebemos suas informações. Para agilizar, continue a conversa com a gente no WhatsApp."
-                : "Recebemos suas informações. Entraremos em contato pelo e-mail ou WhatsApp informado."}
+              {status.canal === "email"
+                ? "Recebemos suas informações. Vamos responder pelo e-mail informado."
+                : status.whatsapp
+                  ? "Recebemos suas informações. Para agilizar, continue a conversa com a gente no WhatsApp."
+                  : "Recebemos suas informações. Vamos responder pelo WhatsApp informado."}
             </p>
-            {status.whatsapp ? <WhatsappButton href={status.whatsapp} /> : null}
+            <div className="ml-7 mt-4 flex flex-wrap items-center gap-4">
+              {status.whatsapp ? <WhatsappButton href={status.whatsapp} /> : null}
+              <button
+                type="button"
+                onClick={() => setStatus({ kind: "idle" })}
+                className="rounded-sm text-sm text-muted underline underline-offset-4 transition-colors duration-200 hover:text-fg"
+              >
+                Enviar outra mensagem
+              </button>
+            </div>
           </div>
         ) : null}
         {status.kind === "error" ? (
@@ -254,7 +323,9 @@ export function ContactForm() {
                 <p className="mt-3 pl-7 text-muted">
                   Se preferir, fale com a gente agora pelo WhatsApp.
                 </p>
-                <WhatsappButton href={status.whatsapp} />
+                <div className="ml-7 mt-4">
+                  <WhatsappButton href={status.whatsapp} />
+                </div>
               </>
             ) : null}
           </div>
@@ -270,7 +341,7 @@ function WhatsappButton({ href }: { href: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="ml-7 mt-4 inline-flex h-11 items-center gap-2 rounded-full bg-brand px-5 text-sm font-medium text-on-brand transition-colors duration-200 hover:bg-brand-hover"
+      className="inline-flex h-11 items-center gap-2 rounded-full bg-brand px-5 text-sm font-medium text-on-brand transition-colors duration-200 hover:bg-brand-hover"
     >
       <MessageCircle aria-hidden className="size-4" />
       Continuar no WhatsApp
