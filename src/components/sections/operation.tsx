@@ -9,7 +9,6 @@ export function Operation() {
   return (
     <Section labelledBy="gestao-title" tone="raised">
       <SectionHeader
-        tone="accent"
         id="gestao-title"
         eyebrow="Estratégia de aquisição"
         lines={["Atração, engajamento", "e venda."]}
@@ -17,14 +16,14 @@ export function Operation() {
       />
 
       <Reveal className="mt-14 md:mt-16">
-        <div className="rounded-3xl border border-line bg-card p-5 sm:p-8 md:p-10">
+        <div className="dot-grid rounded-3xl border border-line bg-card p-5 sm:p-8 md:p-10">
           <ol
             aria-label="Etapas da estratégia de aquisição"
             className="flex flex-col items-stretch gap-2 lg:flex-row lg:items-center lg:gap-0"
           >
             {FLOW.map((step, i) => (
               <li key={step} className="flex flex-col items-center lg:flex-1 lg:flex-row">
-                <div className="flex w-full items-center gap-3 rounded-xl border border-line bg-bg-2 px-4 py-3.5 lg:justify-center">
+                <div className="flex w-full items-center gap-3 rounded-xl border border-line bg-bg-2 px-4 py-3.5 transition-colors duration-200 hover:border-accent/40 lg:justify-center">
                   <span className="font-mono text-xs text-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>

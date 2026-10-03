@@ -146,6 +146,12 @@ html:not(.js) [data-reveal] {
   background-size: 160px 160px;
 }
 
+/* Precision dot grid for diagram surfaces. */
+.dot-grid {
+  background-image: radial-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
 /* Card hover: a slight lift and a lighter border, no jumps. */
 .lift {
   transition:

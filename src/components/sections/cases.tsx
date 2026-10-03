@@ -8,6 +8,7 @@ export function Cases() {
   return (
     <Section id="clientes" labelledBy="clientes-title" tone="raised">
       <SectionHeader
+        tone="brand"
         id="clientes-title"
         eyebrow="Clientes"
         lines={["Veja para quem", "já trabalhamos."]}
@@ -17,7 +18,7 @@ export function Cases() {
       <Reveal delay={0.08}>
         <Link
           href="/clientes"
-          className="group mt-12 block rounded-3xl border border-brand/40 bg-card p-6 transition-colors duration-200 hover:border-brand md:mt-14 md:p-8"
+          className="group mt-12 block rounded-3xl border border-line-strong bg-card p-6 transition-colors duration-200 hover:border-brand/60 md:mt-14 md:p-8"
         >
           <ul className="flex flex-wrap gap-3">
             {CLIENTS.map((client) => (

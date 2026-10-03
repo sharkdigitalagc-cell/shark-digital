@@ -42,7 +42,7 @@ export function Hero() {
               <span className="block text-fg/70">Estratégia para</span>
               <span className="block text-fg/70">atrair, engajar</span>
               <span className="mt-4 block">e gerar oportunidades</span>
-              <span className="block text-brand">de venda.</span>
+              <span className="block text-accent">de venda.</span>
             </h1>
           </Reveal>
 
@@ -67,10 +67,10 @@ export function Hero() {
           <Reveal delay={0.21}>
             <Link
               href="/clientes"
-              className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-brand"
+              className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent"
             >
-              <span aria-hidden className="size-1.5 rounded-full bg-brand" />
-              <span className="underline decoration-brand/40 underline-offset-4 group-hover:decoration-brand">
+              <span aria-hidden className="size-1.5 rounded-full bg-accent" />
+              <span className="underline decoration-accent/40 underline-offset-4 group-hover:decoration-accent">
                 Veja os clientes que atendemos
               </span>
               <ArrowRight
@@ -81,7 +81,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={0.24}>
-            <p className="mt-10 border-l border-brand/60 pl-4 text-sm leading-relaxed text-muted">
+            <p className="mt-10 border-l border-accent/60 pl-4 text-sm leading-relaxed text-muted">
               Assessoria define prioridades.
               <br />
               Agência executa.

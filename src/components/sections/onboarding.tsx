@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/reveal";
+import { Planner } from "@/components/still-life";
 import { Section, SectionHeader } from "@/components/ui";
 
 const STEPS = [
@@ -25,14 +26,17 @@ export function Onboarding() {
             eyebrow="Processo de entrada"
             lines={["Pauta da primeira", "conversa."]}
           />
+          <Reveal delay={0.1} className="mt-10">
+            <Planner className="aspect-[20/13] max-w-md" />
+          </Reveal>
         </div>
 
         <ol className="border-t border-line">
           {STEPS.map((step, i) => (
-            <li key={step.title} className="border-b border-line">
+            <li key={step.title} className="group border-b border-line">
               <Reveal delay={i * 0.05}>
-                <div className="grid grid-cols-[3rem_1fr] gap-x-4 py-7 sm:grid-cols-[4rem_10rem_1fr] sm:items-baseline">
-                  <span className="font-mono text-sm text-brand">
+                <div className="grid grid-cols-[3rem_1fr] gap-x-4 py-7 transition-transform duration-200 group-hover:translate-x-1 sm:grid-cols-[4rem_10rem_1fr] sm:items-baseline">
+                  <span className="font-mono text-sm text-accent">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="text-lg font-semibold tracking-tight text-fg">
