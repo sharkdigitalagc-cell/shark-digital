@@ -9,6 +9,7 @@ export function Indicators() {
     <Section labelledBy="indicadores-title">
       <div className="grid gap-14 xl:grid-cols-[1.15fr_1fr] xl:items-end xl:gap-16">
         <SectionHeader
+        tone="accent"
           id="indicadores-title"
           eyebrow="Acompanhamento"
           lines={["Como o trabalho", "é acompanhado."]}

@@ -166,7 +166,7 @@ export function ContactForm() {
             onBlur: () => onBlur(field.name),
             disabled: submitting,
             className: cn(
-              "w-full rounded-xl border bg-bg-2 px-4 text-[0.95rem] text-fg placeholder:text-white/30 transition-colors duration-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-60",
+              "w-full rounded-xl border bg-bg-2 px-4 text-[0.95rem] text-fg placeholder:text-white/30 transition-colors duration-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:opacity-60",
               error ? "border-red-400/70" : "border-line-strong hover:border-white/25",
               field.multiline ? "min-h-36 resize-y py-3" : "h-12",
             ),
@@ -209,7 +209,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-7 text-[0.95rem] font-medium text-bg transition-colors duration-200 hover:bg-[#62f48b] disabled:cursor-wait disabled:opacity-70"
+          className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-brand px-7 text-[0.95rem] font-medium text-on-brand transition-colors duration-200 hover:bg-brand-hover disabled:cursor-wait disabled:opacity-70"
         >
           {submitting ? (
             <>
@@ -270,7 +270,7 @@ function WhatsappButton({ href }: { href: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="ml-7 mt-4 inline-flex h-11 items-center gap-2 rounded-full bg-accent px-5 text-sm font-medium text-bg transition-colors duration-200 hover:bg-[#62f48b]"
+      className="ml-7 mt-4 inline-flex h-11 items-center gap-2 rounded-full bg-brand px-5 text-sm font-medium text-on-brand transition-colors duration-200 hover:bg-brand-hover"
     >
       <MessageCircle aria-hidden className="size-4" />
       Continuar no WhatsApp

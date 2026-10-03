@@ -49,10 +49,25 @@ export function Section({
   );
 }
 
-export function Eyebrow({ children }: { children: React.ReactNode }) {
+/** Accent of a section: brand orange (default) or the complementary green. */
+export type Tone = "brand" | "accent";
+
+export function Eyebrow({
+  children,
+  tone = "brand",
+}: {
+  children: React.ReactNode;
+  tone?: Tone;
+}) {
   return (
     <p className="inline-flex items-center gap-2.5 font-mono text-[0.72rem] font-medium uppercase tracking-[0.2em] text-muted">
-      <span aria-hidden className="size-1.5 rounded-full bg-accent" />
+      <span
+        aria-hidden
+        className={cn(
+          "size-1.5 rounded-full",
+          tone === "brand" ? "bg-brand" : "bg-accent",
+        )}
+      />
       {children}
     </p>
   );
@@ -64,6 +79,7 @@ type SectionHeaderProps = {
   lines: React.ReactNode[];
   text?: React.ReactNode;
   align?: "left" | "center";
+  tone?: Tone;
   className?: string;
 };
 
@@ -74,6 +90,7 @@ export function SectionHeader({
   lines,
   text,
   align = "left",
+  tone,
   className,
 }: SectionHeaderProps) {
   const centered = align === "center";
@@ -85,7 +102,7 @@ export function SectionHeader({
         className,
       )}
     >
-      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+      {eyebrow ? <Eyebrow tone={tone}>{eyebrow}</Eyebrow> : null}
       <h2
         id={id}
         className={cn(
@@ -137,7 +154,7 @@ export function ButtonLink({
       className={cn(
         "group inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-medium transition-colors duration-200",
         variant === "primary"
-          ? "bg-accent text-bg hover:bg-[#62f48b]"
+          ? "bg-brand text-on-brand hover:bg-brand-hover"
           : "border border-line-strong text-fg hover:border-white/30 hover:bg-white/[0.04]",
         className,
       )}

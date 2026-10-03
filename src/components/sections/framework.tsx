@@ -23,7 +23,7 @@ export function Framework() {
           <li key={title} className="p-6 md:p-8">
             <Reveal delay={i * 0.06}>
               <div className="flex items-center justify-between">
-                <Icon aria-hidden className="size-5 text-accent" strokeWidth={1.6} />
+                <Icon aria-hidden className="size-5 text-brand" strokeWidth={1.6} />
                 <span className="font-mono text-xs text-muted">
                   {String(i + 1).padStart(2, "0")}
                 </span>

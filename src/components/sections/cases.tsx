@@ -17,7 +17,7 @@ export function Cases() {
       <Reveal delay={0.08}>
         <Link
           href="/clientes"
-          className="group mt-12 block rounded-3xl border border-accent/40 bg-card p-6 transition-colors duration-200 hover:border-accent md:mt-14 md:p-8"
+          className="group mt-12 block rounded-3xl border border-brand/40 bg-card p-6 transition-colors duration-200 hover:border-brand md:mt-14 md:p-8"
         >
           <ul className="flex flex-wrap gap-3">
             {CLIENTS.map((client) => (
@@ -29,7 +29,7 @@ export function Cases() {
               </li>
             ))}
           </ul>
-          <span className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-accent px-6 text-[0.95rem] font-medium text-bg transition-colors duration-200 group-hover:bg-[#62f48b]">
+          <span className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-brand px-6 text-[0.95rem] font-medium text-on-brand transition-colors duration-200 group-hover:bg-brand-hover">
             Ver clientes e trabalhos
             <ArrowRight
               aria-hidden

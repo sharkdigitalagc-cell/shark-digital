@@ -1,13 +1,28 @@
 @import "tailwindcss";
 
 @theme {
+  /* Superfícies: preto fosco e grafite */
   --color-bg: #050505;
   --color-bg-2: #0a0a0a;
   --color-card: #0d0d0d;
   --color-line: rgb(255 255 255 / 0.08);
   --color-line-strong: rgb(255 255 255 / 0.14);
+
+  /* Textos: branco e neutros */
   --color-fg: #f5f5f5;
   --color-muted: #9a9a9a;
+
+  /*
+   * Marca principal: laranja da logo (public/logo-shark-digital.png, faixa
+   * inferior). Usado em CTAs prioritários, destaques e pequenos elementos.
+   * brand-hover e brand-deep também são tons presentes na mesma faixa.
+   */
+  --color-brand: #fbc502;
+  --color-brand-hover: #fde415;
+  --color-brand-deep: #d19806;
+  --color-on-brand: #050505;
+
+  /* Acento complementar: verde neon, com moderação (conexões, luz, estados). */
   --color-accent: #3df06e;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -33,12 +48,12 @@
   }
 
   ::selection {
-    background-color: rgb(61 240 110 / 0.25);
+    background-color: rgb(251 197 2 / 0.3);
     color: var(--color-fg);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-brand);
     outline-offset: 3px;
     border-radius: 4px;
   }

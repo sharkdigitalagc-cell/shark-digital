@@ -53,7 +53,7 @@ export function Problem() {
 
       <Reveal>
         <p className="mt-14 flex items-center gap-4 text-xl font-medium tracking-tight text-fg md:text-2xl">
-          <span aria-hidden className="h-px w-10 bg-accent" />
+          <span aria-hidden className="h-px w-10 bg-brand" />
           Tudo organizado em atração, engajamento e venda.
         </p>
       </Reveal>

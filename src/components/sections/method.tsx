@@ -28,6 +28,7 @@ export function Method() {
   return (
     <Section id="metodo" labelledBy="metodo-title">
       <SectionHeader
+        tone="accent"
         id="metodo-title"
         eyebrow="Método"
         lines={["Do entendimento aos ajustes."]}

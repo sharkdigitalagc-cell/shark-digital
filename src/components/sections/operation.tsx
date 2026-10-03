@@ -9,6 +9,7 @@ export function Operation() {
   return (
     <Section labelledBy="gestao-title" tone="raised">
       <SectionHeader
+        tone="accent"
         id="gestao-title"
         eyebrow="Estratégia de aquisição"
         lines={["Atração, engajamento", "e venda."]}
