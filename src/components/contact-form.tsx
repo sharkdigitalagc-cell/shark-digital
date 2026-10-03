@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { AlertCircle, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { AlertCircle, ArrowRight, CheckCircle2, Loader2, MessageCircle } from "lucide-react";
 import {
   CONTACT_LIMITS,
   normalizeContact,
@@ -11,12 +11,13 @@ import {
   type ContactField,
 } from "@/lib/contact";
 import { cn } from "@/components/ui";
+import { whatsappLink } from "@/lib/whatsapp";
 
 type Status =
   | { kind: "idle" }
   | { kind: "submitting" }
-  | { kind: "success" }
-  | { kind: "error"; message: string };
+  | { kind: "success"; whatsapp: string | null }
+  | { kind: "error"; message: string; whatsapp?: string | null };
 
 const NOT_CONFIGURED =
   "O envio ainda não está disponível. Seus dados não foram enviados.";
@@ -93,6 +94,7 @@ export function ContactForm() {
       return;
     }
 
+    const whatsapp = whatsappLink(data);
     setStatus({ kind: "submitting" });
     try {
       const res = await fetch("/api/contact", {
@@ -103,23 +105,26 @@ export function ContactForm() {
       const payload = (await res.json().catch(() => null)) as ContactApiResponse | null;
 
       if (res.ok && payload?.ok) {
-        setStatus({ kind: "success" });
+        setStatus({ kind: "success", whatsapp });
         formRef.current?.reset();
+        // Continue the conversation on WhatsApp; the button below covers
+        // browsers that block opening a tab after the request.
+        if (whatsapp) window.open(whatsapp, "_blank", "noopener");
         return;
       }
 
       // No API route behind this host (static-only deploy): nothing was sent.
       const noEndpoint = !payload && [404, 405, 501].includes(res.status);
       if (noEndpoint || (payload && !payload.ok && payload.code === "not_configured")) {
-        setStatus({ kind: "error", message: NOT_CONFIGURED });
+        setStatus({ kind: "error", message: NOT_CONFIGURED, whatsapp });
       } else if (payload && !payload.ok && payload.errors) {
         setErrors(payload.errors);
         setStatus({ kind: "error", message: "Revise os campos destacados." });
       } else {
-        setStatus({ kind: "error", message: GENERIC_ERROR });
+        setStatus({ kind: "error", message: GENERIC_ERROR, whatsapp });
       }
     } catch {
-      setStatus({ kind: "error", message: GENERIC_ERROR });
+      setStatus({ kind: "error", message: GENERIC_ERROR, whatsapp });
     }
   }
 
@@ -215,19 +220,47 @@ export function ContactForm() {
 
       <div id="contato-status" role="status" aria-live="polite" className="empty:hidden">
         {status.kind === "success" ? (
-          <p className="mt-6 flex items-start gap-3 rounded-xl border border-accent/30 bg-accent/[0.06] p-4 text-sm leading-relaxed text-fg">
-            <CheckCircle2 aria-hidden className="mt-0.5 size-4 shrink-0 text-accent" />
-            Recebemos suas informações. Entraremos em contato pelo e-mail ou
-            WhatsApp informado.
-          </p>
+          <div className="mt-6 rounded-xl border border-accent/30 bg-accent/[0.06] p-4 text-sm leading-relaxed text-fg">
+            <p className="flex items-start gap-3">
+              <CheckCircle2 aria-hidden className="mt-0.5 size-4 shrink-0 text-accent" />
+              {status.whatsapp
+                ? "Recebemos suas informações. Para agilizar, continue a conversa com a gente no WhatsApp."
+                : "Recebemos suas informações. Entraremos em contato pelo e-mail ou WhatsApp informado."}
+            </p>
+            {status.whatsapp ? <WhatsappButton href={status.whatsapp} /> : null}
+          </div>
         ) : null}
         {status.kind === "error" ? (
-          <p className="mt-6 flex items-start gap-3 rounded-xl border border-red-400/30 bg-red-400/[0.06] p-4 text-sm leading-relaxed text-fg">
-            <AlertCircle aria-hidden className="mt-0.5 size-4 shrink-0 text-red-300" />
-            {status.message}
-          </p>
+          <div className="mt-6 rounded-xl border border-red-400/30 bg-red-400/[0.06] p-4 text-sm leading-relaxed text-fg">
+            <p className="flex items-start gap-3">
+              <AlertCircle aria-hidden className="mt-0.5 size-4 shrink-0 text-red-300" />
+              {status.message}
+            </p>
+            {status.whatsapp ? (
+              <>
+                <p className="mt-3 pl-7 text-muted">
+                  Se preferir, fale com a gente agora pelo WhatsApp.
+                </p>
+                <WhatsappButton href={status.whatsapp} />
+              </>
+            ) : null}
+          </div>
         ) : null}
       </div>
     </form>
+  );
+}
+
+function WhatsappButton({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="ml-7 mt-4 inline-flex h-11 items-center gap-2 rounded-full bg-accent px-5 text-sm font-medium text-bg transition-colors duration-200 hover:bg-[#62f48b]"
+    >
+      <MessageCircle aria-hidden className="size-4" />
+      Continuar no WhatsApp
+    </a>
   );
 }
