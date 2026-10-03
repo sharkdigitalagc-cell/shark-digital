@@ -2,16 +2,16 @@ import { Reveal } from "@/components/reveal";
 import { Section, SectionHeader } from "@/components/ui";
 
 const STEPS = [
-  { title: "Diagnóstico", text: "Entendemos negócio, momento, operação e desafios." },
-  { title: "Direção", text: "Definimos prioridades, posicionamento e plano." },
+  { title: "Oferta e público", text: "Quais serviços você quer divulgar e quem costuma contratar a empresa." },
+  { title: "Campanhas", text: "O que já foi feito em Google Ads, Instagram Ads e conteúdo, e o que você observou." },
   {
-    title: "Estruturação",
-    text: "Organizamos ativos, processos, campanhas e comunicação.",
+    title: "Atendimento",
+    text: "Como os contatos chegam, quem responde e como são feitos orçamentos e propostas.",
   },
-  { title: "Operação", text: "Executamos o plano com acompanhamento contínuo." },
+  { title: "Objetivos", text: "O que a empresa quer alcançar e quais frentes parecem prioritárias agora." },
   {
-    title: "Evolução",
-    text: "Dados geram aprendizado e aprendizado gera a próxima decisão.",
+    title: "Dados",
+    text: "Quais informações de campanha e de vendas existem hoje para apoiar a avaliação.",
   },
 ];
 
@@ -23,7 +23,7 @@ export function Onboarding() {
           <SectionHeader
             id="entrada-title"
             eyebrow="Processo de entrada"
-            lines={["Antes de executar,", "precisamos entender."]}
+            lines={["Pauta da primeira", "conversa."]}
           />
         </div>
 

@@ -19,7 +19,7 @@ export function SiteFooter() {
             <a href="#inicio" aria-label="Shark Digital — voltar ao início" className="inline-block">
               <Logo variant="stacked" />
             </a>
-            <p className="mt-6 text-sm text-muted">Estratégia. Marketing. Crescimento.</p>
+            <p className="mt-6 text-sm text-muted">Estratégia de marketing, conteúdo e tráfego pago.</p>
           </div>
 
           <nav aria-label="Rodapé">

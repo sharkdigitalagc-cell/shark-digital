@@ -21,9 +21,9 @@ const siteUrl =
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "http://localhost:3000");
-const title = "Shark Digital | Estratégia, Marketing e Crescimento";
+const title = "Shark Digital | Google Ads, Instagram Ads e conteúdo";
 const description =
-  "A Shark Digital estrutura estratégia, conteúdo, aquisição e performance para transformar marketing em uma operação orientada ao crescimento do negócio.";
+  "A Shark Digital planeja e gerencia campanhas de Google Ads e Instagram Ads e produz conteúdo a partir da oferta, do público e do atendimento comercial de cada empresa.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

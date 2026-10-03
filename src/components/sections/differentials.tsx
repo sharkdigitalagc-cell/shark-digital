@@ -3,19 +3,19 @@ import { Reveal } from "@/components/reveal";
 import { Section, SectionHeader } from "@/components/ui";
 
 const FRAGMENTED = [
-  "Posts isolados",
-  "Demandas pelo WhatsApp",
-  "Decisões por opinião",
-  "Métricas de vaidade",
-  "Execução reativa",
+  "Objetivo de cada campanha",
+  "Públicos e mensagens prioritários",
+  "Peças e páginas previstas no escopo",
+  "Informações que serão acompanhadas",
+  "Como o atendimento dará retorno",
 ];
 
 const SHARK = [
-  "Planejamento integrado",
-  "Processos claros",
-  "Decisões orientadas por dados",
-  "Indicadores de negócio",
-  "Evolução contínua",
+  "Entregas organizadas por prioridade",
+  "Leitura dos dados disponíveis",
+  "Comparação com os objetivos",
+  "Retorno do atendimento sobre os contatos",
+  "Ajustes com justificativa clara",
 ];
 
 export function Differentials() {
@@ -24,14 +24,14 @@ export function Differentials() {
       <SectionHeader
         id="diferenciais-title"
         eyebrow="Diferenciais"
-        lines={["Menos improviso.", "Mais sistema."]}
+        lines={["Critérios definidos", "e acompanhados."]}
       />
 
       <div className="mt-14 grid gap-4 md:mt-16 md:grid-cols-2">
         <Reveal className="h-full">
           <div className="h-full rounded-3xl border border-line bg-bg p-7 md:p-9">
             <h3 className="text-sm font-medium uppercase tracking-[0.16em] text-muted">
-              Modelo fragmentado
+              Definido no início
             </h3>
             <ul className="mt-8 space-y-1">
               {FRAGMENTED.map((item) => (
@@ -51,7 +51,7 @@ export function Differentials() {
           <div className="h-full rounded-3xl border border-accent/25 bg-card p-7 shadow-[0_0_80px_-40px_rgba(61,240,110,0.35)] md:p-9">
             <h3 className="flex items-center gap-2.5 text-sm font-medium uppercase tracking-[0.16em] text-fg">
               <span aria-hidden className="size-1.5 rounded-full bg-accent" />
-              Modelo Shark
+              Acompanhado no trabalho
             </h3>
             <ul className="mt-8 space-y-1">
               {SHARK.map((item) => (

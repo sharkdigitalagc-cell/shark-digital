@@ -14,21 +14,22 @@ export function FinalCta() {
       <Container className="relative">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="mx-auto max-w-md font-mono text-[0.72rem] font-medium uppercase leading-relaxed tracking-[0.2em] text-muted">
-            Se o marketing da sua empresa cresceu,
+            Google Ads • Instagram Ads
             <br />
-            mas a estrutura não...
+            Conteúdo • Atendimento
           </p>
           <h2
             id="cta-title"
             className="mt-8 text-balance text-[2.1rem] font-semibold leading-[1.1] tracking-[-0.03em] text-fg sm:text-5xl md:text-[3.4rem]"
           >
-            <span className="block">Talvez o próximo passo</span>
-            <span className="block">não seja fazer mais.</span>
-            <span className="mt-2 block text-accent">Talvez seja organizar melhor.</span>
+            <span className="block">Uma conversa sobre</span>
+            <span className="block">a sua empresa e as</span>
+            <span className="mt-2 block text-accent">prioridades de marketing.</span>
           </h2>
           <p className="mx-auto mt-8 max-w-xl text-pretty leading-relaxed text-muted md:text-lg">
-            Vamos entender onde sua operação de marketing está hoje e quais
-            estruturas precisam existir para ela evoluir.
+            Conte como os clientes chegam hoje, o que já foi testado e o que
+            você quer priorizar. A partir disso, avaliamos juntos por onde faz
+            sentido começar.
           </p>
           <ButtonLink href="#contato" arrow className="mt-10">
             Falar com a Shark

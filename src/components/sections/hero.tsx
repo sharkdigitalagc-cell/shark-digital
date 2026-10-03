@@ -18,7 +18,7 @@ export function Hero() {
       <Container className="relative grid items-center gap-16 lg:grid-cols-[1.2fr_1fr] lg:gap-10">
         <div>
           <Reveal>
-            <Eyebrow>Marketing • Estratégia • Crescimento</Eyebrow>
+            <Eyebrow>Estratégia • Conteúdo • Tráfego pago</Eyebrow>
           </Reveal>
 
           <Reveal delay={0.05}>
@@ -26,25 +26,25 @@ export function Hero() {
               id="hero-title"
               className="mt-7 text-[2.15rem] font-semibold leading-[1.04] tracking-[-0.035em] text-fg sm:text-[3.4rem] lg:text-[2.75rem] xl:text-[3.6rem]"
             >
-              <span className="block text-fg/70">Marketing não é sobre</span>
-              <span className="block text-fg/70">postar mais.</span>
-              <span className="mt-4 block">É sobre fazer sua</span>
-              <span className="block text-accent">empresa crescer.</span>
+              <span className="block text-fg/70">Google Ads e</span>
+              <span className="block text-fg/70">Instagram Ads</span>
+              <span className="mt-4 block">conectados à sua</span>
+              <span className="block text-accent">aquisição de clientes.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.12}>
             <p className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted md:text-lg">
-              Estratégia, conteúdo, aquisição e performance trabalhando como uma
-              única operação para transformar marketing em crescimento de
-              negócio.
+              Planejamos campanhas e conteúdo a partir da sua oferta, do público
+              que você quer alcançar e da forma como sua equipe atende os
+              contatos que chegam pelos anúncios.
             </p>
           </Reveal>
 
           <Reveal delay={0.18}>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="#contato" arrow>
-                Estruturar meu marketing
+                Solicitar diagnóstico de marketing
               </ButtonLink>
               <ButtonLink href="#metodo" variant="secondary">
                 Conhecer o método
@@ -54,9 +54,9 @@ export function Hero() {
 
           <Reveal delay={0.24}>
             <p className="mt-10 border-l border-accent/60 pl-4 text-sm leading-relaxed text-muted">
-              Estratégia antes da execução.
+              Atração, engajamento e venda.
               <br />
-              Dados antes da opinião.
+              Ajustes com base nos dados e no atendimento.
             </p>
           </Reveal>
         </div>

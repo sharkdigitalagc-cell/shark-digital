@@ -10,13 +10,13 @@ export function Contact() {
           <SectionHeader
             id="contato-title"
             eyebrow="Contato"
-            lines={["Comece pelo", "diagnóstico."]}
-            text="Conte um pouco sobre sua empresa e o principal desafio de marketing hoje."
+            lines={["Conte sobre", "a sua empresa."]}
+            text="Use o formulário para solicitar um diagnóstico de marketing. Conte como os clientes chegam hoje e qual é o principal desafio."
           />
           <Reveal delay={0.08}>
             <p className="mt-10 border-l border-accent/60 pl-4 text-[0.95rem] leading-relaxed text-muted">
-              Este formulário é o início do diagnóstico: entender negócio,
-              momento, operação e desafios.
+              As informações enviadas servem de ponto de partida para a
+              primeira conversa sobre oferta, público, campanhas e atendimento.
             </p>
           </Reveal>
         </div>

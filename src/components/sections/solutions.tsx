@@ -14,38 +14,38 @@ const SOLUTIONS = [
   {
     icon: Network,
     title: "Gestão de marketing",
-    text: "Estratégia, planejamento, acompanhamento e coordenação da operação.",
+    text: "Planejamento, coordenação das frentes contratadas e acompanhamento do que foi combinado, com os mesmos objetivos orientando campanhas e conteúdo.",
     featured: true,
   },
   {
     icon: Crosshair,
     title: "Posicionamento & estratégia",
-    text: "Clareza de público, oferta, mensagem e direção competitiva.",
+    text: "Definição do público, da forma de apresentar a oferta e das mensagens usadas nos anúncios e no conteúdo.",
   },
   {
     icon: PenLine,
     title: "Conteúdo",
-    text: "Conteúdo pensado para posicionar, educar, gerar demanda e apoiar aquisição.",
+    text: "Publicações que explicam a oferta, respondem dúvidas frequentes e ajudam o público a conhecer a empresa antes do contato.",
   },
   {
     icon: Radio,
     title: "Mídia paga",
-    text: "Campanhas orientadas por objetivos de negócio e integradas à jornada comercial.",
+    text: "Google Ads na Rede de Pesquisa, para alcançar quem procura serviços ligados à oferta, e Instagram Ads (Meta), para apresentar a oferta, distribuir conteúdo e se relacionar com o público.",
   },
   {
     icon: Palette,
     title: "Criativos",
-    text: "Peças construídas com função estratégica, não apenas estética.",
+    text: "Imagens, vídeos e textos dos anúncios, produzidos conforme a mensagem e o objetivo de cada campanha.",
   },
   {
     icon: LayoutTemplate,
     title: "Landing pages & funis",
-    text: "Estruturas digitais projetadas para transformar atenção em ação.",
+    text: "Páginas que apresentam a oferta e levam ao próximo passo definido, como um formulário ou uma conversa no WhatsApp.",
   },
   {
     icon: ChartNoAxesCombined,
-    title: "Análise & performance",
-    text: "Leitura de indicadores para entender o que aconteceu e orientar o próximo movimento.",
+    title: "Análise & acompanhamento",
+    text: "Leitura dos números das campanhas e, quando a empresa compartilha, das informações do atendimento, para orientar os ajustes.",
   },
 ];
 
@@ -54,8 +54,8 @@ export function Solutions() {
     <Section id="solucoes" labelledBy="solucoes-title">
       <SectionHeader
         id="solucoes-title"
-        eyebrow="Ecossistema"
-        lines={["As peças trabalham juntas."]}
+        eyebrow="Soluções"
+        lines={["O que cada serviço faz."]}
       />
 
       <ul className="mt-14 grid gap-4 md:mt-16 md:grid-cols-2 lg:grid-cols-4">
@@ -86,7 +86,7 @@ export function Solutions() {
                 <p className="mt-2 leading-relaxed text-muted">{text}</p>
                 {featured ? (
                   <p className="mt-auto pt-8 font-mono text-xs uppercase tracking-[0.16em] text-muted">
-                    Coordena todas as frentes
+                    Coordena as demais frentes
                   </p>
                 ) : null}
               </article>
