@@ -11,6 +11,7 @@ import {
   type ContactField,
 } from "@/lib/contact";
 import { cn } from "@/components/ui";
+import { CONTACT_EMAIL, sendContactEmail } from "@/lib/contact-email";
 import { whatsappLink } from "@/lib/whatsapp";
 
 type Status =
@@ -97,6 +98,18 @@ export function ContactForm() {
     const whatsapp = whatsappLink(data);
     setStatus({ kind: "submitting" });
     try {
+      if (CONTACT_EMAIL) {
+        const sent = await sendContactEmail(data, String(raw.site ?? ""));
+        if (sent) {
+          setStatus({ kind: "success", whatsapp });
+          formRef.current?.reset();
+          if (whatsapp) window.open(whatsapp, "_blank", "noopener");
+        } else {
+          setStatus({ kind: "error", message: GENERIC_ERROR, whatsapp });
+        }
+        return;
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

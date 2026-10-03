@@ -64,10 +64,12 @@ public/
 ## Formulário de contato
 
 O formulário envia para `POST /api/contact`, que valida os dados e os encaminha
-para o destino configurado. Por padrão, os contatos vão para o e-mail da Shark
-(sharkdigital.agc@gmail.com) via [FormSubmit](https://formsubmit.co): no primeiro
+para o destino configurado. Por padrão, porém, os contatos vão direto do navegador do visitante para o e-mail da Shark
+(sharkdigital.agc@gmail.com) via [FormSubmit](https://formsubmit.co), configurado em
+`src/lib/contact-email.ts` (o FormSubmit recusa envios feitos por servidor). No primeiro
 envio, o FormSubmit manda um e-mail de ativação para essa caixa, e até o link ser
-clicado os envios aparecem como não enviados. Depois do envio, o visitante é
+clicado os envios aparecem como não enviados. Deixe `CONTACT_EMAIL` vazio nesse
+arquivo para usar a rota `/api/contact` com `CONTACT_FORM_ENDPOINT`. Depois do envio, o visitante é
 levado ao WhatsApp da Shark com os dados já escritos (número em
 `src/lib/whatsapp.ts`). **Não existe envio simulado**: sem destino
 configurado, ou se o destino não confirmar o recebimento, o visitante vê que os
@@ -75,8 +77,7 @@ dados não foram enviados.
 
 | Variável | Obrigatória | Descrição |
 | --- | --- | --- |
-| `CONTACT_EMAIL` | não | Caixa que recebe os contatos via FormSubmit (padrão: e-mail da Shark; vazio desativa). |
-| `CONTACT_FORM_ENDPOINT` | não | URL que recebe um `POST` JSON (webhook do CRM, n8n/Make/Zapier). Tem prioridade sobre o e-mail. |
+| `CONTACT_FORM_ENDPOINT` | só sem e-mail | URL que recebe um `POST` JSON (webhook do CRM, n8n/Make/Zapier), usada quando `CONTACT_EMAIL` está vazio. |
 | `CONTACT_FORM_TOKEN` | não | Enviado como `Authorization: Bearer <token>`. |
 | `NEXT_PUBLIC_SITE_URL` | recomendado | URL pública do site, usada em canonical e OpenGraph. |
 
