@@ -31,7 +31,7 @@ const SUPPORT = [
 
 export function Problem() {
   return (
-    <Section labelledBy="problema-title">
+    <Section id="assessoria" labelledBy="problema-title">
       <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
         <SectionHeader
           id="problema-title"
