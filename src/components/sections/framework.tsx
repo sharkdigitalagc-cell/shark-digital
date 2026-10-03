@@ -3,10 +3,10 @@ import { Reveal } from "@/components/reveal";
 import { Section, SectionHeader } from "@/components/ui";
 
 const PILLARS = [
-  { icon: Users, title: "Público", question: "Quem buscamos alcançar?" },
-  { icon: Target, title: "Objetivo", question: "Qual ação esperamos estimular?" },
-  { icon: MessageSquareText, title: "Mensagem", question: "O que essa pessoa precisa compreender sobre a oferta?" },
-  { icon: Route, title: "Distribuição", question: "Como essa mensagem será distribuída e avaliada?" },
+  { icon: Users, title: "Público", question: "Quem pode se interessar?" },
+  { icon: Target, title: "Necessidade", question: "O que essa pessoa busca?" },
+  { icon: MessageSquareText, title: "Destino", question: "Para onde o anúncio leva?" },
+  { icon: Route, title: "Ação", question: "Qual ação esperamos?" },
 ];
 
 export function Framework() {
@@ -14,8 +14,8 @@ export function Framework() {
     <Section labelledBy="framework-title" tone="raised">
       <SectionHeader
         id="framework-title"
-        eyebrow="Planejamento de campanha"
-        lines={["Quatro perguntas antes", "de cada campanha."]}
+        eyebrow="Planejamento da atração"
+        lines={["Quatro perguntas", "antes de anunciar."]}
       />
 
       <ul className="mt-14 grid overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4 [&>li]:bg-card md:mt-16 gap-px">

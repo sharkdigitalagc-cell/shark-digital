@@ -18,7 +18,7 @@ export function Hero() {
       <Container className="relative grid items-center gap-16 lg:grid-cols-[1.2fr_1fr] lg:gap-10">
         <div>
           <Reveal>
-            <Eyebrow>Estratégia • Conteúdo • Tráfego pago</Eyebrow>
+            <Eyebrow>Assessoria e agência de marketing</Eyebrow>
           </Reveal>
 
           <Reveal delay={0.05}>
@@ -26,25 +26,24 @@ export function Hero() {
               id="hero-title"
               className="mt-7 text-[2.15rem] font-semibold leading-[1.04] tracking-[-0.035em] text-fg sm:text-[3.4rem] lg:text-[2.75rem] xl:text-[3.6rem]"
             >
-              <span className="block text-fg/70">Google Ads e</span>
-              <span className="block text-fg/70">Instagram Ads</span>
-              <span className="mt-4 block">conectados à sua</span>
-              <span className="block text-accent">aquisição de clientes.</span>
+              <span className="block text-fg/70">Estratégia para</span>
+              <span className="block text-fg/70">atrair, engajar</span>
+              <span className="mt-4 block">e gerar oportunidades</span>
+              <span className="block text-accent">de venda.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.12}>
             <p className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted md:text-lg">
-              Planejamos campanhas e conteúdo a partir da sua oferta, do público
-              que você quer alcançar e da forma como sua equipe atende os
-              contatos que chegam pelos anúncios.
+              Campanhas no Google e no Instagram, conteúdo e páginas
+              para a sua oferta.
             </p>
           </Reveal>
 
           <Reveal delay={0.18}>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="#contato" arrow>
-                Solicitar diagnóstico de marketing
+                Conversar sobre meu marketing
               </ButtonLink>
               <ButtonLink href="#metodo" variant="secondary">
                 Conhecer o método
@@ -54,9 +53,9 @@ export function Hero() {
 
           <Reveal delay={0.24}>
             <p className="mt-10 border-l border-accent/60 pl-4 text-sm leading-relaxed text-muted">
-              Atração, engajamento e venda.
+              Assessoria define prioridades.
               <br />
-              Ajustes com base nos dados e no atendimento.
+              Agência executa.
             </p>
           </Reveal>
         </div>

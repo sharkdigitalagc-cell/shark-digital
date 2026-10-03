@@ -12,7 +12,7 @@ export function Operation() {
         id="gestao-title"
         eyebrow="Estratégia de aquisição"
         lines={["Atração, engajamento", "e venda."]}
-        text="Atração apresenta a oferta a quem pode ter interesse ou já busca a solução. Engajamento usa conteúdos que esclarecem dúvidas e ajudam a avaliar a empresa. Venda liga a comunicação ao próximo passo comercial, conduzido pela sua equipe. A ordem e o peso de cada etapa variam conforme o serviço e o ciclo de compra."
+        text="Atrair interessados, explicar a oferta e levar ao contato com a sua equipe."
       />
 
       <Reveal className="mt-14 md:mt-16">
@@ -45,7 +45,7 @@ export function Operation() {
           <div className="mt-8 flex flex-col gap-4 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
             <p className="flex items-center gap-2 text-sm text-muted">
               <CornerDownLeft aria-hidden className="size-4 text-accent" />
-              Como as campanhas são ajustadas
+              Ciclo de ajustes
             </p>
             <ol
               aria-label="Ciclo de ajustes"
