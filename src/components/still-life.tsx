@@ -1,6 +1,5 @@
 "use client";
 
-import { m } from "framer-motion";
 import { cn } from "@/components/ui";
 
 /*
@@ -9,7 +8,7 @@ import { cn } from "@/components/ui";
  * and are purely decorative.
  */
 
-const GREEN = "#3DF06E";
+export const GREEN = "#3DF06E";
 const ORANGE = "#FBC502";
 
 function Frame({
@@ -38,7 +37,7 @@ function Frame({
 }
 
 /** Matte black gradient with a rim of coloured light on one side. */
-function RimGradient({
+export function RimGradient({
   id,
   color,
   side,
@@ -72,7 +71,7 @@ function RimGradient({
   );
 }
 
-const Horizon = ({ y, w }: { y: number; w: number }) => (
+export const Horizon = ({ y, w }: { y: number; w: number }) => (
   <>
     <defs>
       <linearGradient id={`hz-${y}-${w}`} x1="0" y1="0" x2="1" y2="0">
@@ -111,68 +110,6 @@ export function StrategyPiece({ className }: { className?: string }) {
         <ellipse cx="120" cy="126" rx="34" ry="8" fill="url(#sp-body)" />
         <circle cx="120" cy="92" r="28" fill="url(#sp-head)" />
         <path d="M138 70 A28 28 0 0 1 146 104" fill="none" stroke={ORANGE} strokeOpacity="0.5" strokeWidth="1.2" strokeLinecap="round" />
-      </svg>
-    </Frame>
-  );
-}
-
-/**
- * Integration: a block and a puck joined by a thin line of green light,
- * drawn once when the image enters the screen.
- */
-export function ConnectedObjects({ className }: { className?: string }) {
-  return (
-    <Frame light="green" className={className}>
-      <svg viewBox="0 0 480 240" className="block size-full">
-        <defs>
-          <RimGradient id="co-cube" color={GREEN} side="right" />
-          <RimGradient id="co-puck" color={GREEN} side="left" />
-          <linearGradient id="co-top" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#1c1c1c" />
-            <stop offset="100%" stopColor="#0c0c0c" />
-          </linearGradient>
-          <radialGradient id="co-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={GREEN} stopOpacity="0.55" />
-            <stop offset="100%" stopColor={GREEN} stopOpacity="0" />
-          </radialGradient>
-          <radialGradient id="co-floor" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={GREEN} stopOpacity="0.1" />
-            <stop offset="100%" stopColor={GREEN} stopOpacity="0" />
-          </radialGradient>
-          <filter id="co-blur" x="-20%" y="-200%" width="140%" height="500%">
-            <feGaussianBlur stdDeviation="3" />
-          </filter>
-        </defs>
-
-        <Horizon y={188} w={480} />
-        <ellipse cx="240" cy="192" rx="170" ry="14" fill="url(#co-floor)" />
-
-        {/* Block (left) */}
-        <ellipse cx="150" cy="190" rx="62" ry="5" fill="#000" opacity="0.85" />
-        <path d="M100 100 L124 84 L210 84 L186 100 Z" fill="url(#co-top)" />
-        <path d="M186 100 L210 84 L210 172 L186 188 Z" fill="#0b0b0b" />
-        <rect x="100" y="100" width="86" height="88" rx="2" fill="url(#co-cube)" />
-
-        {/* Puck (right) */}
-        <ellipse cx="335" cy="190" rx="56" ry="6" fill="#000" opacity="0.85" />
-        <path d="M285 128 L285 182 A50 9 0 0 0 385 182 L385 128 Z" fill="url(#co-puck)" />
-        <ellipse cx="335" cy="128" rx="50" ry="9" fill="url(#co-top)" />
-
-        {/* Line of light */}
-        <m.line
-          x1="187" y1="146" x2="286" y2="152"
-          stroke={GREEN} strokeWidth="6" strokeOpacity="0.35" filter="url(#co-blur)"
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }}
-          viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-        />
-        <m.line
-          x1="187" y1="146" x2="286" y2="152"
-          stroke={GREEN} strokeWidth="1.2" strokeLinecap="round"
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }}
-          viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-        />
-        <circle cx="187" cy="146" r="9" fill="url(#co-glow)" />
-        <circle cx="286" cy="152" r="9" fill="url(#co-glow)" />
       </svg>
     </Frame>
   );
