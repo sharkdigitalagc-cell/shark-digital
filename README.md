@@ -23,6 +23,19 @@ npm run build       # build de produção
 npm start           # serve o build em http://localhost:3000
 ```
 
+## Versão estática (sem servidor)
+
+Para hospedagens que só servem arquivos (Netlify Drop, GitHub Pages etc.):
+
+```bash
+mv src/app/api /tmp/api-backup        # a rota de contato precisa de servidor
+STATIC_EXPORT=1 npm run build         # gera a pasta out/
+mv /tmp/api-backup src/app/api
+```
+
+Nessa versão o formulário mostra "O envio ainda não está disponível. Seus dados
+não foram enviados." até existir um destino real.
+
 ## Estrutura
 
 ```
