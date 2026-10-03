@@ -108,7 +108,9 @@ export function ContactForm() {
         return;
       }
 
-      if (payload && !payload.ok && payload.code === "not_configured") {
+      // No API route behind this host (static-only deploy): nothing was sent.
+      const noEndpoint = !payload && [404, 405, 501].includes(res.status);
+      if (noEndpoint || (payload && !payload.ok && payload.code === "not_configured")) {
         setStatus({ kind: "error", message: NOT_CONFIGURED });
       } else if (payload && !payload.ok && payload.errors) {
         setErrors(payload.errors);
