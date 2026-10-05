@@ -19,6 +19,8 @@ export type BlogPost = {
   updatedAt?: string;
   readingMinutes: number;
   cover: { src: string; alt: string; width: number; height: number };
+  /** Landscape image for the listing card when the cover is not 16:9. */
+  card?: { src: string; width: number; height: number };
   /** 1200×630 crop of the cover for social previews. */
   ogImage: { src: string; width: number; height: number };
 };
@@ -42,6 +44,27 @@ const POSTS: BlogPost[] = [
       height: 1024,
     },
     ogImage: { src: "/blog/leads-clinica-nao-agendam-og.jpg", width: 1200, height: 630 },
+  },
+  {
+    slug: "leads-advogados-nao-convertem",
+    title:
+      "Seu escritório recebe leads, mas não fecha contratos? Veja onde o marketing jurídico pode estar falhando",
+    seoTitle: "Leads para advogados que não convertem: onde está o problema?",
+    description:
+      "Seu escritório recebe leads, mas poucos viram contratos? Veja como identificar gargalos entre tráfego, qualificação, atendimento e conversão no marketing jurídico.",
+    excerpt:
+      "“Lead ruim” é hipótese, não diagnóstico. Como descobrir em que etapa, do anúncio ao contrato, o escritório está perdendo oportunidades, dentro das regras da OAB.",
+    category: "Aquisição para advocacia",
+    publishedAt: "2026-10-05",
+    readingMinutes: 13,
+    cover: {
+      src: "/blog/leads-advogados-nao-convertem.jpg",
+      alt: "Funil preto com ícones de WhatsApp e de contatos entrando no topo e linhas verdes passando pelas etapas leads, contatos, qualificação, atendimento, oportunidades e contratos, ao lado do título do artigo.",
+      width: 1254,
+      height: 1254,
+    },
+    card: { src: "/blog/leads-advogados-nao-convertem-og.jpg", width: 1200, height: 630 },
+    ogImage: { src: "/blog/leads-advogados-nao-convertem-og.jpg", width: 1200, height: 630 },
   },
 ];
 

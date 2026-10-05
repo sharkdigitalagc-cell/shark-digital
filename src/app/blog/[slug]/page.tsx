@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { ArticleCta } from "@/components/blog/article-cta";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { Container, Eyebrow } from "@/components/ui";
+import { Container, Eyebrow, cn } from "@/components/ui";
 import { POST_CONTENT } from "@/content/blog";
 import { formatPostDate, getAllPosts, getPost } from "@/lib/blog";
 import { SITE_NAME, absoluteUrl } from "@/lib/site";
@@ -64,7 +64,9 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
   const content = POST_CONTENT[slug];
   if (!post || !content) notFound();
 
-  const { Body, toc, sources } = content;
+  const { Body, toc, sources, cta } = content;
+  // Square or portrait covers would fill the whole screen at full width.
+  const coverIsTall = post.cover.height >= post.cover.width;
   const url = absoluteUrl(`/blog/${post.slug}`);
   const organization = {
     "@type": "Organization",
@@ -167,13 +169,18 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
               </p>
             </header>
 
-            <figure className="mt-10 overflow-hidden rounded-3xl border border-line md:mt-12">
+            <figure
+              className={cn(
+                "mt-10 overflow-hidden rounded-3xl border border-line md:mt-12",
+                coverIsTall && "max-w-xl",
+              )}
+            >
               <Image
                 src={post.cover.src}
                 alt={post.cover.alt}
                 width={post.cover.width}
                 height={post.cover.height}
-                sizes="(min-width: 1152px) 1088px, 100vw"
+                sizes={coverIsTall ? "(min-width: 640px) 576px, 100vw" : "(min-width: 1152px) 1088px, 100vw"}
                 priority
                 className="h-auto w-full"
               />
@@ -191,7 +198,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
 
                 <Body />
 
-                <ArticleCta />
+                <ArticleCta copy={cta} />
 
                 <section aria-labelledby="fontes" className="mt-16 border-t border-line pt-8">
                   <h2

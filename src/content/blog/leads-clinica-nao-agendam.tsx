@@ -342,7 +342,8 @@ export default function Article() {
       <P>
         Note que só a primeira e a segunda linhas começam pela mídia. As outras começam pela
         operação, e a última pela mensuração. É comum que haja mais de um gargalo; resolva primeiro
-        o que perde mais.
+        o que perde mais. O mesmo diagnóstico, adaptado a escritórios, está no artigo sobre{" "}
+        <A href="/blog/leads-advogados-nao-convertem">leads para advogados que não convertem</A>.
       </P>
 
       <H2 id="metricas">Métricas que vão até a receita</H2>

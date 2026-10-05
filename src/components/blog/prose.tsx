@@ -221,3 +221,70 @@ export function DiagnosisTable({
     </figure>
   );
 }
+
+/**
+ * Numbered question cards on a two-column grid, meant to be scanned (and
+ * screenshotted) on their own.
+ */
+export function QuestionGrid({
+  id,
+  title,
+  questions,
+}: {
+  id: string;
+  title: string;
+  questions: string[];
+}) {
+  return (
+    <section
+      aria-labelledby={id}
+      className="grain relative mt-12 overflow-hidden rounded-3xl border border-accent/30 bg-bg-2 p-5 sm:p-7 md:p-8"
+    >
+      <h2
+        id={id}
+        className="text-balance text-[1.45rem] font-semibold leading-[1.15] tracking-[-0.025em] text-fg md:text-[1.75rem]"
+      >
+        {title}
+      </h2>
+      <ol className="mt-6 grid gap-3 sm:grid-cols-2">
+        {questions.map((q, i) => (
+          <li
+            key={q}
+            className="flex items-start gap-3 rounded-xl border border-line bg-card px-4 py-3.5 text-[0.98rem] leading-snug text-fg/90"
+          >
+            <span aria-hidden className="mt-0.5 font-mono text-xs text-accent">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span>{q}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+/** Diagnostic checklist: each item is a question with what to look at. */
+export function Checklist({
+  label,
+  items,
+}: {
+  label: string;
+  items: Array<{ q: string; look: string }>;
+}) {
+  return (
+    <ul aria-label={label} className="mt-8 divide-y divide-line rounded-2xl border border-line bg-card">
+      {items.map((item) => (
+        <li key={item.q} className="flex gap-4 px-4 py-4 md:px-5">
+          <span
+            aria-hidden
+            className="mt-1 grid size-4 shrink-0 place-items-center rounded-[5px] border border-accent/60"
+          />
+          <div>
+            <p className="font-medium leading-snug text-fg">{item.q}</p>
+            <p className="mt-1 text-sm leading-relaxed text-muted">{item.look}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
