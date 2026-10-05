@@ -34,8 +34,8 @@ const SOLUTIONS = [
   },
   {
     icon: Radio,
-    title: "Mídia paga",
-    text: "Google Ads para quem já busca; Instagram e Facebook para apresentar a empresa.",
+    title: "Tráfego pago: Google Ads e Instagram Ads",
+    text: "Google Ads para quem já procura o serviço; Instagram e Facebook para quem ainda não conhece a empresa.",
     projects: ["Arthemi", "Colen", "Sereia", "Barphoff"],
   },
   {

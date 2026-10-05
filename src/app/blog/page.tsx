@@ -7,18 +7,13 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Container, Eyebrow } from "@/components/ui";
 import { formatPostDate, getAllPosts } from "@/lib/blog";
+import { pageMetadata } from "@/lib/seo";
 
 const title = "Blog | Shark Digital";
 const description =
   "Artigos sobre aquisição de clientes: mídia, páginas, atendimento comercial e mensuração do anúncio até a receita.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "/blog" },
-  openGraph: { type: "website", locale: "pt_BR", siteName: "Shark Digital", title, description, url: "/blog" },
-  twitter: { title, description },
-};
+export const metadata: Metadata = pageMetadata({ title, description, path: "/blog" });
 
 export default function BlogPage() {
   const posts = getAllPosts();
@@ -35,7 +30,7 @@ export default function BlogPage() {
                 id="blog-title"
                 className="mt-5 text-balance text-[2.15rem] font-semibold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl md:text-[3.4rem]"
               >
-                Do anúncio
+                Do anúncio{" "}
                 <span className="block text-accent">até a receita.</span>
               </h1>
               <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted md:text-lg">

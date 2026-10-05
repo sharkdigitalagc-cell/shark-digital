@@ -17,7 +17,8 @@ export function ProjectCover({
   segment?: string;
   /** Delivery tags on the cover; omit when the card lists them below. */
   services?: string[];
-  as?: "h2" | "h3";
+  /** "p" for decorative copies (e.g. the marquee loop), so headings are not duplicated. */
+  as?: "h2" | "h3" | "p";
   headingId?: string;
   className?: string;
 }) {

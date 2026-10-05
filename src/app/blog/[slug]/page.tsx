@@ -9,6 +9,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Container, Eyebrow, cn } from "@/components/ui";
 import { POST_CONTENT } from "@/content/blog";
 import { formatPostDate, getAllPosts, getPost } from "@/lib/blog";
+import { jsonLd, organizationJsonLd } from "@/lib/seo";
 import { SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const dynamicParams = false;
@@ -53,11 +54,6 @@ export async function generateMetadata({
   };
 }
 
-/** JSON-LD must not break out of its <script>; escape "<". */
-function jsonLd(data: unknown) {
-  return { __html: JSON.stringify(data).replace(/</g, "\\u003c") };
-}
-
 export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">) {
   const { slug } = await params;
   const post = getPost(slug);
@@ -68,12 +64,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
   // Square or portrait covers would fill the whole screen at full width.
   const coverIsTall = post.cover.height >= post.cover.width;
   const url = absoluteUrl(`/blog/${post.slug}`);
-  const organization = {
-    "@type": "Organization",
-    name: SITE_NAME,
-    url: absoluteUrl("/"),
-    logo: { "@type": "ImageObject", url: absoluteUrl("/logo-shark-digital.png") },
-  };
+  const organization = organizationJsonLd();
   const structuredData = [
     {
       "@context": "https://schema.org",

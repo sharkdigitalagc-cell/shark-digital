@@ -7,18 +7,13 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ButtonLink, Container, Eyebrow } from "@/components/ui";
 import { CLIENTS } from "@/lib/clients";
+import { pageMetadata } from "@/lib/seo";
 
 const title = "Projetos e entregas | Shark Digital";
 const description =
   "Empresas atendidas pela Shark Digital e o que foi feito em cada projeto: tráfego, mídia, funis, sites e sistemas.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "/clientes" },
-  openGraph: { title, description, url: "/clientes" },
-  twitter: { title, description },
-};
+export const metadata: Metadata = pageMetadata({ title, description, path: "/clientes" });
 
 export default function ClientesPage() {
   return (
@@ -45,7 +40,7 @@ export default function ClientesPage() {
                 id="clientes-title"
                 className="mt-5 text-balance text-[2.15rem] font-semibold leading-[1.06] tracking-[-0.035em] text-fg sm:text-5xl md:text-[3.4rem]"
               >
-                Empresas atendidas
+                Empresas atendidas{" "}
                 <span className="block text-accent">e o que fizemos.</span>
               </h1>
               <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted md:text-lg">

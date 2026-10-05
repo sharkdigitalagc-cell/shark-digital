@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MotionProvider } from "@/components/motion-provider";
-import { SITE_URL } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, HOME_DESCRIPTION, HOME_TITLE } from "@/lib/seo";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,30 +17,27 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const title = "Shark Digital | Assessoria e agência de marketing";
-const description =
-  "Assessoria e agência de marketing que planeja e executa campanhas no Google e no Instagram, conteúdo e páginas de conversão, considerando a oferta e o atendimento comercial de cada empresa.";
-
+// Defaults for every route. Canonical and og:url are set per page (see
+// pageMetadata), so routes such as the 404 never point to the home page.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title,
-  description,
-  applicationName: "Shark Digital",
-  alternates: { canonical: "/" },
+  applicationName: SITE_NAME,
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "/",
-    siteName: "Shark Digital",
-    title,
-    description,
+    siteName: SITE_NAME,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
   },
-  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
