@@ -1,4 +1,10 @@
 import type { ComponentType } from "react";
+import type { ArticleCtaCopy } from "@/components/blog/article-cta";
+import LeadsAdvogadosNaoConvertem, {
+  cta as leadsAdvogadosCta,
+  sources as leadsAdvogadosSources,
+  toc as leadsAdvogadosToc,
+} from "./leads-advogados-nao-convertem";
 import LeadsClinicaNaoAgendam, {
   sources as leadsClinicaSources,
   toc as leadsClinicaToc,
@@ -10,6 +16,8 @@ export type PostContent = {
   toc: Array<{ id: string; label: string }>;
   /** External references cited in the post. */
   sources: Array<{ label: string; href: string }>;
+  /** Closing call to action; the default copy is used when omitted. */
+  cta?: ArticleCtaCopy;
 };
 
 /** Body of each post in src/lib/blog.ts, by slug. */
@@ -18,5 +26,11 @@ export const POST_CONTENT: Record<string, PostContent> = {
     Body: LeadsClinicaNaoAgendam,
     toc: leadsClinicaToc,
     sources: leadsClinicaSources,
+  },
+  "leads-advogados-nao-convertem": {
+    Body: LeadsAdvogadosNaoConvertem,
+    toc: leadsAdvogadosToc,
+    sources: leadsAdvogadosSources,
+    cta: leadsAdvogadosCta,
   },
 };
