@@ -92,6 +92,23 @@ html:not(.js) [data-reveal] {
   }
 }
 
+/*
+ * Entrance for content visible on load (hero): the same fade-up as <Reveal>,
+ * but run by CSS from the first paint instead of after hydration, so the
+ * main text is painted sooner. The [data-reveal] rules above keep it visible
+ * without JS or with reduced motion.
+ */
+@keyframes reveal-on-load {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-y, 16px));
+  }
+}
+
+.reveal-on-load {
+  animation: reveal-on-load 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* Hero diagram */
 @keyframes orbit-spin {
   to {

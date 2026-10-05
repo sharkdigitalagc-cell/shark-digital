@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 
@@ -110,10 +111,13 @@ export function SectionHeader({
           eyebrow && "mt-5",
         )}
       >
+        {/* The space keeps words apart in the text read by search engines and
+            screen readers; between block spans it does not render. */}
         {lines.map((line, i) => (
-          <span key={i} className="block">
-            {line}
-          </span>
+          <Fragment key={i}>
+            {i > 0 ? " " : null}
+            <span className="block">{line}</span>
+          </Fragment>
         ))}
       </h2>
       {text ? (

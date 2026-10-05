@@ -327,6 +327,7 @@ export function SharkConnection({ className }: { className?: string }) {
                 alt=""
                 width={640}
                 height={534}
+                sizes="56px"
                 className="w-[50px] sm:w-[56px]"
               />
             </m.div>

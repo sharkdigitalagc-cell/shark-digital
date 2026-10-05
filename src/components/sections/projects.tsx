@@ -62,6 +62,7 @@ function ProjectCard({ client, copy }: { client: Client; copy: boolean }) {
       className="lift group flex h-full flex-col rounded-3xl border border-line bg-card p-3"
     >
       <ProjectCover
+        as={copy ? "p" : "h3"}
         name={client.name}
         segment={client.segment}
         services={client.services}

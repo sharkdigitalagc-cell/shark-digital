@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { HeroDiagram } from "@/components/hero-diagram";
-import { Reveal } from "@/components/reveal";
+import { RevealOnLoad } from "@/components/reveal";
 import { ButtonLink, Container, Eyebrow } from "@/components/ui";
 
 export function Hero() {
@@ -29,30 +29,33 @@ export function Hero() {
 
       <Container className="relative grid items-center gap-16 lg:grid-cols-[1.2fr_1fr] lg:gap-10">
         <div>
-          <Reveal>
+          <RevealOnLoad>
             <Eyebrow>Assessoria e agência de marketing</Eyebrow>
-          </Reveal>
+          </RevealOnLoad>
 
-          <Reveal delay={0.05}>
+          <RevealOnLoad delay={0.05}>
             <h1
               id="hero-title"
               className="mt-7 text-[2.15rem] font-semibold leading-[1.04] tracking-[-0.035em] text-fg sm:text-[3.4rem] lg:text-[2.75rem] xl:text-[3.6rem]"
             >
               <span className="block text-fg/70">Estratégia para</span>
+              {" "}
               <span className="block text-fg/70">atrair, engajar</span>
+              {" "}
               <span className="mt-4 block">e gerar oportunidades</span>
+              {" "}
               <span className="block text-accent">de venda.</span>
             </h1>
-          </Reveal>
+          </RevealOnLoad>
 
-          <Reveal delay={0.12}>
+          <RevealOnLoad delay={0.12}>
             <p className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted md:text-lg">
               Campanhas no Google e no Instagram, conteúdo e páginas
               para a sua oferta.
             </p>
-          </Reveal>
+          </RevealOnLoad>
 
-          <Reveal delay={0.18}>
+          <RevealOnLoad delay={0.18}>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="#contato" arrow>
                 Conversar sobre meu marketing
@@ -61,9 +64,9 @@ export function Hero() {
                 Ver projetos
               </ButtonLink>
             </div>
-          </Reveal>
+          </RevealOnLoad>
 
-          <Reveal delay={0.21}>
+          <RevealOnLoad delay={0.21}>
             <a
               href="#metodo"
               className="group mt-6 inline-flex items-center gap-2 rounded-sm text-sm font-medium text-muted transition-colors duration-200 hover:text-fg"
@@ -75,20 +78,20 @@ export function Hero() {
                 className="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
               />
             </a>
-          </Reveal>
+          </RevealOnLoad>
 
-          <Reveal delay={0.24}>
+          <RevealOnLoad delay={0.24}>
             <p className="mt-10 border-l border-accent/60 pl-4 text-sm leading-relaxed text-muted">
               Assessoria define prioridades.
               <br />
               Agência executa.
             </p>
-          </Reveal>
+          </RevealOnLoad>
         </div>
 
-        <Reveal delay={0.15} y={0}>
+        <RevealOnLoad delay={0.15} y={0}>
           <HeroDiagram className="max-w-[26rem] sm:max-w-[30rem] lg:max-w-[34rem]" />
-        </Reveal>
+        </RevealOnLoad>
       </Container>
     </section>
   );

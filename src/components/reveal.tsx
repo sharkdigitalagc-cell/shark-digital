@@ -51,3 +51,19 @@ export function Reveal({ children, className, delay = 0, y = 16 }: RevealProps) 
     </m.div>
   );
 }
+
+/**
+ * <Reveal> for content already on screen when the page loads: same motion,
+ * done in CSS (.reveal-on-load) so it does not wait for JavaScript.
+ */
+export function RevealOnLoad({ children, className, delay = 0, y = 16 }: RevealProps) {
+  return (
+    <div
+      data-reveal
+      className={className ? `reveal-on-load ${className}` : "reveal-on-load"}
+      style={{ animationDelay: `${delay}s`, ["--reveal-y" as string]: `${y}px` }}
+    >
+      {children}
+    </div>
+  );
+}
