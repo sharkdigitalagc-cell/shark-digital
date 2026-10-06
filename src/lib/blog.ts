@@ -18,11 +18,12 @@ export type BlogPost = {
   publishedAt: string;
   updatedAt?: string;
   readingMinutes: number;
-  cover: { src: string; alt: string; width: number; height: number };
+  /** Optional: posts without a cover show no image at the top. */
+  cover?: { src: string; alt: string; width: number; height: number };
   /** Landscape image for the listing card when the cover is not 16:9. */
   card?: { src: string; width: number; height: number };
-  /** 1200×630 crop of the cover for social previews. */
-  ogImage: { src: string; width: number; height: number };
+  /** 1200×630 image for social previews (a crop of the cover, when there is one). */
+  ogImage: { src: string; alt: string; width: number; height: number };
 };
 
 const POSTS: BlogPost[] = [
@@ -43,7 +44,12 @@ const POSTS: BlogPost[] = [
       width: 1536,
       height: 1024,
     },
-    ogImage: { src: "/blog/leads-clinica-nao-agendam-og.jpg", width: 1200, height: 630 },
+    ogImage: {
+      src: "/blog/leads-clinica-nao-agendam-og.jpg",
+      alt: "Médico analisa no notebook notificações de novos contatos e um funil que vai das visitas aos novos pacientes, com a pergunta: onde estão sendo perdidos?",
+      width: 1200,
+      height: 630,
+    },
   },
   {
     slug: "leads-advogados-nao-convertem",
@@ -64,7 +70,27 @@ const POSTS: BlogPost[] = [
       height: 1254,
     },
     card: { src: "/blog/leads-advogados-nao-convertem-og.jpg", width: 1200, height: 630 },
-    ogImage: { src: "/blog/leads-advogados-nao-convertem-og.jpg", width: 1200, height: 630 },
+    ogImage: {
+      src: "/blog/leads-advogados-nao-convertem-og.jpg",
+      alt: "Funil preto com ícones de WhatsApp e de contatos entrando no topo e linhas verdes passando pelas etapas leads, contatos, qualificação, atendimento, oportunidades e contratos, ao lado do título do artigo.",
+      width: 1200,
+      height: 630,
+    },
+  },
+  {
+    slug: "agencia-nao-entende-meu-segmento",
+    title: "A agência não entende meu segmento: como avaliar isso na prática",
+    seoTitle: "A agência entende meu segmento? Como avaliar na prática",
+    description:
+      "Como avaliar se a agência entende o segmento da sua clínica: briefing, conteúdos, anúncios, qualidade dos contatos e perguntas antes de contratar ou renovar.",
+    excerpt:
+      "Entender o segmento aparece nas decisões, não no discurso. Que evidências levar para a reunião, como avaliar os contatos e o que perguntar antes de renovar.",
+    category: "Marketing para clínicas",
+    publishedAt: "2026-10-05",
+    readingMinutes: 6,
+    // No cover of its own: the listing and social previews use the brand image.
+    card: { src: "/og-shark-digital.png", width: 1200, height: 630 },
+    ogImage: { src: "/og-shark-digital.png", alt: "Shark Digital", width: 1200, height: 630 },
   },
 ];
 

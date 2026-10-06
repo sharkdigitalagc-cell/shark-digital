@@ -26,7 +26,7 @@ export async function generateMetadata({
   if (!post) return {};
   const url = `/blog/${post.slug}`;
   const images = [
-    { url: post.ogImage.src, width: post.ogImage.width, height: post.ogImage.height, alt: post.cover.alt },
+    { url: post.ogImage.src, width: post.ogImage.width, height: post.ogImage.height, alt: post.ogImage.alt },
   ];
   return {
     title: post.seoTitle,
@@ -62,7 +62,8 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
 
   const { Body, toc, sources, cta } = content;
   // Square or portrait covers would fill the whole screen at full width.
-  const coverIsTall = post.cover.height >= post.cover.width;
+  const cover = post.cover;
+  const coverIsTall = cover ? cover.height >= cover.width : false;
   const url = absoluteUrl(`/blog/${post.slug}`);
   const organization = organizationJsonLd();
   const structuredData = [
@@ -71,7 +72,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
       "@type": "BlogPosting",
       headline: post.title,
       description: post.description,
-      image: [absoluteUrl(post.cover.src), absoluteUrl(post.ogImage.src)],
+      image: [...(cover ? [absoluteUrl(cover.src)] : []), absoluteUrl(post.ogImage.src)],
       datePublished: post.publishedAt,
       dateModified: post.updatedAt ?? post.publishedAt,
       inLanguage: "pt-BR",
@@ -160,22 +161,24 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
               </p>
             </header>
 
-            <figure
-              className={cn(
-                "mt-10 overflow-hidden rounded-3xl border border-line md:mt-12",
-                coverIsTall && "max-w-xl",
-              )}
-            >
-              <Image
-                src={post.cover.src}
-                alt={post.cover.alt}
-                width={post.cover.width}
-                height={post.cover.height}
-                sizes={coverIsTall ? "(min-width: 640px) 576px, 100vw" : "(min-width: 1152px) 1088px, 100vw"}
-                priority
-                className="h-auto w-full"
-              />
-            </figure>
+            {cover ? (
+              <figure
+                className={cn(
+                  "mt-10 overflow-hidden rounded-3xl border border-line md:mt-12",
+                  coverIsTall && "max-w-xl",
+                )}
+              >
+                <Image
+                  src={cover.src}
+                  alt={cover.alt}
+                  width={cover.width}
+                  height={cover.height}
+                  sizes={coverIsTall ? "(min-width: 640px) 576px, 100vw" : "(min-width: 1152px) 1088px, 100vw"}
+                  priority
+                  className="h-auto w-full"
+                />
+              </figure>
+            ) : null}
 
             <div className="mt-12 grid gap-12 md:mt-16 lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-16">
               <div className="min-w-0 max-w-[44rem]">

@@ -45,10 +45,10 @@ export default function BlogPage() {
                     <article className="lift group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-card">
                       <div className="overflow-hidden border-b border-line">
                         <Image
-                          src={(post.card ?? post.cover).src}
+                          src={(post.card ?? post.cover ?? post.ogImage).src}
                           alt=""
-                          width={(post.card ?? post.cover).width}
-                          height={(post.card ?? post.cover).height}
+                          width={(post.card ?? post.cover ?? post.ogImage).width}
+                          height={(post.card ?? post.cover ?? post.ogImage).height}
                           sizes="(min-width: 768px) 540px, 100vw"
                           className="aspect-[16/9] h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                         />

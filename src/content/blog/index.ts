@@ -1,5 +1,10 @@
 import type { ComponentType } from "react";
 import type { ArticleCtaCopy } from "@/components/blog/article-cta";
+import AgenciaNaoEntendeMeuSegmento, {
+  cta as agenciaSegmentoCta,
+  sources as agenciaSegmentoSources,
+  toc as agenciaSegmentoToc,
+} from "./agencia-nao-entende-meu-segmento";
 import LeadsAdvogadosNaoConvertem, {
   cta as leadsAdvogadosCta,
   sources as leadsAdvogadosSources,
@@ -32,5 +37,11 @@ export const POST_CONTENT: Record<string, PostContent> = {
     toc: leadsAdvogadosToc,
     sources: leadsAdvogadosSources,
     cta: leadsAdvogadosCta,
+  },
+  "agencia-nao-entende-meu-segmento": {
+    Body: AgenciaNaoEntendeMeuSegmento,
+    toc: agenciaSegmentoToc,
+    sources: agenciaSegmentoSources,
+    cta: agenciaSegmentoCta,
   },
 };
