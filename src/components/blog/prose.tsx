@@ -288,3 +288,64 @@ export function Checklist({
     </ul>
   );
 }
+
+/**
+ * Table with any number of columns. On small screens each row becomes a card
+ * with the column name above each value, so nothing scrolls sideways.
+ */
+export function DataTable({
+  caption,
+  head,
+  rows,
+}: {
+  caption: string;
+  head: string[];
+  rows: string[][];
+}) {
+  return (
+    <figure className="mt-8">
+      <table className="w-full border-separate border-spacing-0 text-left text-[0.95rem]">
+        <caption className="mb-4 text-left text-sm text-muted">{caption}</caption>
+        <thead className="sr-only md:not-sr-only">
+          <tr>
+            {head.map((h) => (
+              <th
+                key={h}
+                scope="col"
+                className="border-b border-line-strong pb-3 pr-4 align-bottom font-mono text-[0.68rem] font-medium uppercase leading-snug tracking-[0.14em] text-muted"
+              >
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([first, ...rest]) => (
+            <tr
+              key={first}
+              className="mb-3 block rounded-xl border border-line bg-card p-4 md:mb-0 md:table-row md:rounded-none md:border-0 md:bg-transparent md:p-0"
+            >
+              <th
+                scope="row"
+                className="block font-medium leading-snug text-fg md:table-cell md:border-b md:border-line md:py-4 md:pr-4 md:align-top"
+              >
+                {first}
+              </th>
+              {rest.map((cell, i) => (
+                <td
+                  key={head[i + 1]}
+                  className="mt-3 block leading-relaxed text-fg/75 md:mt-0 md:table-cell md:border-b md:border-line md:py-4 md:pr-4 md:align-top"
+                >
+                  <span className="mb-1 block font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted md:hidden">
+                    {head[i + 1]}
+                  </span>
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </figure>
+  );
+}
