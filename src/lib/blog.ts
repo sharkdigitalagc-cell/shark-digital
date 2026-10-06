@@ -80,17 +80,26 @@ const POSTS: BlogPost[] = [
   {
     slug: "agencia-nao-entende-meu-segmento",
     title: "A agência não entende meu segmento: como avaliar isso na prática",
-    seoTitle: "A agência entende meu segmento? Como avaliar na prática",
+    seoTitle: "Agência não entende seu segmento? Como avaliar | Shark",
     description:
-      "Como avaliar se a agência entende o segmento da sua clínica: briefing, conteúdos, anúncios, qualidade dos contatos e perguntas antes de contratar ou renovar.",
+      "Veja como avaliar se sua agência entende a operação da clínica, quais evidências pedir e quando revisar o briefing, o escopo ou o fornecedor.",
     excerpt:
       "Entender o segmento aparece nas decisões, não no discurso. Que evidências levar para a reunião, como avaliar os contatos e o que perguntar antes de renovar.",
     category: "Marketing para clínicas",
     publishedAt: "2026-10-05",
     readingMinutes: 6,
-    // No cover of its own: the listing and social previews use the brand image.
-    card: { src: "/og-shark-digital.png", width: 1200, height: 630 },
-    ogImage: { src: "/og-shark-digital.png", alt: "Shark Digital", width: 1200, height: 630 },
+    cover: {
+      src: "/blog/agencia-nao-entende-meu-segmento.jpg",
+      alt: "Mão marcando itens de uma lista de verificação numa prancheta, ao lado de um notebook, com o título: A agência entende seu segmento? Critérios para avaliar a parceria.",
+      width: 1672,
+      height: 941,
+    },
+    ogImage: {
+      src: "/blog/agencia-nao-entende-meu-segmento-og.jpg",
+      alt: "Mão marcando itens de uma lista de verificação numa prancheta, ao lado de um notebook, com o título: A agência entende seu segmento? Critérios para avaliar a parceria.",
+      width: 1200,
+      height: 630,
+    },
   },
 ];
 
