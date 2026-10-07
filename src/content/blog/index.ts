@@ -10,6 +10,11 @@ import EmpresaNaoApareceGoogleMaps, {
   sources as googleMapsSources,
   toc as googleMapsToc,
 } from "./empresa-nao-aparece-google-maps";
+import ControleContasDadosMarketing, {
+  cta as controleContasCta,
+  sources as controleContasSources,
+  toc as controleContasToc,
+} from "./controle-contas-dados-marketing";
 import LeadsAdvogadosNaoConvertem, {
   cta as leadsAdvogadosCta,
   sources as leadsAdvogadosSources,
@@ -65,5 +70,11 @@ export const POST_CONTENT: Record<string, PostContent> = {
     toc: googleMapsToc,
     sources: googleMapsSources,
     cta: googleMapsCta,
+  },
+  "controle-contas-dados-marketing": {
+    Body: ControleContasDadosMarketing,
+    toc: controleContasToc,
+    sources: controleContasSources,
+    cta: controleContasCta,
   },
 };
