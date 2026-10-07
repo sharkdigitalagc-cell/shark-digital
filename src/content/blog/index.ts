@@ -10,6 +10,11 @@ import ContratoAgenciaMarketing, {
   sources as contratoAgenciaSources,
   toc as contratoAgenciaToc,
 } from "./contrato-agencia-marketing-cancelamento-fidelidade";
+import DependenciaIndicacaoPortais, {
+  cta as dependenciaCanaisCta,
+  sources as dependenciaCanaisSources,
+  toc as dependenciaCanaisToc,
+} from "./dependencia-indicacao-portais-aquisicao";
 import EmpresaNaoApareceGoogleMaps, {
   cta as googleMapsCta,
   sources as googleMapsSources,
@@ -87,5 +92,11 @@ export const POST_CONTENT: Record<string, PostContent> = {
     toc: contratoAgenciaToc,
     sources: contratoAgenciaSources,
     cta: contratoAgenciaCta,
+  },
+  "dependencia-indicacao-portais-aquisicao": {
+    Body: DependenciaIndicacaoPortais,
+    toc: dependenciaCanaisToc,
+    sources: dependenciaCanaisSources,
+    cta: dependenciaCanaisCta,
   },
 };
