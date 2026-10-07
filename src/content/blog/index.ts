@@ -5,6 +5,11 @@ import AgenciaNaoEntendeMeuSegmento, {
   sources as agenciaSegmentoSources,
   toc as agenciaSegmentoToc,
 } from "./agencia-nao-entende-meu-segmento";
+import EmpresaNaoApareceGoogleMaps, {
+  cta as googleMapsCta,
+  sources as googleMapsSources,
+  toc as googleMapsToc,
+} from "./empresa-nao-aparece-google-maps";
 import ControleContasDadosMarketing, {
   cta as controleContasCta,
   sources as controleContasSources,
@@ -59,6 +64,12 @@ export const POST_CONTENT: Record<string, PostContent> = {
     toc: medoOabToc,
     sources: medoOabSources,
     cta: medoOabCta,
+  },
+  "empresa-nao-aparece-google-maps": {
+    Body: EmpresaNaoApareceGoogleMaps,
+    toc: googleMapsToc,
+    sources: googleMapsSources,
+    cta: googleMapsCta,
   },
   "controle-contas-dados-marketing": {
     Body: ControleContasDadosMarketing,

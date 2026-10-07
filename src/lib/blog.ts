@@ -150,6 +150,30 @@ const POSTS: BlogPost[] = [
       height: 630,
     },
   },
+  {
+    slug: "empresa-nao-aparece-google-maps",
+    title: "Seu cliente está procurando no Google. A sua empresa aparece?",
+    seoTitle: "Sua Empresa Não Aparece no Google Maps? Entenda o Que Está Acontecendo",
+    description:
+      "Seu cliente procura pelo seu serviço no Google, mas encontra seus concorrentes? Entenda como Google Maps, Perfil da Empresa e SEO local influenciam sua aquisição.",
+    excerpt:
+      "Quem pesquisa “serviço + cidade” já tem intenção. Como o Google escolhe quem aparece no Maps, o que atrapalha um perfil e um teste para ver onde sua empresa está.",
+    category: "SEO Local",
+    publishedAt: "2026-10-07",
+    readingMinutes: 10,
+    cover: {
+      src: "/blog/empresa-nao-aparece-google-maps.jpg",
+      alt: "Interface de pesquisa local com a busca “serviço perto de mim” sobre uma cidade escura vista de cima: concorrentes marcados por pins verdes iluminados e um ponto apagado com um ponto de interrogação.",
+      width: 1672,
+      height: 941,
+    },
+    ogImage: {
+      src: "/blog/empresa-nao-aparece-google-maps-og.jpg",
+      alt: "Interface de pesquisa local com a busca “serviço perto de mim” sobre uma cidade escura vista de cima: concorrentes marcados por pins verdes iluminados e um ponto apagado com um ponto de interrogação.",
+      width: 1200,
+      height: 630,
+    },
+  },
 ];
 
 export function getAllPosts(): BlogPost[] {
