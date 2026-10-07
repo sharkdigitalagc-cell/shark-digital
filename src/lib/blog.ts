@@ -198,6 +198,30 @@ const POSTS: BlogPost[] = [
       height: 630,
     },
   },
+  {
+    slug: "follow-up-leads-vendas",
+    title: "O lead chegou. E depois? Como a falta de follow-up desperdiça oportunidades",
+    seoTitle: "Follow-up de Vendas: Seus Leads Somem ou Sua Empresa Para de Acompanhá-los?",
+    description:
+      "Seus leads chegam mas não viram vendas? Entenda como a falta de follow-up, CRM e próxima ação pode estar desperdiçando oportunidades já geradas.",
+    excerpt:
+      "O lead não é o resultado final, é a entrada de uma oportunidade. Como próxima ação, responsável, pipeline e CRM evitam que contatos já gerados se percam no comercial.",
+    category: "Vendas e Conversão",
+    publishedAt: "2026-10-07",
+    readingMinutes: 8,
+    cover: {
+      src: "/blog/follow-up-leads-vendas.jpg",
+      alt: "Pipeline comercial na tela de um computador sobre uma mesa escura: leads entram em verde pelas etapas novo lead, contato e proposta, mas na etapa de follow-up os cartões ficam parados com alertas, e uma ficha mostra último contato há 7 dias e o campo próxima ação vazio.",
+      width: 1672,
+      height: 941,
+    },
+    ogImage: {
+      src: "/blog/follow-up-leads-vendas-og.jpg",
+      alt: "Pipeline comercial na tela de um computador sobre uma mesa escura: leads entram em verde pelas etapas novo lead, contato e proposta, mas na etapa de follow-up os cartões ficam parados com alertas, e uma ficha mostra último contato há 7 dias e o campo próxima ação vazio.",
+      width: 1200,
+      height: 630,
+    },
+  },
 ];
 
 export function getAllPosts(): BlogPost[] {
