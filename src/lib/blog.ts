@@ -222,6 +222,30 @@ const POSTS: BlogPost[] = [
       height: 630,
     },
   },
+  {
+    slug: "dependencia-indicacao-portais-aquisicao",
+    title: "Sua empresa vende porque tem aquisição — ou porque terceiros ainda estão trazendo clientes?",
+    seoTitle: "Sua Empresa Depende de Indicação ou Portal para Conseguir Clientes?",
+    description:
+      "Indicação e portais podem gerar ótimas oportunidades, mas depender de um único canal aumenta o risco. Veja como construir uma aquisição mais diversificada e previsível.",
+    excerpt:
+      "Indicação é canal. Portal é canal. Nenhum deles deveria ser a única infraestrutura de aquisição. Um teste de dependência, a diferença entre canal próprio e alugado e como diversificar sem abandonar o que funciona.",
+    category: "Aquisição de Clientes",
+    publishedAt: "2026-10-07",
+    readingMinutes: 9,
+    cover: {
+      src: "/blog/dependencia-indicacao-portais-aquisicao.jpg",
+      alt: "Ilustração de uma empresa no centro de uma cidade escura: à esquerda, um portal em preto e branco concentra todos os contatos num único caminho; à direita, caminhos verdes iluminados chegam de vários canais próprios, como Google, indicação, conteúdo, tráfego pago, site, redes sociais e CRM.",
+      width: 1672,
+      height: 941,
+    },
+    ogImage: {
+      src: "/blog/dependencia-indicacao-portais-aquisicao-og.jpg",
+      alt: "Ilustração de uma empresa no centro de uma cidade escura: à esquerda, um portal em preto e branco concentra todos os contatos num único caminho; à direita, caminhos verdes iluminados chegam de vários canais próprios, como Google, indicação, conteúdo, tráfego pago, site, redes sociais e CRM.",
+      width: 1200,
+      height: 630,
+    },
+  },
 ];
 
 export function getAllPosts(): BlogPost[] {
