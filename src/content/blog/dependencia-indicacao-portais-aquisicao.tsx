@@ -544,6 +544,11 @@ export default function Article() {
         <li>como acompanhar oportunidades;</li>
         <li>como reduzir dependência.</li>
       </List>
+      <P>
+        Gerar mais oportunidades só resolve parte do problema se elas não forem acompanhadas até a
+        decisão. Sobre essa etapa, veja{" "}
+        <A href="/blog/follow-up-leads-vendas">o que acontece depois que o lead chega</A>.
+      </P>
       <PullQuote>
         <p>Uma empresa não deveria precisar abandonar um canal que funciona.</p>
         <p>Ela deveria evitar ficar refém dele.</p>
