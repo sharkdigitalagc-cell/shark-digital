@@ -126,6 +126,30 @@ const POSTS: BlogPost[] = [
       height: 630,
     },
   },
+  {
+    slug: "marketing-juridico-medo-regulamentacao-oab",
+    title: "Medo da OAB: quando o receio da regulamentação impede o crescimento do escritório",
+    seoTitle: "Marketing Jurídico e OAB: Como Crescer Sem Medo da Regulamentação",
+    description:
+      "O medo das regras da OAB está impedindo seu escritório de investir em marketing? Entenda o que é permitido e como estruturar uma estratégia de aquisição com conformidade.",
+    excerpt:
+      "Não poder fazer marketing é diferente de não poder fazer marketing de qualquer maneira. O que o Provimento 205/2021 permite e como crescer dentro das regras.",
+    category: "Marketing Jurídico",
+    publishedAt: "2026-10-07",
+    readingMinutes: 7,
+    cover: {
+      src: "/blog/marketing-juridico-medo-regulamentacao-oab.jpg",
+      alt: "Documento do Provimento nº 205/2021 sobre uma mesa escura, separado por uma placa de vidro iluminada em verde de um notebook que mostra gráficos de crescimento.",
+      width: 1672,
+      height: 941,
+    },
+    ogImage: {
+      src: "/blog/marketing-juridico-medo-regulamentacao-oab-og.jpg",
+      alt: "Documento do Provimento nº 205/2021 sobre uma mesa escura, separado por uma placa de vidro iluminada em verde de um notebook que mostra gráficos de crescimento.",
+      width: 1200,
+      height: 630,
+    },
+  },
 ];
 
 export function getAllPosts(): BlogPost[] {

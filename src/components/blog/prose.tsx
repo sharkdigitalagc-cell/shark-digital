@@ -1,4 +1,5 @@
 import { ArrowDown } from "lucide-react";
+import { Fragment } from "react";
 import { cn } from "@/components/ui";
 
 /*
@@ -269,7 +270,7 @@ export function Checklist({
   items,
 }: {
   label: string;
-  items: Array<{ q: string; look: string }>;
+  items: Array<{ q: string; look?: string }>;
 }) {
   return (
     <ul aria-label={label} className="mt-8 divide-y divide-line rounded-2xl border border-line bg-card">
@@ -281,7 +282,9 @@ export function Checklist({
           />
           <div>
             <p className="font-medium leading-snug text-fg">{item.q}</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted">{item.look}</p>
+            {item.look ? (
+              <p className="mt-1 text-sm leading-relaxed text-muted">{item.look}</p>
+            ) : null}
           </div>
         </li>
       ))}
@@ -416,11 +419,83 @@ export function CompareColumns({
   );
 }
 
-/** Statement set apart from the text, for the key ideas of a post. */
+/** A sentence pulled out of the text to be read on its own. */
 export function PullQuote({ children }: { children: React.ReactNode }) {
   return (
-    <blockquote className="mt-10 border-l-2 border-accent pl-5 text-balance text-[1.25rem] font-medium leading-[1.4] tracking-[-0.01em] text-fg md:text-[1.4rem] [&>p+p]:mt-2">
+    <blockquote className="mt-10 border-l-2 border-accent pl-5 text-balance text-[1.35rem] font-semibold leading-[1.3] tracking-[-0.02em] text-fg md:pl-6 md:text-[1.6rem] [&>p+p]:mt-2">
       {children}
     </blockquote>
   );
+}
+
+/**
+ * Two side-by-side panels joined by a short word ("versus", "+"). The
+ * highlighted panel carries the accent; on small screens the panels stack.
+ */
+export function Versus({
+  label,
+  joiner,
+  sides,
+  highlight = "first",
+}: {
+  label: string;
+  joiner: string;
+  sides: [VersusSide, VersusSide];
+  /** Which panel gets the green border: one, or both when they add up. */
+  highlight?: "first" | "second" | "both";
+}) {
+  return (
+    <figure aria-label={label} className="mt-8 grid items-stretch gap-3 md:grid-cols-[1fr_auto_1fr]">
+      {sides.map((side, i) => (
+        <Fragment key={side.title}>
+          {i === 1 ? (
+            <p
+              aria-hidden
+              className={cn(
+                "self-center justify-self-center font-mono uppercase text-accent",
+                joiner.length > 1 ? "text-xs tracking-[0.2em]" : "text-xl",
+              )}
+            >
+              {joiner}
+            </p>
+          ) : null}
+          <div
+            className={cn(
+              "rounded-2xl border bg-card p-5 md:p-6",
+              isLit(i, highlight) ? "border-accent/35" : "border-line",
+            )}
+          >
+            <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.2em] text-muted">
+              {side.label}
+            </p>
+            <p className="mt-2 text-lg font-semibold leading-snug tracking-tight text-fg md:text-xl">
+              {side.title}
+            </p>
+            {side.items ? (
+              <ul className="mt-4 space-y-2 text-[0.98rem] leading-snug text-fg/80">
+                {side.items.map((item) => (
+                  <li key={item} className="flex gap-2.5">
+                    <span
+                      aria-hidden
+                      className={cn(
+                        "mt-[0.55em] size-1.5 shrink-0 rounded-full",
+                        isLit(i, highlight) ? "bg-accent" : "bg-muted",
+                      )}
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        </Fragment>
+      ))}
+    </figure>
+  );
+}
+
+type VersusSide = { label: string; title: string; items?: string[] };
+
+function isLit(index: number, highlight: "first" | "second" | "both") {
+  return highlight === "both" || (highlight === "first" ? index === 0 : index === 1);
 }

@@ -19,6 +19,11 @@ import LeadsClinicaNaoAgendam, {
   sources as leadsClinicaSources,
   toc as leadsClinicaToc,
 } from "./leads-clinica-nao-agendam";
+import MarketingJuridicoMedoOab, {
+  cta as medoOabCta,
+  sources as medoOabSources,
+  toc as medoOabToc,
+} from "./marketing-juridico-medo-regulamentacao-oab";
 
 export type PostContent = {
   Body: ComponentType;
@@ -48,6 +53,12 @@ export const POST_CONTENT: Record<string, PostContent> = {
     toc: agenciaSegmentoToc,
     sources: agenciaSegmentoSources,
     cta: agenciaSegmentoCta,
+  },
+  "marketing-juridico-medo-regulamentacao-oab": {
+    Body: MarketingJuridicoMedoOab,
+    toc: medoOabToc,
+    sources: medoOabSources,
+    cta: medoOabCta,
   },
   "controle-contas-dados-marketing": {
     Body: ControleContasDadosMarketing,

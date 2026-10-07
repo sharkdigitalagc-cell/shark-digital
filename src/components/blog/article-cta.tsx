@@ -7,7 +7,7 @@ export type ArticleCtaCopy = {
   text: string;
   /** Prefilled WhatsApp message. */
   whatsappText: string;
-  /** Main button label; defaults to the diagnosis request. */
+  /** Label of the main button; defaults to the diagnóstico wording. */
   buttonLabel?: string;
 };
 
