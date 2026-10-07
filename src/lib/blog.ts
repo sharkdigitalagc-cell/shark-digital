@@ -101,6 +101,31 @@ const POSTS: BlogPost[] = [
       height: 630,
     },
   },
+  {
+    slug: "controle-contas-dados-marketing",
+    title:
+      "Sua empresa é realmente dona do próprio marketing? O risco de perder o controle sobre contas e dados",
+    seoTitle: "Quem é Dono das Suas Contas de Marketing? O Risco de Perder Dados e Acessos",
+    description:
+      "Sua agência controla suas contas, pixels e dados? Entenda por que acessos e ativos de marketing devem permanecer sob controle da empresa.",
+    excerpt:
+      "Fornecedores podem mudar; os ativos da empresa precisam permanecer. A diferença entre operar e possuir contas de anúncios, Analytics e Tag Manager, e como organizar os acessos.",
+    category: "Gestão de Marketing",
+    publishedAt: "2026-10-07",
+    readingMinutes: 8,
+    cover: {
+      src: "/blog/controle-contas-dados-marketing.jpg",
+      alt: "Contas e dados de marketing protegidos por cadeado representando falta de controle sobre ativos digitais",
+      width: 1672,
+      height: 941,
+    },
+    ogImage: {
+      src: "/blog/controle-contas-dados-marketing-og.jpg",
+      alt: "Contas e dados de marketing protegidos por cadeado representando falta de controle sobre ativos digitais",
+      width: 1200,
+      height: 630,
+    },
+  },
 ];
 
 export function getAllPosts(): BlogPost[] {

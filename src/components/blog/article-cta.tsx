@@ -7,6 +7,8 @@ export type ArticleCtaCopy = {
   text: string;
   /** Prefilled WhatsApp message. */
   whatsappText: string;
+  /** Main button label; defaults to the diagnosis request. */
+  buttonLabel?: string;
 };
 
 const DEFAULT_COPY: ArticleCtaCopy = {
@@ -38,7 +40,7 @@ export function ArticleCta({ copy = DEFAULT_COPY }: { copy?: ArticleCtaCopy }) {
       </p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
         <ButtonLink href="/#contato" arrow>
-          Solicitar diagnóstico de aquisição
+          {copy.buttonLabel ?? "Solicitar diagnóstico de aquisição"}
         </ButtonLink>
         {WHATSAPP_NUMBER ? (
           <ButtonLink

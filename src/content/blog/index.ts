@@ -5,6 +5,11 @@ import AgenciaNaoEntendeMeuSegmento, {
   sources as agenciaSegmentoSources,
   toc as agenciaSegmentoToc,
 } from "./agencia-nao-entende-meu-segmento";
+import ControleContasDadosMarketing, {
+  cta as controleContasCta,
+  sources as controleContasSources,
+  toc as controleContasToc,
+} from "./controle-contas-dados-marketing";
 import LeadsAdvogadosNaoConvertem, {
   cta as leadsAdvogadosCta,
   sources as leadsAdvogadosSources,
@@ -43,5 +48,11 @@ export const POST_CONTENT: Record<string, PostContent> = {
     toc: agenciaSegmentoToc,
     sources: agenciaSegmentoSources,
     cta: agenciaSegmentoCta,
+  },
+  "controle-contas-dados-marketing": {
+    Body: ControleContasDadosMarketing,
+    toc: controleContasToc,
+    sources: controleContasSources,
+    cta: controleContasCta,
   },
 };

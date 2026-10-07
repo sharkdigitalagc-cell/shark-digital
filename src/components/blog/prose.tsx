@@ -349,3 +349,78 @@ export function DataTable({
     </figure>
   );
 }
+
+/** Small labelled tiles for an inventory of items (assets, tools, channels). */
+export function TagGrid({ label, items }: { label: string; items: string[] }) {
+  return (
+    <ul aria-label={label} className="mt-8 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+      {items.map((item) => (
+        <li
+          key={item}
+          className="flex items-center gap-2.5 rounded-xl border border-line bg-card px-3.5 py-3 text-[0.92rem] leading-snug text-fg/90"
+        >
+          <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-accent" />
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * Side-by-side columns, each a short vertical sequence, for contrasts such as
+ * "operar × possuir". Stacks on small screens.
+ */
+export function CompareColumns({
+  label,
+  columns,
+}: {
+  label: string;
+  columns: Array<{ eyebrow: string; title: string; steps: string[]; result?: string; tone?: "accent" | "neutral" }>;
+}) {
+  return (
+    <div role="group" aria-label={label} className="mt-8 grid gap-4 sm:grid-cols-2">
+      {columns.map((col) => (
+        <section
+          key={col.eyebrow}
+          className={cn(
+            "rounded-2xl border bg-card p-5",
+            col.tone === "accent" ? "border-accent/40" : "border-line",
+          )}
+        >
+          <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-muted">
+            {col.eyebrow}
+          </p>
+          <p className="mt-2 text-lg font-semibold leading-snug text-fg">{col.title}</p>
+          <ol className="mt-4 space-y-0">
+            {col.steps.map((step, i) => (
+              <li key={step}>
+                <p className="rounded-lg border border-line bg-bg-2 px-3 py-2 text-[0.92rem] leading-snug text-fg/85">
+                  {step}
+                </p>
+                {i < col.steps.length - 1 ? (
+                  <ArrowDown aria-hidden className="mx-auto my-1 size-3.5 text-accent/70" />
+                ) : null}
+              </li>
+            ))}
+          </ol>
+          {col.result ? (
+            <p className="mt-4 border-t border-line pt-3 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-muted">
+              Resultado:{" "}
+              <span className={col.tone === "accent" ? "text-accent" : "text-fg"}>{col.result}</span>
+            </p>
+          ) : null}
+        </section>
+      ))}
+    </div>
+  );
+}
+
+/** Statement set apart from the text, for the key ideas of a post. */
+export function PullQuote({ children }: { children: React.ReactNode }) {
+  return (
+    <blockquote className="mt-10 border-l-2 border-accent pl-5 text-balance text-[1.25rem] font-medium leading-[1.4] tracking-[-0.01em] text-fg md:text-[1.4rem] [&>p+p]:mt-2">
+      {children}
+    </blockquote>
+  );
+}
