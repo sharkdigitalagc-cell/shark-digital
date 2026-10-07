@@ -1,4 +1,4 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Search } from "lucide-react";
 import { Fragment } from "react";
 import { cn } from "@/components/ui";
 
@@ -147,7 +147,16 @@ export function StepChain({
 }
 
 /** Stage chain on one wrapping row, for the full acquisition path. */
-export function FlowRow({ steps, label }: { steps: string[]; label: string }) {
+export function FlowRow({
+  steps,
+  label,
+  joiner = "→",
+}: {
+  steps: string[];
+  label: string;
+  /** Sign between stages: "→" for a sequence, "+" for parts that add up. */
+  joiner?: string;
+}) {
   return (
     <ol
       aria-label={label}
@@ -158,7 +167,7 @@ export function FlowRow({ steps, label }: { steps: string[]; label: string }) {
           <span className="rounded-full border border-line-strong px-3 py-1.5 text-fg/85">{step}</span>
           {i < steps.length - 1 ? (
             <span aria-hidden className="text-accent">
-              →
+              {joiner}
             </span>
           ) : null}
         </li>
@@ -432,4 +441,61 @@ type VersusSide = { label: string; title: string; items?: string[] };
 
 function isLit(index: number, highlight: "first" | "second" | "both") {
   return highlight === "both" || (highlight === "first" ? index === 0 : index === 1);
+}
+
+/** Example searches drawn as search fields, e.g. "serviço + cidade". */
+export function SearchQueries({ label, queries }: { label: string; queries: string[] }) {
+  return (
+    <ul aria-label={label} className="mt-8 grid gap-2.5 sm:grid-cols-2">
+      {queries.map((query) => (
+        <li
+          key={query}
+          className="flex min-w-0 items-center gap-3 rounded-full border border-line-strong bg-card px-4 py-2.5 text-[0.98rem] text-fg/90"
+        >
+          <Search aria-hidden className="size-4 shrink-0 text-accent" />
+          <span className="min-w-0 break-words">{query}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * Factors that add up to an outcome: cards joined by "+", then an arrow to
+ * the result. Cards sit in a row on wide screens and stack on small ones.
+ */
+export function FactorSum({
+  label,
+  factors,
+  result,
+}: {
+  label: string;
+  factors: Array<{ title: string; text: string }>;
+  result: string;
+}) {
+  return (
+    <figure aria-label={label} className="mt-8">
+      <div className="flex flex-col items-stretch gap-2 md:flex-row md:items-center">
+        {factors.map((factor, i) => (
+          <Fragment key={factor.title}>
+            {i > 0 ? (
+              <p aria-hidden className="self-center font-mono text-xl text-accent">
+                +
+              </p>
+            ) : null}
+            <div className="flex-1 self-stretch rounded-2xl border border-line bg-card p-5">
+              <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.2em] text-accent">
+                {factor.title}
+              </p>
+              <p className="mt-2 text-[0.98rem] leading-snug text-fg/85">{factor.text}</p>
+            </div>
+          </Fragment>
+        ))}
+      </div>
+      <ArrowDown aria-hidden className="mx-auto my-2 size-5 text-accent/70" />
+      <p className="rounded-2xl border border-accent/35 bg-bg-2 px-5 py-4 text-center font-mono text-[0.78rem] font-medium uppercase tracking-[0.2em] text-fg">
+        {result}
+      </p>
+    </figure>
+  );
 }
