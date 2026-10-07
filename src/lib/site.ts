@@ -7,6 +7,10 @@ export const SITE_URL =
 
 export const SITE_NAME = "Shark Digital";
 
+// Google Analytics 4 measurement ID (public, not a secret). Empty disables GA.
+export const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "";
+
 /** Absolute URL for a site path, e.g. absoluteUrl("/blog"). */
 export function absoluteUrl(path: string): string {
   return new URL(path, SITE_URL).toString();
