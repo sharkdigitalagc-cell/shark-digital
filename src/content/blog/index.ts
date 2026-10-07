@@ -5,6 +5,11 @@ import AgenciaNaoEntendeMeuSegmento, {
   sources as agenciaSegmentoSources,
   toc as agenciaSegmentoToc,
 } from "./agencia-nao-entende-meu-segmento";
+import ContratoAgenciaMarketing, {
+  cta as contratoAgenciaCta,
+  sources as contratoAgenciaSources,
+  toc as contratoAgenciaToc,
+} from "./contrato-agencia-marketing-cancelamento-fidelidade";
 import EmpresaNaoApareceGoogleMaps, {
   cta as googleMapsCta,
   sources as googleMapsSources,
@@ -76,5 +81,11 @@ export const POST_CONTENT: Record<string, PostContent> = {
     toc: controleContasToc,
     sources: controleContasSources,
     cta: controleContasCta,
+  },
+  "contrato-agencia-marketing-cancelamento-fidelidade": {
+    Body: ContratoAgenciaMarketing,
+    toc: contratoAgenciaToc,
+    sources: contratoAgenciaSources,
+    cta: contratoAgenciaCta,
   },
 };

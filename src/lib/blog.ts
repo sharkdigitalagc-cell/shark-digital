@@ -174,6 +174,30 @@ const POSTS: BlogPost[] = [
       height: 630,
     },
   },
+  {
+    slug: "contrato-agencia-marketing-cancelamento-fidelidade",
+    title: "Contrato de marketing não deveria parecer uma prisão",
+    seoTitle: "Contrato com Agência de Marketing: Prazo, Cancelamento e Fidelidade",
+    description:
+      "Tem receio de ficar preso a uma agência? Entenda o que observar em prazo, cancelamento, multas, acessos e regras antes de assinar um contrato de marketing.",
+    excerpt:
+      "O problema não é existir contrato ou prazo, e sim dependência sem transparência nem critério de saída. O que perguntar sobre prazo, multa, acessos e encerramento antes de assinar.",
+    category: "Gestão de Marketing",
+    publishedAt: "2026-10-07",
+    readingMinutes: 8,
+    cover: {
+      src: "/blog/contrato-agencia-marketing-cancelamento-fidelidade.jpg",
+      alt: "Contrato assinado sobre uma mesa escura, preso a uma pasta por uma corrente aberta, com uma chave ao lado e, ao fundo, uma linha do tempo iluminada em verde que termina na etapa de saída.",
+      width: 1672,
+      height: 941,
+    },
+    ogImage: {
+      src: "/blog/contrato-agencia-marketing-cancelamento-fidelidade-og.jpg",
+      alt: "Contrato assinado sobre uma mesa escura, preso a uma pasta por uma corrente aberta, com uma chave ao lado e, ao fundo, uma linha do tempo iluminada em verde que termina na etapa de saída.",
+      width: 1200,
+      height: 630,
+    },
+  },
 ];
 
 export function getAllPosts(): BlogPost[] {
