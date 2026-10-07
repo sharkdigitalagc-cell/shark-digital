@@ -20,6 +20,11 @@ import ControleContasDadosMarketing, {
   sources as controleContasSources,
   toc as controleContasToc,
 } from "./controle-contas-dados-marketing";
+import FollowUpLeadsVendas, {
+  cta as followUpCta,
+  sources as followUpSources,
+  toc as followUpToc,
+} from "./follow-up-leads-vendas";
 import LeadsAdvogadosNaoConvertem, {
   cta as leadsAdvogadosCta,
   sources as leadsAdvogadosSources,
@@ -87,5 +92,11 @@ export const POST_CONTENT: Record<string, PostContent> = {
     toc: contratoAgenciaToc,
     sources: contratoAgenciaSources,
     cta: contratoAgenciaCta,
+  },
+  "follow-up-leads-vendas": {
+    Body: FollowUpLeadsVendas,
+    toc: followUpToc,
+    sources: followUpSources,
+    cta: followUpCta,
   },
 };
