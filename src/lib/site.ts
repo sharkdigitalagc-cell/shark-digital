@@ -11,10 +11,11 @@ export const SITE_NAME = "Shark Digital";
 export const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-XZ1V33J8XT";
 
-// Google Tag Manager container ID. GA4 stays loaded directly above, so do not
-// add a GA4 config tag inside this container or page views count twice.
+// Google Tag Manager container ID; empty disables GTM. GA4 stays loaded
+// directly above, so do not add a GA4 config tag inside the container or
+// page views count twice.
 export const GTM_CONTAINER_ID =
-  process.env.NEXT_PUBLIC_GTM_CONTAINER_ID ?? "GTM-KP3WGD59";
+  process.env.NEXT_PUBLIC_GTM_CONTAINER_ID ?? "";
 
 /** Absolute URL for a site path, e.g. absoluteUrl("/blog"). */
 export function absoluteUrl(path: string): string {
