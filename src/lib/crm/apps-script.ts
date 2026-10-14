@@ -35,9 +35,13 @@ export class AppsScriptSheetIO implements SheetIO {
     try {
       body = JSON.parse(text);
     } catch {
+      // An uncaught script error comes back as an HTML page; its message says what broke.
+      const scriptError = /(?:Exception|Exceção|Error|Erro):[^<]{3,300}/.exec(text)?.[0]?.trim();
       throw new SheetsError(
         "upstream",
-        'O Apps Script não respondeu como esperado. Confira se a implantação é "App da Web" com acesso "Qualquer pessoa" e se a URL termina em /exec.',
+        scriptError
+          ? `Apps Script: ${scriptError}. Atualize o código do Apps Script com o de docs/crm/apps-script.gs (Implantar → Gerenciar implantações → Editar → Nova versão).`
+          : 'O Apps Script não respondeu como esperado. Confira se a implantação é "App da Web" com acesso "Qualquer pessoa" e se a URL termina em /exec.',
       );
     }
     if (!body.ok) {
