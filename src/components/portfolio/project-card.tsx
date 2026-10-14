@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/components/ui";
 import type { Project } from "@/lib/portfolio";
-import { categoryLabel, type Category } from "@/lib/portfolio-categories";
+import { FULL_SERVICE_LABEL, categoryLabel, type Category } from "@/lib/portfolio-categories";
 
 /** What a card needs; kept small because the grid is a client component. */
 export type ProjectCardData = {
@@ -14,6 +14,7 @@ export type ProjectCardData = {
   summary: string;
   categories: Category[];
   cover: StaticImageData;
+  fullService: boolean;
 };
 
 export function toCardData(p: Project): ProjectCardData {
@@ -24,6 +25,7 @@ export function toCardData(p: Project): ProjectCardData {
     summary: p.summary,
     categories: p.categories,
     cover: p.cover.image,
+    fullService: Boolean(p.fullService),
   };
 }
 
@@ -60,6 +62,11 @@ export function ProjectCard({
           priority={priority}
           className="h-auto w-full transition-transform duration-500 ease-out-soft group-hover:scale-[1.03]"
         />
+        {project.fullService ? (
+          <span className="absolute left-3 top-3 rounded-full bg-brand px-2.5 py-1 text-[0.7rem] font-semibold text-on-brand shadow-lg shadow-black/40">
+            {FULL_SERVICE_LABEL}
+          </span>
+        ) : null}
       </div>
       <div className="flex flex-1 flex-col p-4 pt-5">
         <p className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-muted">{project.segment}</p>

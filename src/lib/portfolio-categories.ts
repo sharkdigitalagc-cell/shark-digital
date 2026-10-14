@@ -9,6 +9,9 @@ export const CATEGORIES: { id: Category; label: string }[] = [
   { id: "social", label: "Social media e anúncios" },
 ];
 
+/** Badge for clients whose marketing the Shark built from zero and still runs. */
+export const FULL_SERVICE_LABEL = "Do zero à gestão";
+
 export function categoryLabel(id: Category) {
   return CATEGORIES.find((c) => c.id === id)?.label ?? id;
 }

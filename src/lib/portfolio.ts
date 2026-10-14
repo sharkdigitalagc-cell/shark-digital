@@ -2,7 +2,7 @@ import type { StaticImageData } from "next/image";
 import { IMAGES } from "@/content/portfolio/images";
 import type { Category } from "@/lib/portfolio-categories";
 
-export { CATEGORIES, categoryLabel, type Category } from "@/lib/portfolio-categories";
+export { CATEGORIES, FULL_SERVICE_LABEL, categoryLabel, type Category } from "@/lib/portfolio-categories";
 
 export type Shot = { image: StaticImageData; alt: string };
 
@@ -37,9 +37,12 @@ export type Project = {
   };
   instagram?: string;
   gallery: GallerySection[];
+  /** The Shark built the client's marketing from zero and still runs it. */
+  fullService?: boolean;
   /** Shown on the home page and in the client strip, in this order. */
   featured?: boolean;
 };
+
 
 /*
  * Trabalho feito pela Shark, com imagens tiradas das pastas de cada cliente.
@@ -79,18 +82,35 @@ export const PORTFOLIO: Project[] = [
     segment: "Coworking de saúde",
     location: "Belo Horizonte, MG",
     period: "2026",
-    summary: "Site com reserva e pagamento online de consultórios por hora, e o Instagram do espaço.",
+    summary: "Do zero: marca, site com reserva e pagamento online, lançamento, Instagram e anúncios. A Shark cuida de tudo.",
     intro: [
-      "A Arthemi aluga consultórios mobiliados por hora na área hospitalar de BH. O site apresenta as salas e leva o profissional direto para a reserva: escolhe o consultório, o horário e paga online, sem depender de alguém para confirmar.",
+      "A Arthemi chegou à Shark antes de abrir as portas. Criamos a marca, o site e o sistema de reservas, planejamos a inauguração e seguimos cuidando de todo o marketing: Instagram, anúncios e os ajustes do site.",
+      "O espaço aluga consultórios mobiliados por hora na área hospitalar de BH. O site apresenta as salas e leva o profissional direto para a reserva: escolhe o consultório, o horário e paga online, sem depender de alguém para confirmar.",
       "No Instagram, a linha editorial fala com quem está começando a atender ou quer sair do custo fixo de uma clínica própria: agenda, endereço profissional e a experiência do paciente desde a chegada.",
     ],
-    deliveries: ["Site", "Sistema de reservas com pagamento online", "Social media", "Gestão de tráfego"],
-    categories: ["sites", "social"],
+    deliveries: [
+      "Identidade visual",
+      "Site",
+      "Sistema de reservas com pagamento online",
+      "Plano de lançamento",
+      "Social media",
+      "Gestão de tráfego",
+    ],
+    categories: ["sites", "identidade", "social"],
     cover: cover("arthemi", "Site da Arthemi no computador e no celular"),
     og: img("arthemi/og.jpg"),
     site: siteShots("arthemi", "da Arthemi", "https://www.arthemisaude.com"),
     instagram: "arthemi.coworking",
     gallery: [
+      {
+        title: "Marca",
+        layout: "logos",
+        items: series("arthemi", "marca", [
+          "Logotipo Arthemi em verde sobre areia",
+          "Logo Arthemi com o símbolo de estrelas, sobre caramelo",
+          "Foto de perfil do Instagram com a marca sobre o consultório",
+        ]),
+      },
       {
         title: "Instagram",
         layout: "posts",
@@ -108,11 +128,67 @@ export const PORTFOLIO: Project[] = [
         ]),
       },
       {
-        title: "Anúncio",
-        layout: "wide",
-        items: [shot("arthemi/anuncio-01", "Anúncio horizontal: você atende, nós cuidamos do resto")],
+        title: "Anúncios de lançamento",
+        layout: "posts",
+        items: [
+          shot("arthemi/anuncio-02", "Anúncio: espaço profissional com preço promocional por tempo limitado"),
+          shot("arthemi/anuncio-03", "Anúncio: você atende, nós cuidamos do resto. Reservar consultório"),
+          shot("arthemi/anuncio-04", "Story: consultório profissional por hora com preço promocional"),
+          shot("arthemi/anuncio-01", "Anúncio horizontal: você atende, nós cuidamos do resto"),
+        ],
       },
     ],
+    fullService: true,
+    featured: true,
+  },
+  {
+    slug: "fausto-carretos",
+    name: "Fausto Carretos",
+    segment: "Carretos e pequenas mudanças",
+    location: "Belo Horizonte, MG",
+    period: "2026",
+    summary: "Do zero: página, campanha no Google e pedidos de orçamento direto no WhatsApp. A Shark cuida de toda a aquisição.",
+    intro: [
+      "A Fausto Carretos começou no digital com a Shark. Montamos tudo do zero (a página, a campanha no Google e a medição de cada contato) e seguimos cuidando da operação: quem pesquisa “carreto BH” chega ao WhatsApp pronto para pedir orçamento.",
+      "A página tem objetivo único. Mostra o responsável e o caminhão de verdade, a área atendida e o que mandar na mensagem (origem, destino e fotos), para o orçamento sair na primeira conversa.",
+      "Todo dado da página saiu do que o cliente confirmou: nada de avaliação ou número que ele não pudesse comprovar.",
+    ],
+    deliveries: ["Landing page", "Google Ads", "Medição de conversões", "Atendimento pelo WhatsApp", "Gestão contínua"],
+    categories: ["sites"],
+    cover: cover("fausto-carretos", "Landing page da Fausto Carretos no computador e no celular"),
+    og: img("fausto-carretos/og.jpg"),
+    site: siteShots("fausto-carretos", "da Fausto Carretos", "https://www.faustocarretos.com.br"),
+    instagram: "faustocarretos",
+    gallery: [],
+    fullService: true,
+    featured: true,
+  },
+  {
+    slug: "amaral-carretos",
+    name: "Amaral Carretos",
+    segment: "Entulho, poda e carretos",
+    location: "Belo Horizonte, MG",
+    period: "2026",
+    summary: "Do zero: Google Ads, Perfil da Empresa, página, WhatsApp e CRM. A Shark cuida de toda a aquisição.",
+    intro: [
+      "A Amaral Carretos começou no digital com a Shark. Montamos a operação de aquisição do zero e seguimos cuidando dela, com acompanhamento semanal e otimização da campanha.",
+      "Para uma verba pequena, a decisão foi concentrar tudo na pesquisa do Google e nos serviços de ticket maior, entulho e poda, com o carreto como volume.",
+      "A operação tem a página, a estrutura da campanha com palavras-chave e negativas, a otimização do Perfil da Empresa no Google, respostas prontas para o WhatsApp e um CRM em planilha com rotina semanal de decisão.",
+    ],
+    deliveries: [
+      "Landing page",
+      "Google Ads",
+      "Perfil da Empresa no Google",
+      "Atendimento pelo WhatsApp",
+      "CRM",
+      "Gestão contínua",
+    ],
+    categories: ["sites"],
+    cover: cover("amaral-carretos", "Landing page da Amaral Carretos no computador e no celular"),
+    og: img("amaral-carretos/og.jpg"),
+    site: siteShots("amaral-carretos", "da Amaral Carretos"),
+    gallery: [],
+    fullService: true,
     featured: true,
   },
   {
@@ -334,43 +410,6 @@ export const PORTFOLIO: Project[] = [
     instagram: "petriaazevedo",
     gallery: [],
     featured: true,
-  },
-  {
-    slug: "fausto-carretos",
-    name: "Fausto Carretos",
-    segment: "Carretos e pequenas mudanças",
-    location: "Belo Horizonte, MG",
-    period: "2026",
-    summary: "Landing page para campanha no Google: quem pesquisou “carreto BH” chega ao WhatsApp pronto para pedir orçamento.",
-    intro: [
-      "Página de objetivo único. Mostra o responsável e o caminhão de verdade, a área atendida e o que mandar na mensagem (origem, destino e fotos), para o orçamento sair na primeira conversa.",
-      "Todo dado da página saiu do que o cliente confirmou: nada de avaliação ou número que ele não pudesse comprovar.",
-    ],
-    deliveries: ["Landing page", "Google Ads"],
-    categories: ["sites"],
-    cover: cover("fausto-carretos", "Landing page da Fausto Carretos no computador e no celular"),
-    og: img("fausto-carretos/og.jpg"),
-    site: siteShots("fausto-carretos", "da Fausto Carretos", "https://www.faustocarretos.com.br"),
-    instagram: "faustocarretos",
-    gallery: [],
-  },
-  {
-    slug: "amaral-carretos",
-    name: "Amaral Carretos",
-    segment: "Entulho, poda e carretos",
-    location: "Belo Horizonte, MG",
-    period: "2026",
-    summary: "Operação completa de aquisição local: Google Ads, Perfil da Empresa, landing page, WhatsApp e CRM.",
-    intro: [
-      "Para uma verba pequena, a decisão foi concentrar tudo na pesquisa do Google e nos serviços de ticket maior, entulho e poda, com o carreto como volume.",
-      "A entrega incluiu a landing page, a estrutura da campanha com palavras-chave e negativas, a otimização do Perfil da Empresa no Google, respostas prontas para o WhatsApp e um CRM em planilha com rotina semanal de decisão.",
-    ],
-    deliveries: ["Landing page", "Google Ads", "Perfil da Empresa no Google", "WhatsApp", "CRM"],
-    categories: ["sites"],
-    cover: cover("amaral-carretos", "Landing page da Amaral Carretos no computador e no celular"),
-    og: img("amaral-carretos/og.jpg"),
-    site: siteShots("amaral-carretos", "da Amaral Carretos"),
-    gallery: [],
   },
   {
     slug: "cardoso-goncalves",

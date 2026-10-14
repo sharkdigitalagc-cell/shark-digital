@@ -6,7 +6,13 @@ import i_amaral_carretos_site_celular from "./amaral-carretos/site-celular.webp"
 import i_amaral_carretos_site_desktop from "./amaral-carretos/site-desktop.webp";
 import i_amaral_carretos_site_pagina from "./amaral-carretos/site-pagina.webp";
 import i_arthemi_anuncio_01 from "./arthemi/anuncio-01.webp";
+import i_arthemi_anuncio_02 from "./arthemi/anuncio-02.webp";
+import i_arthemi_anuncio_03 from "./arthemi/anuncio-03.webp";
+import i_arthemi_anuncio_04 from "./arthemi/anuncio-04.webp";
 import i_arthemi_capa from "./arthemi/capa.webp";
+import i_arthemi_marca_01 from "./arthemi/marca-01.webp";
+import i_arthemi_marca_02 from "./arthemi/marca-02.webp";
+import i_arthemi_marca_03 from "./arthemi/marca-03.webp";
 import i_arthemi_og from "./arthemi/og.jpg";
 import i_arthemi_post_01 from "./arthemi/post-01.webp";
 import i_arthemi_post_02 from "./arthemi/post-02.webp";
@@ -122,7 +128,13 @@ export const IMAGES = {
   "amaral-carretos/site-desktop": i_amaral_carretos_site_desktop,
   "amaral-carretos/site-pagina": i_amaral_carretos_site_pagina,
   "arthemi/anuncio-01": i_arthemi_anuncio_01,
+  "arthemi/anuncio-02": i_arthemi_anuncio_02,
+  "arthemi/anuncio-03": i_arthemi_anuncio_03,
+  "arthemi/anuncio-04": i_arthemi_anuncio_04,
   "arthemi/capa": i_arthemi_capa,
+  "arthemi/marca-01": i_arthemi_marca_01,
+  "arthemi/marca-02": i_arthemi_marca_02,
+  "arthemi/marca-03": i_arthemi_marca_03,
   "arthemi/og.jpg": i_arthemi_og,
   "arthemi/post-01": i_arthemi_post_01,
   "arthemi/post-02": i_arthemi_post_02,

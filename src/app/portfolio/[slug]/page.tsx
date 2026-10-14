@@ -9,7 +9,7 @@ import { Reveal, RevealOnLoad } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ButtonLink, Container, Eyebrow } from "@/components/ui";
-import { PORTFOLIO, categoryLabel, getProject } from "@/lib/portfolio";
+import { FULL_SERVICE_LABEL, PORTFOLIO, categoryLabel, getProject } from "@/lib/portfolio";
 import { jsonLd, organizationJsonLd } from "@/lib/seo";
 import { SITE_NAME, absoluteUrl } from "@/lib/site";
 
@@ -107,7 +107,14 @@ export default async function PortfolioProjectPage({ params }: PageProps<"/portf
 
             <RevealOnLoad className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-16">
               <header>
-                <Eyebrow tone="brand">{project.segment}</Eyebrow>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+                  <Eyebrow tone="brand">{project.segment}</Eyebrow>
+                  {project.fullService ? (
+                    <span className="rounded-full bg-brand px-3 py-1 text-xs font-semibold text-on-brand">
+                      {FULL_SERVICE_LABEL}
+                    </span>
+                  ) : null}
+                </div>
                 <h1 className="mt-5 text-balance text-[2.2rem] font-semibold leading-[1.05] tracking-[-0.035em] text-fg sm:text-5xl md:text-[3.4rem]">
                   {project.name}
                 </h1>
