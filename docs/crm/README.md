@@ -109,6 +109,13 @@ Muitas organizações novas do Google Cloud bloqueiam a criação dessas chaves 
   e histórico.
 - **Backup:** em Ajustes, “Backup .json” ou “Exportar Excel”. A planilha também tem o histórico
   de versões do Google (Arquivo → Histórico de versões).
+- **Orçamento:** botão no topo do CRM e “Montar orçamento” dentro de cada lead. Escolha nicho,
+  escopo (Enxuto −15%, Padrão, Completo +30%) e serviços; os valores saem da tabela em
+  Ajustes → Tabela de preços (preço base por serviço + ajuste % por nicho) e podem ser editados
+  à mão no próprio orçamento. Dá para copiar o texto para o WhatsApp, gerar PDF ou salvar no
+  lead (preenche fee, setup, verba e serviços, registra no histórico e move para Proposta
+  enviada). A tabela fica salva na aba `Listas do CRM`, nas colunas “Tabela de preços” e
+  “Ajuste por nicho”, no formato `Serviço | implantação | mensal` e `Nicho | %`.
 
 ## Testar no computador
 

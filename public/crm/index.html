@@ -103,7 +103,8 @@ a{color:inherit}
 .titles{flex:1 1 220px;min-width:0}
 .titles h1{margin:0;font-stretch:125%;font-weight:800;font-size:26px;letter-spacing:-.015em;line-height:1.1;text-wrap:balance}
 .titles p{margin:3px 0 0;color:var(--muted);font-size:13px}
-.top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:0 1 auto;justify-content:flex-end}
+@media (min-width: 761px){.top-actions{flex-wrap:nowrap}}
 .search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0 10px 0 12px;height:40px;width:min(340px,100%);transition:border-color .15s,box-shadow .15s}
 .search:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in oklab,var(--gold) 22%,transparent)}
 .search .ic{width:18px;height:18px;color:var(--muted)}
@@ -414,6 +415,26 @@ select.inp{appearance:none;-webkit-appearance:none;padding-right:30px}
 .pv-row span.mono{font-size:12px;color:var(--muted)}
 .progress{height:6px;border-radius:3px;background:var(--lane);overflow:hidden}
 .progress i{display:block;height:100%;width:0;background:var(--gold);transition:width .2s}
+/* ---------- orçamento ---------- */
+.modal.wide{width:min(720px,100%)}
+.qt{display:grid;gap:14px}
+.qt-items{display:grid;gap:6px}
+.qt-row{display:grid;grid-template-columns:minmax(0,1fr) 128px 128px;gap:8px;align-items:center}
+.qt-row > b{font-size:13.5px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qt-row .edited{color:var(--gold-ink);font-weight:700;margin-left:4px}
+.qt-row.head > span{font-size:11px;font-weight:720;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.qt-row .inp{height:34px}
+.qt-sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;background:var(--inv-bg);color:var(--inv-ink);border-radius:14px;padding:14px}
+.qt-sum div{display:grid;gap:2px;min-width:0}
+.qt-sum span{font-size:11px;letter-spacing:.07em;text-transform:uppercase;opacity:.7}
+.qt-sum b{font-family:var(--f-mono);font-size:18px;font-variant-numeric:tabular-nums;color:var(--inv-accent);overflow-wrap:anywhere}
+.qt-check{display:flex;align-items:center;gap:8px;font-size:13.5px}
+.price-table{display:grid;gap:6px}
+.price-row{display:grid;grid-template-columns:minmax(0,1fr) 120px 120px;gap:8px;align-items:center;font-size:13.5px}
+.price-row.two{grid-template-columns:minmax(0,1fr) 120px}
+.price-row > span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.price-row.head > span{font-size:11px;font-weight:720;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.price-row .inp{height:34px;font-family:var(--f-mono)}
 .toasts{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;gap:8px;z-index:70;width:min(460px,calc(100% - 32px));pointer-events:none}
 .toast{pointer-events:auto;background:var(--inv-bg);color:var(--inv-ink);border-radius:12px;padding:10px 10px 10px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-2);font-size:13.5px;animation:pop .25s cubic-bezier(.2,.8,.2,1)}
 .toast span{flex:1;min-width:0}
@@ -474,6 +495,9 @@ body.ro .needs-write{display:none!important}
   .toasts{bottom:calc(78px + env(safe-area-inset-bottom,0px))}
   .modal-wrap{place-items:end center;padding:0}
   .modal{width:100%;border-radius:20px 20px 0 0;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));max-height:92%}
+  .modal.wide{width:100%}
+  .qt-row,.price-row{grid-template-columns:minmax(0,1fr) 96px 96px}
+  .qt-sum b{font-size:15px}
 }
 @media (max-width: 420px){
   .grid2{grid-template-columns:minmax(0,1fr)}
@@ -504,6 +528,7 @@ body.ro .needs-write{display:none!important}
         <div class="titles"><h1 id="viewTitle">Funil</h1><p id="viewSub">Carregando seus leads…</p></div>
         <div class="top-actions">
           <label class="search" for="q"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="q" type="search" placeholder="Buscar empresa, contato, telefone…" autocomplete="off"><kbd>/</kbd></label>
+          <button class="btn" id="btnQuote" title="Montar orçamento"><svg class="ic" viewBox="0 0 24 24"><path d="M7 3h10a1 1 0 0 1 1 1v17l-3-2-3 2-3-2-3 2V4a1 1 0 0 1 1-1z"/><path d="M9.5 8h5M9.5 12h5"/></svg><span class="btn-new-label">Orçamento</span></button>
           <button class="btn btn-gold needs-write" id="btnNew" title="Novo lead (N)"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span class="btn-new-label">Novo lead</span></button>
         </div>
       </div>
@@ -557,6 +582,7 @@ const I = {
   copy: '<svg class="ic" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>',
   up: '<svg class="ic" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>',
   down: '<svg class="ic" viewBox="0 0 24 24"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>',
+  quote: '<svg class="ic" viewBox="0 0 24 24"><path d="M7 3h10a1 1 0 0 1 1 1v17l-3-2-3 2-3-2-3 2V4a1 1 0 0 1 1-1z"/><path d="M9.5 8h5M9.5 12h5"/></svg>',
   open: '<svg class="ic" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
   mark: '<svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 29C11 26.6 16 17 25 6c-2.4 9.4-.8 17.2 8 23z" fill="var(--gold)"/><path d="M4 34c2.4 0 2.4-1.6 4.8-1.6S11.2 34 13.6 34s2.4-1.6 4.8-1.6S20.8 34 23.2 34s2.4-1.6 4.8-1.6S30.4 34 32.8 34s2.4-1.6 4.8-1.6" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg>'
 };
@@ -584,7 +610,10 @@ const DEFAULT_CFG = {
   origens: ['Google Ads', 'Meta Ads - Facebook', 'Meta Ads - Instagram', 'Site', 'Instagram orgânico', 'Indicação', 'WhatsApp', 'Prospecção ativa', 'Evento', 'Outro', 'Não informado'],
   nichos: ['Advocacia', 'Saúde', 'Estética e beleza', 'Alimentação', 'Varejo', 'Imobiliário', 'Educação', 'Energia solar', 'Serviços locais', 'Outro'],
   resps: ['Vinicius'],
-  perdas: ['Sem orçamento', 'Fechou com outra agência', 'Sem resposta', 'Desqualificado', 'Adiou a decisão', 'Vai fazer por conta própria', 'Outro']
+  perdas: ['Sem orçamento', 'Fechou com outra agência', 'Sem resposta', 'Desqualificado', 'Adiou a decisão', 'Vai fazer por conta própria', 'Outro'],
+  // Orçamento: "Serviço | setup | mensal" e "Nicho | ajuste %". Editados em Ajustes → Tabela de preços.
+  precos: ['Tráfego Pago | 500 | 1500', 'Social Media | 0 | 1800', 'Landing Page | 1800 | 0', 'Site | 3500 | 0', 'Identidade Visual | 2500 | 0', 'Produção de Vídeo | 0 | 1200', 'Gestão 360 | 1000 | 4500', 'Consultoria | 1500 | 0', 'SEO | 800 | 1200', 'Automação / CRM | 1500 | 300'],
+  fatores: ['Advocacia | 15', 'Saúde | 15', 'Imobiliário | 10', 'Energia solar | 10']
 };
 const LISTS = [
   ['servicos', 'Serviços', 'O que a agência vende. Aparece nos cards e no painel.'],
@@ -594,6 +623,33 @@ const LISTS = [
   ['resps', 'Responsáveis', 'Quem cuida do lead.'],
   ['perdas', 'Motivos de perda', 'Pedidos quando um lead vai para Perdido.']
 ];
+/* orçamento: tabela de preços e ajuste por nicho */
+const SCOPES = [
+  { k: 'enxuto', n: 'Enxuto', pct: -15, d: 'Escopo reduzido, menos entregas' },
+  { k: 'padrao', n: 'Padrão', pct: 0, d: 'Escopo normal da agência' },
+  { k: 'completo', n: 'Completo', pct: 30, d: 'Mais entregas, mais volume' }
+];
+const MONTHS = [1, 3, 6, 12];
+const splitCfg = s => String(s).split('|').map(x => x.trim());
+function priceTable(cfg = S.cfg) {
+  const m = new Map();
+  for (const line of cfg.precos || []) { const [n, a, b] = splitCfg(line); if (n) m.set(norm(n), { setup: parseMoney(a), fee: parseMoney(b) }); }
+  return m;
+}
+function nicheTable(cfg = S.cfg) {
+  const m = new Map();
+  for (const line of cfg.fatores || []) {
+    const [n, a] = splitCfg(line);
+    const v = parseFloat(String(a ?? '').replace(',', '.').replace('%', ''));
+    if (n && isFinite(v)) m.set(norm(n), Math.max(-90, Math.min(500, v)));
+  }
+  return m;
+}
+const priceOf = s => priceTable().get(norm(s)) || { setup: 0, fee: 0 };
+const nichePct = n => nicheTable().get(norm(n)) || 0;
+const roundPrice = v => Math.max(0, Math.round(v / 10) * 10);
+const signPct = v => (v > 0 ? '+' : '') + NUMF.format(v) + '%';
+
 function fixCfg(c) {
   const out = {};
   for (const k of Object.keys(DEFAULT_CFG)) {
@@ -1429,6 +1485,9 @@ function renderSettings(view) {
     <div class="panels">${LISTS.map(([k, t, d]) => `<section class="panel"><div class="panel-h"><h3>${t}</h3><span class="count">${S.cfg[k].length}</span></div><p class="note">${d}</p>
       <div class="opt-chips" data-list="${k}">${S.cfg[k].map((o, i) => `<span class="opt" data-i="${i}">${esc(o)}<button class="needs-write" data-rm="${k}" data-i="${i}" title="Remover ${esc(o)}" aria-label="Remover ${esc(o)}">${I.x}</button></span>`).join('')}</div>
       <form class="add-row needs-write" data-add-opt="${k}"><input class="inp" placeholder="Nova opção" aria-label="Nova opção em ${t}" maxlength="60"><button class="btn btn-sm" type="submit">Adicionar</button></form></section>`).join('')}</div>
+    <h2>Tabela de preços</h2>
+    <p class="hint">Base do botão Orçamento. O preço de cada serviço é ajustado pelo nicho do cliente e pelo escopo escolhido (Enxuto ${signPct(SCOPES[0].pct)}, Completo ${signPct(SCOPES[2].pct)}). Os valores ficam salvos junto com as listas.</p>
+    <div class="panels">${priceSettingsHTML()}</div>
     <h2>Dados</h2>
     <div class="data-grid">
       <div class="data-card needs-write"><h3>Importar planilha</h3><p>Lê a aba de cadastro de uma planilha .xlsx ou .csv (o mesmo modelo do CRM do escritório funciona) ou um backup .json deste CRM.</p><button class="btn" data-import>${I.up}Escolher arquivo</button></div>
@@ -1450,6 +1509,36 @@ function renderSettings(view) {
         saveCfg({ ...S.cfg, [k]: arr });
       }
     })));
+  }
+}
+
+function priceSettingsHTML() {
+  const pt = priceTable(), nt = nicheTable(), dis = S.readOnly ? ' disabled' : '';
+  const m = v => v ? esc(NUMF.format(v)) : '';
+  return `<section class="panel"><div class="panel-h"><h3>Preço base por serviço</h3></div><p class="note">Implantação é cobrada uma vez. Mensal é o fee recorrente.</p>
+      <div class="price-table"><div class="price-row head"><span>Serviço</span><span>Implantação</span><span>Mensal</span></div>
+      ${S.cfg.servicos.map(n => { const p = pt.get(norm(n)) || { setup: 0, fee: 0 }; return `<div class="price-row"><span title="${esc(n)}">${esc(n)}</span><span class="affix"><b>R$</b><input class="inp" inputmode="decimal" placeholder="0" data-price="${esc(n)}" data-pk="setup" value="${m(p.setup)}" aria-label="Implantação de ${esc(n)}"${dis}></span><span class="affix"><b>R$</b><input class="inp" inputmode="decimal" placeholder="0" data-price="${esc(n)}" data-pk="fee" value="${m(p.fee)}" aria-label="Mensal de ${esc(n)}"${dis}></span></div>`; }).join('')}</div></section>
+    <section class="panel"><div class="panel-h"><h3>Ajuste por nicho</h3></div><p class="note">Percentual somado ao preço base. Use negativo para nichos com preço menor.</p>
+      <div class="price-table"><div class="price-row two head"><span>Nicho</span><span>Ajuste</span></div>
+      ${S.cfg.nichos.map(n => `<div class="price-row two"><span title="${esc(n)}">${esc(n)}</span><span class="affix"><b>%</b><input class="inp" inputmode="decimal" placeholder="0" data-niche="${esc(n)}" value="${nt.get(norm(n)) ? esc(NUMF.format(nt.get(norm(n)))) : ''}" aria-label="Ajuste de ${esc(n)}"${dis}></span></div>`).join('')}</div></section>`;
+}
+// Replaces the "Name | ..." line for one name, keeping lines of names no longer in the menus.
+function setCfgLine(lines, name, line) {
+  const out = (lines || []).slice();
+  const i = out.findIndex(x => norm(splitCfg(x)[0]) === norm(name));
+  if (i < 0) out.push(line); else out[i] = line;
+  return out.filter((x, j) => j === (i < 0 ? out.length - 1 : i) || norm(splitCfg(x)[0]) !== norm(name));
+}
+function savePrice(el) {
+  if (el.dataset.price != null) {
+    const n = el.dataset.price, cur = priceOf(n);
+    const p = { ...cur, [el.dataset.pk]: parseMoney(el.value) };
+    saveCfg({ ...S.cfg, precos: setCfgLine(S.cfg.precos, n, `${n} | ${p.setup} | ${p.fee}`) });
+  } else {
+    const n = el.dataset.niche;
+    let v = parseFloat(String(el.value).replace(',', '.').replace('%', ''));
+    v = isFinite(v) ? Math.max(-90, Math.min(500, v)) : 0;
+    saveCfg({ ...S.cfg, fatores: setCfgLine(S.cfg.fatores, n, `${n} | ${v}`) });
   }
 }
 
@@ -1520,6 +1609,7 @@ function openDrawer(id) {
       <section class="d-sec"><h4>Oportunidade</h4>
         <div class="field"><span class="lbl-s">Serviços de interesse</span><div class="chips" id="d-servs">${servsHTML(l)}</div></div>
         <div class="grid3">${fld('Fee mensal', moneyF('fee', l.fee))}${fld('Setup', moneyF('setup', l.setup))}${fld('Verba de mídia/mês', moneyF('verba', l.verba))}</div>
+        <div><button class="btn btn-sm" type="button" data-quote>${I.quote}Montar orçamento</button></div>
         ${fld('Demanda / dor do cliente', `<textarea class="inp" data-f="demanda" id="d-demanda" placeholder="O que o cliente precisa resolver?"${S.readOnly ? ' disabled' : ''}>${esc(l.demanda)}</textarea>`)}
         <div class="grid2">${fld('Nicho', selF('nicho', S.cfg.nichos, l.nicho))}<div class="field"><span class="lbl-s">Temperatura</span><div class="temp-seg" id="d-temp">${tempSegHTML(l)}</div></div></div>
       </section>
@@ -1581,8 +1671,9 @@ function closeDrawer() {
 
 /* ================= modal & toast ================= */
 let modalClose = null;
-function openModal(html, { onClose } = {}) {
+function openModal(html, { onClose, wide } = {}) {
   $('#modal').innerHTML = html;
+  $('#modal').classList.toggle('wide', !!wide);
   $('#modalWrap').hidden = false;
   modalClose = onClose || null;
   setTimeout(() => { const f = $('#modal').querySelector('input:not([type=checkbox]):not([type=radio]), select, button.btn-gold, button'); if (f) f.focus(); }, 30);
@@ -1654,6 +1745,181 @@ function openNewModal(preset = {}) {
     closeModal(true);
     if (UI.view !== 'funil' && UI.view !== 'lista') setView('funil');
     toast(`${nm(l)} entrou em ${STAGE[st].n}`, { action: 'Abrir', onAction: () => openDrawer(id) });
+  });
+}
+
+/* ================= orçamento ================= */
+function quoteCalc(q) {
+  const factor = (1 + nichePct(q.nicho) / 100) * (1 + (SCOPES.find(s => s.k === q.scope)?.pct || 0) / 100);
+  const items = [...q.servs].map(n => {
+    const base = priceOf(n), ov = q.over.get(n) || {};
+    return {
+      n,
+      setup: ov.setup != null ? ov.setup : roundPrice(base.setup * factor),
+      fee: ov.fee != null ? ov.fee : roundPrice(base.fee * factor),
+      edited: ov.setup != null || ov.fee != null
+    };
+  });
+  const subSetup = items.reduce((a, i) => a + i.setup, 0), subFee = items.reduce((a, i) => a + i.fee, 0);
+  const k = 1 - Math.min(100, Math.max(0, q.desc)) / 100;
+  const setup = Math.round(subSetup * k), fee = Math.round(subFee * k);
+  return { items, subSetup, subFee, setup, fee, total: setup + fee * q.meses, factor };
+}
+function quoteText(q, c) {
+  const scope = SCOPES.find(s => s.k === q.scope);
+  const L = ['*Orçamento Shark Digital*'];
+  if (q.cliente) L.push('Cliente: ' + q.cliente);
+  L.push([q.nicho && 'Nicho: ' + q.nicho, 'Escopo: ' + scope.n].filter(Boolean).join(' · '), '');
+  for (const i of c.items) {
+    const parts = [];
+    if (i.setup) parts.push(`${money(i.setup)} de implantação`);
+    if (i.fee) parts.push(`${money(i.fee)}/mês`);
+    L.push(`• ${i.n}: ${parts.join(' + ') || 'a combinar'}`);
+  }
+  L.push('');
+  if (q.desc) L.push(`Desconto aplicado: ${NUMF.format(q.desc)}%`);
+  if (c.setup) L.push(`*Implantação (pagamento único): ${money(c.setup)}*`);
+  if (c.fee) L.push(`*Mensalidade: ${money(c.fee)}/mês*`);
+  if (c.fee && q.meses > 1) L.push(`Contrato de ${q.meses} meses: ${money(c.total)} no total`);
+  if (q.verba) L.push(`Verba de mídia sugerida: ${money(q.verba)}/mês (paga direto às plataformas de anúncio)`);
+  L.push('', 'Proposta válida por 15 dias.');
+  return L.join('\n');
+}
+function quotePrint(q, c) {
+  const scope = SCOPES.find(s => s.k === q.scope);
+  const d = new Date(), val = new Date(d.getTime() + 15 * 864e5);
+  const dmy = x => `${pad(x.getDate())}/${pad(x.getMonth() + 1)}/${x.getFullYear()}`;
+  const rows = c.items.map(i => `<tr><td>${esc(i.n)}</td><td>${i.setup ? money(i.setup) : '—'}</td><td>${i.fee ? money(i.fee) + '/mês' : '—'}</td></tr>`).join('');
+  const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Orçamento ${esc(q.cliente || 'Shark Digital')}</title><style>
+    *{box-sizing:border-box}body{font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#12161B;margin:0;padding:40px}
+    header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #D49B22;padding-bottom:14px;margin-bottom:24px}
+    h1{margin:0;font-size:24px}h1 small{display:block;font-size:12px;letter-spacing:.12em;color:#875E0C;text-transform:uppercase}
+    .meta{text-align:right;font-size:12px;color:#465061}
+    table{width:100%;border-collapse:collapse;margin:16px 0}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #D9DDE3}
+    th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#6F7988}td:not(:first-child),th:not(:first-child){text-align:right;white-space:nowrap}
+    .tot{display:flex;gap:12px;margin-top:8px}.tot div{flex:1;background:#F5F6F8;border-radius:10px;padding:12px}
+    .tot span{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#6F7988}.tot b{font-size:20px}
+    p.note{color:#465061;font-size:12.5px;margin:6px 0}
+  </style></head><body>
+    <header><h1><small>Shark Digital</small>Proposta comercial</h1><div class="meta">Emitida em ${dmy(d)}<br>Válida até ${dmy(val)}</div></header>
+    ${q.cliente ? `<p><b>Cliente:</b> ${esc(q.cliente)}</p>` : ''}
+    <p>${[q.nicho && '<b>Nicho:</b> ' + esc(q.nicho), '<b>Escopo:</b> ' + scope.n].filter(Boolean).join(' &nbsp;·&nbsp; ')}</p>
+    <table><thead><tr><th>Serviço</th><th>Implantação</th><th>Mensal</th></tr></thead><tbody>${rows}</tbody></table>
+    ${q.desc ? `<p class="note">Desconto de ${NUMF.format(q.desc)}% já aplicado nos totais.</p>` : ''}
+    <div class="tot">
+      <div><span>Implantação</span><b>${money(c.setup)}</b></div>
+      <div><span>Mensalidade</span><b>${money(c.fee)}</b></div>
+      ${c.fee && q.meses > 1 ? `<div><span>Total em ${q.meses} meses</span><b>${money(c.total)}</b></div>` : ''}
+    </div>
+    ${q.verba ? `<p class="note">Verba de mídia sugerida: ${money(q.verba)}/mês, paga direto às plataformas de anúncio (não inclusa nos valores acima).</p>` : ''}
+  </body></html>`;
+  const fr = document.createElement('iframe');
+  fr.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0';
+  document.body.appendChild(fr);
+  const w = fr.contentWindow;
+  w.document.open(); w.document.write(html); w.document.close();
+  setTimeout(() => { try { w.focus(); w.print(); } catch { toast('Não deu para abrir a impressão neste navegador.', { tone: 'bad' }); } setTimeout(() => fr.remove(), 1000); }, 250);
+}
+function openQuote(id) {
+  const l = id ? S.leads.get(id) : null;
+  const q = {
+    cliente: l ? nm(l) : '', nicho: l?.nicho || '', scope: 'padrao',
+    servs: new Set(l?.servicos?.length ? l.servicos : []), over: new Map(),
+    desc: 0, meses: 6, verba: num(l?.verba), toProposal: true
+  };
+  const canApply = !S.readOnly;
+  const early = l && isOpen(l) && STAGE[l.stage].i < STAGE.proposta.i;
+  const sel = (idA, list, v, empty) => `<span class="sel block"><select class="inp" id="${idA}"><option value="">${empty}</option>${uniq([...list, v]).map(o => `<option value="${esc(o)}"${o === v ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select></span>`;
+  openModal(`<h3>Orçamento${l ? ' · ' + esc(nm(l)) : ''}</h3>
+    <div class="qt" id="qt">
+      <div class="grid2">
+        ${l ? '' : fld('Cliente', '<input class="inp" id="q-cliente" placeholder="Nome do cliente ou empresa" autocomplete="off">')}
+        ${fld('Nicho', sel('q-nicho', S.cfg.nichos, q.nicho, 'Sem nicho'))}
+        <div class="field"><span class="lbl-s">Escopo do trabalho</span><div class="seg" id="q-scope">${SCOPES.map(s => `<button type="button" data-scope="${s.k}" aria-pressed="${s.k === q.scope}" data-tip="${esc(s.d)} (${signPct(s.pct)})">${s.n}</button>`).join('')}</div></div>
+      </div>
+      <p class="hint" id="q-factor"></p>
+      <div class="field"><span class="lbl-s">Serviços</span><div class="chips" id="q-servs">${uniq([...S.cfg.servicos, ...q.servs]).map(s => `<button type="button" class="chk" data-qserv="${esc(s)}" aria-pressed="${q.servs.has(s)}">${esc(s)}</button>`).join('')}</div></div>
+      <div class="qt-items" id="q-items"></div>
+      <div class="grid3">
+        ${fld('Desconto', '<span class="affix"><b>%</b><input class="inp" id="q-desc" inputmode="decimal" placeholder="0"></span>')}
+        ${fld('Contrato', `<span class="sel block"><select class="inp" id="q-meses">${MONTHS.map(m => `<option value="${m}"${m === q.meses ? ' selected' : ''}>${m === 1 ? 'Mês a mês' : m + ' meses'}</option>`).join('')}</select></span>`)}
+        ${fld('Verba de mídia/mês', `<span class="affix"><b>R$</b><input class="inp" id="q-verba" inputmode="decimal" placeholder="0" value="${q.verba ? esc(NUMF.format(q.verba)) : ''}"></span>`)}
+      </div>
+      <div class="qt-sum" id="q-sum"></div>
+      ${canApply && early ? `<label class="qt-check"><input type="checkbox" id="q-prop" checked> Mover o lead para Proposta enviada</label>` : ''}
+      <div class="m-actions">
+        <button class="btn" type="button" data-qcopy>${I.copy}Copiar para WhatsApp</button>
+        <button class="btn" type="button" data-qprint>${I.down}PDF / imprimir</button>
+        ${canApply ? `<button class="btn btn-gold" type="button" data-qapply>${l ? 'Salvar no lead' : I.plus + 'Criar lead com este orçamento'}</button>` : ''}
+      </div>
+    </div>`, { wide: true });
+  const box = $('#qt');
+  const drawItems = () => {
+    const c = quoteCalc(q);
+    const np = nichePct(q.nicho), sp = SCOPES.find(s => s.k === q.scope).pct;
+    $('#q-factor').textContent = `Ajuste aplicado na tabela: nicho ${signPct(np)} · escopo ${signPct(sp)}. Os preços base ficam em Ajustes → Tabela de preços.`;
+    $('#q-items').innerHTML = c.items.length
+      ? `<div class="qt-row head"><span>Serviço</span><span>Implantação</span><span>Mensal</span></div>` + c.items.map(i => `<div class="qt-row"><b title="${esc(i.n)}">${esc(i.n)}${i.edited ? '<span class="edited" data-tip="Valor editado à mão. Clique para voltar ao da tabela." data-qreset="' + esc(i.n) + '" role="button" tabindex="0">↺</span>' : ''}</b>
+          <span class="affix"><b>R$</b><input class="inp" inputmode="decimal" data-qitem="${esc(i.n)}" data-qk="setup" value="${i.setup ? esc(NUMF.format(i.setup)) : ''}" placeholder="0"></span>
+          <span class="affix"><b>R$</b><input class="inp" inputmode="decimal" data-qitem="${esc(i.n)}" data-qk="fee" value="${i.fee ? esc(NUMF.format(i.fee)) : ''}" placeholder="0"></span></div>`).join('')
+      : '<p class="hint">Escolha os serviços que entram no orçamento.</p>';
+    drawSum(c);
+  };
+  const drawSum = (c = quoteCalc(q)) => {
+    $('#q-sum').innerHTML = `<div><span>Implantação</span><b>${money(c.setup)}</b></div><div><span>Mensalidade</span><b>${money(c.fee)}</b></div><div><span>${q.meses > 1 ? `Total em ${q.meses} meses` : 'Primeiro mês'}</span><b>${money(c.total)}</b></div>`;
+  };
+  drawItems();
+  box.addEventListener('click', e => {
+    const t = e.target; let el;
+    if ((el = t.closest('[data-scope]'))) { q.scope = el.dataset.scope; $$('[data-scope]', box).forEach(b => b.setAttribute('aria-pressed', String(b === el))); drawItems(); return; }
+    if ((el = t.closest('[data-qserv]'))) { const s = el.dataset.qserv; q.servs.has(s) ? q.servs.delete(s) : q.servs.add(s); el.setAttribute('aria-pressed', String(q.servs.has(s))); drawItems(); return; }
+    if ((el = t.closest('[data-qreset]'))) { hideTip(); q.over.delete(el.dataset.qreset); drawItems(); return; }
+    if (t.closest('[data-qcopy]')) {
+      const c = quoteCalc(q); if (!c.items.length) { toast('Escolha pelo menos um serviço.'); return; }
+      const txt = quoteText(q, c);
+      navigator.clipboard.writeText(txt).then(() => toast('Orçamento copiado. É só colar no WhatsApp.'), () => toast('Não deu para copiar automaticamente.', { tone: 'bad' }));
+      return;
+    }
+    if (t.closest('[data-qprint]')) { const c = quoteCalc(q); if (!c.items.length) { toast('Escolha pelo menos um serviço.'); return; } quotePrint(q, c); return; }
+    if (t.closest('[data-qapply]')) {
+      const c = quoteCalc(q); if (!c.items.length) { toast('Escolha pelo menos um serviço.'); return; }
+      const scope = SCOPES.find(s => s.k === q.scope);
+      const note = `Orçamento (${scope.n}${q.nicho ? ', ' + q.nicho : ''}): ${c.items.map(i => i.n).join(', ')}. Implantação ${money(c.setup)} + ${money(c.fee)}/mês${q.desc ? `, ${NUMF.format(q.desc)}% de desconto` : ''}${q.meses > 1 ? `, contrato de ${q.meses} meses (${money(c.total)})` : ''}.`;
+      const fields = { fee: c.fee, setup: c.setup, verba: q.verba, servicos: c.items.map(i => i.n), nicho: q.nicho };
+      if (l) {
+        const cur = S.leads.get(id); if (!cur) { closeModal(true); return; }
+        patchLead(id, { ...fields, hist: pushHist(cur, { t: Date.now(), k: 'note', txt: note }) });
+        if ($('#q-prop')?.checked) moveStage(id, 'proposta');
+        closeModal(true);
+        toast(`Orçamento salvo em ${nm(cur)}`);
+      } else {
+        const cliente = ($('#q-cliente').value || '').trim();
+        if (!cliente) { toast('Digite o nome do cliente para criar o lead.'); $('#q-cliente').focus(); return; }
+        const nl = blankLead({ ...fields, empresa: cliente, stage: 'proposta' });
+        nl.hist = [...nl.hist, { t: Date.now(), k: 'note', txt: note, ...(S.me ? { by: S.me.name.split(' ')[0] } : {}) }];
+        const nid = createLead(nl);
+        closeModal(true);
+        toast(`${cliente} entrou em Proposta enviada`, { action: 'Abrir', onAction: () => openDrawer(nid) });
+      }
+    }
+  });
+  box.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('[data-qreset]')) { e.preventDefault(); e.target.click(); } });
+  box.addEventListener('input', e => {
+    const t = e.target;
+    if (t.dataset.qitem) {
+      const ov = { ...(q.over.get(t.dataset.qitem) || {}) };
+      ov[t.dataset.qk] = parseMoney(t.value);
+      q.over.set(t.dataset.qitem, ov); drawSum(); return;
+    }
+    if (t.id === 'q-desc') { q.desc = Math.min(100, parseMoney(t.value)); drawSum(); return; }
+    if (t.id === 'q-verba') { q.verba = parseMoney(t.value); return; }
+    if (t.id === 'q-cliente') { q.cliente = t.value.trim(); return; }
+  });
+  box.addEventListener('change', e => {
+    const t = e.target;
+    if (t.id === 'q-nicho') { q.nicho = t.value; drawItems(); return; }
+    if (t.id === 'q-meses') { q.meses = +t.value || 1; drawSum(); return; }
+    if (t.dataset.qitem) drawItems(); // shows the ↺ mark on edited rows
   });
 }
 
@@ -1957,6 +2223,7 @@ function bindStatic() {
   let qT = 0;
   $('#q').addEventListener('input', e => { clearTimeout(qT); qT = setTimeout(() => { UI.q = e.target.value; scheduleRender(); }, 120); });
   $('#btnNew').addEventListener('click', () => openNewModal());
+  $('#btnQuote').addEventListener('click', () => openQuote(UI.drawerId));
   $('#filters').addEventListener('change', e => {
     const id = e.target.id; const v = e.target.value;
     if (id === 'fPeriod') UI.period = v; else if (id in { fResp: 1, fServ: 1, fCanal: 1 }) UI[id] = v;
@@ -1995,6 +2262,7 @@ function bindStatic() {
   });
   view.addEventListener('keyup', e => { if (e.key === 'Escape' && e.target.id === 'quickIn') { UI.quick = null; scheduleRender(); } });
   view.addEventListener('change', e => {
+    if (e.target.matches('[data-price], [data-niche]')) { savePrice(e.target); return; }
     const s = e.target.closest('[data-row-stage]');
     if (s) { const id = s.dataset.rowStage; const to = s.value; if (to === 'perdido') askLoss(id); else moveStage(id, to); }
   });
@@ -2049,6 +2317,7 @@ function bindStatic() {
     if ((el = t.closest('[data-serv]'))) { const s = el.dataset.serv; const cur = l.servicos || []; patchLead(id, { servicos: cur.includes(s) ? cur.filter(x => x !== s) : [...cur, s] }); return; }
     if ((el = t.closest('[data-prox]'))) { const v = el.dataset.prox; patchLead(id, { prox: v === 'clear' ? '' : addDays(today(), +v) }); return; }
     if ((el = t.closest('[data-copy]'))) { copyText(el.dataset.copy); return; }
+    if (t.closest('[data-quote]')) { flushLead(id); openQuote(id); return; }
     if ((el = t.closest('[data-del]'))) {
       if (!el.classList.contains('armed')) { el.classList.add('armed'); el.textContent = 'Confirmar exclusão'; setTimeout(() => { if (el.isConnected) { el.classList.remove('armed'); el.textContent = 'Excluir lead'; } }, 4000); return; }
       deleteLead(id); return;

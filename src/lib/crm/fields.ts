@@ -119,6 +119,10 @@ export type Cfg = {
   nichos: string[];
   resps: string[];
   perdas: string[];
+  /** Orçamento: "Serviço | implantação | mensal". */
+  precos: string[];
+  /** Orçamento: "Nicho | ajuste %". */
+  fatores: string[];
 };
 export const LIST_HEADERS: Record<keyof Cfg, string> = {
   servicos: "Serviços",
@@ -127,6 +131,8 @@ export const LIST_HEADERS: Record<keyof Cfg, string> = {
   nichos: "Nichos",
   resps: "Responsáveis",
   perdas: "Motivos de perda",
+  precos: "Tabela de preços (serviço | implantação | mensal)",
+  fatores: "Ajuste por nicho (nicho | %)",
 };
 
 /* ---------------- primitives ---------------- */
@@ -349,6 +355,8 @@ export const DEFAULT_CFG: Cfg = {
   nichos: ["Advocacia", "Saúde", "Estética e beleza", "Alimentação", "Varejo", "Imobiliário", "Educação", "Energia solar", "Serviços locais", "Outro"],
   resps: ["Vinicius"],
   perdas: ["Sem orçamento", "Fechou com outra agência", "Sem resposta", "Desqualificado", "Adiou a decisão", "Vai fazer por conta própria", "Outro"],
+  precos: ["Tráfego Pago | 500 | 1500", "Social Media | 0 | 1800", "Landing Page | 1800 | 0", "Site | 3500 | 0", "Identidade Visual | 2500 | 0", "Produção de Vídeo | 0 | 1200", "Gestão 360 | 1000 | 4500", "Consultoria | 1500 | 0", "SEO | 800 | 1200", "Automação / CRM | 1500 | 300"],
+  fatores: ["Advocacia | 15", "Saúde | 15", "Imobiliário | 10", "Energia solar | 10"],
 };
 
 export function listsFromRows(rows: Cell[][]): Cfg {
