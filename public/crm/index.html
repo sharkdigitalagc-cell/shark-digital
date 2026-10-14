@@ -253,6 +253,8 @@ table.tbl{border-collapse:collapse;width:100%;min-width:1040px;font-size:13px}
 .ag-sub{margin:0;color:var(--muted);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ag-note{margin:2px 0 0;color:var(--ink-2);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ag-act{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn-wa{border-color:color-mix(in oklab,var(--good) 45%,var(--line));color:var(--good)}
+.btn-wa:hover{background:var(--good-soft);border-color:var(--good)}
 .done-grp{display:inline-flex;align-items:center;gap:2px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:3px}
 .done-grp > span{font-size:11.5px;color:var(--muted);padding:0 6px 0 6px;font-weight:600;white-space:nowrap}
 .done-grp button{border:0;background:var(--surface);border-radius:7px;height:26px;min-width:34px;padding:0 8px;font-size:12px;font-weight:700;font-family:var(--f-mono);box-shadow:var(--shadow-1)}
@@ -1341,7 +1343,7 @@ function renderAgenda(view) {
       <div>${due ? `<span class="due ${due.cls}">${due.txt}</span>` : '<span class="due none">sem data</span>'}</div>
       <div class="ag-main"><div class="ag-head"><button class="ag-name" data-open="${esc(l.id)}">${esc(nm(l))}</button><span class="pill st-${esc(l.stage)}">${esc(STAGE[l.stage]?.n || '')}</span>${num(l.fee) ? `<span class="mono muted" style="font-size:12px">${money(l.fee)}/mês</span>` : ''}</div>
         ${sub ? `<p class="ag-sub">${esc(sub)}</p>` : ''}${note ? `<p class="ag-note">${esc(note)}</p>` : ''}</div>
-      <div class="ag-act">${l.e164 ? `<a class="btn btn-sm" href="${waUrl(l)}" target="_blank" rel="noopener">${I.wa}WhatsApp</a>` : ''}
+      <div class="ag-act"><button class="btn btn-sm${l.e164 ? ' btn-wa' : ''}" type="button" data-followup="${esc(l.id)}" title="Montar mensagem de follow-up e enviar no WhatsApp">${I.wa}Follow-up</button>
         <span class="done-grp needs-write"><span>${kind === 'none' ? 'Agendar em' : 'Feito, voltar em'}</span>${[1, 3, 7].map(n => `<button data-done="${esc(l.id)}" data-n="${n}" data-kind="${kind === 'none' ? 'agenda' : 'feito'}" title="${kind === 'none' ? 'Agendar retorno' : 'Marcar retorno feito e agendar o próximo'} em ${n} dia${n > 1 ? 's' : ''}">${n}d</button>`).join('')}</span></div>
     </article>`;
   };
@@ -1578,6 +1580,7 @@ function quickHTML(l) {
   const parts = [];
   if (l.e164) {
     parts.push(`<a class="btn btn-sm" href="${waUrl(l)}" target="_blank" rel="noopener">${I.wa}WhatsApp</a>`);
+    parts.push(`<button class="btn btn-sm" type="button" data-followup>${I.wa}Follow-up</button>`);
     parts.push(`<button class="btn btn-sm" type="button" data-copy="${esc(l.e164)}">${I.copy}${esc(fmtPhone(l.e164))}</button>`);
   }
   if (l.email) parts.push(`<button class="btn btn-sm" type="button" data-copy="${esc(l.email)}">${I.copy}E-mail</button>`);
@@ -1745,6 +1748,75 @@ function openNewModal(preset = {}) {
     closeModal(true);
     if (UI.view !== 'funil' && UI.view !== 'lista') setView('funil');
     toast(`${nm(l)} entrou em ${STAGE[st].n}`, { action: 'Abrir', onAction: () => openDrawer(id) });
+  });
+}
+
+/* ================= follow-up pelo WhatsApp ================= */
+const FOLLOWUPS = [
+  { k: 'contato', n: 'Primeiro contato', t: '{saud}, {nome}! Aqui é {eu} da Shark Digital. Vi que você falou com a gente sobre {servicos}. Me conta um pouco do momento de vocês hoje? Assim já te indico o melhor caminho.' },
+  { k: 'semresposta', n: 'Sem resposta', t: '{saud}, {nome}! Tudo bem? Passando para retomar nossa conversa sobre {servicos}. Faz sentido marcarmos uma conversa rápida de 15 minutos esta semana?' },
+  { k: 'reuniao', n: 'Confirmar reunião', t: '{saud}, {nome}! Passando para confirmar nossa reunião. Segue de pé? Qualquer imprevisto é só me avisar por aqui.' },
+  { k: 'posreuniao', n: 'Pós-reunião', t: '{saud}, {nome}! Obrigado pela conversa. Estou fechando a proposta com base no que falamos e te envio em breve. Ficou alguma dúvida até aqui?' },
+  { k: 'proposta', n: 'Proposta enviada', t: '{saud}, {nome}! Conseguiu dar uma olhada na proposta que te enviei{valor}? Fico à disposição para tirar dúvidas ou ajustar o que for preciso.' },
+  { k: 'negociacao', n: 'Negociação', t: '{saud}, {nome}! Como ficou a análise da proposta? Se ajudar, consigo ver uma condição para começarmos ainda este mês.' },
+  { k: 'reativar', n: 'Retomar contato', t: '{saud}, {nome}! Faz um tempo que não nos falamos. Como estão as coisas por aí? Se ainda fizer sentido melhorar {servicos}, tenho algumas ideias para te mostrar.' }
+];
+const FOLLOWUP_BY_STAGE = { novo: 'contato', contato: 'contato', aguardando: 'semresposta', reuniao: 'reuniao', diagnostico: 'posreuniao', proposta: 'proposta', negociacao: 'negociacao', fechado: 'reativar', perdido: 'reativar' };
+function followupText(l, k) {
+  const tpl = (FOLLOWUPS.find(f => f.k === k) || FOLLOWUPS[0]).t;
+  const h = new Date().getHours();
+  const servs = l.servicos || [];
+  const vars = {
+    saud: h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite',
+    nome: String(l.contato || '').trim().split(/\s+/)[0] || '',
+    eu: (S.me && S.me.name ? S.me.name.split(' ')[0] : l.resp) || 'a equipe',
+    servicos: servs.length ? (servs.length > 1 ? servs.slice(0, -1).join(', ') + ' e ' + servs[servs.length - 1] : servs[0]) : 'o marketing de vocês',
+    valor: num(l.fee) ? ` (${money(l.fee)}/mês)` : ''
+  };
+  return tpl.replace(/\{(\w+)\}/g, (_, v) => vars[v] ?? '').replace(/, !/g, '!').replace(/\s+([!?.,])/g, '$1');
+}
+function openFollowup(id) {
+  const l = S.leads.get(id); if (!l) return;
+  let k = FOLLOWUP_BY_STAGE[l.stage] || 'contato';
+  const canWrite = !S.readOnly;
+  openModal(`<h3>Follow-up · ${esc(nm(l))}</h3>
+    <div class="qt" id="fu">
+      <div class="field"><span class="lbl-s">Situação</span><div class="chips" id="fu-kind">${FOLLOWUPS.map(f => `<button type="button" class="chk" data-fu="${f.k}" aria-pressed="${f.k === k}">${f.n}</button>`).join('')}</div></div>
+      ${fld('Mensagem', `<textarea class="inp" id="fu-msg" rows="6" style="height:auto;padding:10px 11px;line-height:1.45;resize:vertical">${esc(followupText(l, k))}</textarea>`)}
+      <p class="hint">Pode editar à vontade antes de enviar. ${l.e164 ? `Vai para ${esc(fmtPhone(l.e164))}.` : '<span style="color:var(--warn)">Este lead não tem WhatsApp válido. Copie a mensagem ou corrija o número no lead.</span>'}</p>
+      ${canWrite ? `<div class="field"><span class="lbl-s">Próximo retorno em</span><div class="seg" id="fu-next">${[[1, '1 dia'], [3, '3 dias'], [7, '7 dias'], [0, 'Não agendar']].map(([n, t]) => `<button type="button" data-fn="${n}" aria-pressed="${n === 3}">${t}</button>`).join('')}</div><p class="hint">Registra o follow-up no histórico do lead e agenda o próximo retorno.</p></div>` : ''}
+      <div class="m-actions">
+        <button class="btn" type="button" data-fucopy>${I.copy}Copiar</button>
+        <button class="btn btn-gold" type="button" data-fusend${l.e164 ? '' : ' disabled'}>${I.wa}Enviar no WhatsApp</button>
+      </div>
+    </div>`);
+  const box = $('#fu');
+  let next = 3, edited = false;
+  box.addEventListener('input', e => { if (e.target.id === 'fu-msg') edited = true; });
+  box.addEventListener('click', e => {
+    const t = e.target; let el;
+    if ((el = t.closest('[data-fu]'))) {
+      if (edited && !confirm('Trocar a mensagem? O texto que você editou será substituído.')) return;
+      k = el.dataset.fu; edited = false;
+      $$('[data-fu]', box).forEach(b => b.setAttribute('aria-pressed', String(b === el)));
+      $('#fu-msg').value = followupText(S.leads.get(id) || l, k);
+      return;
+    }
+    if ((el = t.closest('[data-fn]'))) { next = +el.dataset.fn; $$('[data-fn]', box).forEach(b => b.setAttribute('aria-pressed', String(b === el))); return; }
+    if (t.closest('[data-fucopy]')) { const v = $('#fu-msg').value.trim(); navigator.clipboard.writeText(v).then(() => toast('Mensagem copiada.'), () => toast('Não deu para copiar automaticamente.', { tone: 'bad' })); return; }
+    if (t.closest('[data-fusend]')) {
+      const cur = S.leads.get(id) || l;
+      const msg = $('#fu-msg').value.trim();
+      if (!cur.e164 || !msg) return;
+      window.open(waUrl(cur) + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+      if (canWrite && S.leads.has(id)) {
+        const p = { hist: pushHist(cur, { t: Date.now(), k: 'note', txt: `Follow-up enviado no WhatsApp (${FOLLOWUPS.find(f => f.k === k).n}):\n${msg}` }) };
+        if (next) p.prox = addDays(today(), next);
+        patchLead(id, p);
+        toast(next ? `${nm(cur)}: follow-up registrado, próximo retorno em ${fmtDM(p.prox)}` : `${nm(cur)}: follow-up registrado`);
+      }
+      closeModal(true);
+    }
   });
 }
 
@@ -2244,6 +2316,7 @@ function bindStatic() {
     if ((el = t.closest('.card'))) { if (!UI.justDragged) openDrawer(el.dataset.id); return; }
     if ((el = t.closest('[data-tab]'))) { UI.listTab = el.dataset.tab; persistUI(); scheduleRender(); return; }
     if ((el = t.closest('[data-sort]'))) { const k = el.dataset.sort; UI.sort = { k, dir: UI.sort.k === k ? -UI.sort.dir : (['fee', 'num', 'criado'].includes(k) ? -1 : 1) }; persistUI(); scheduleRender(); return; }
+    if ((el = t.closest('[data-followup]'))) { openFollowup(el.dataset.followup); return; }
     if ((el = t.closest('[data-done]'))) { retornoFeito(el.dataset.done, +el.dataset.n, el.dataset.kind); return; }
     if ((el = t.closest('[data-open]'))) { openDrawer(el.dataset.open); return; }
     if ((el = t.closest('[data-quality]'))) { UI.listTab = 'pend'; persistUI(); setView('lista'); return; }
@@ -2318,6 +2391,7 @@ function bindStatic() {
     if ((el = t.closest('[data-prox]'))) { const v = el.dataset.prox; patchLead(id, { prox: v === 'clear' ? '' : addDays(today(), +v) }); return; }
     if ((el = t.closest('[data-copy]'))) { copyText(el.dataset.copy); return; }
     if (t.closest('[data-quote]')) { flushLead(id); openQuote(id); return; }
+    if (t.closest('[data-followup]')) { flushLead(id); openFollowup(id); return; }
     if ((el = t.closest('[data-del]'))) {
       if (!el.classList.contains('armed')) { el.classList.add('armed'); el.textContent = 'Confirmar exclusão'; setTimeout(() => { if (el.isConnected) { el.classList.remove('armed'); el.textContent = 'Excluir lead'; } }, 4000); return; }
       deleteLead(id); return;

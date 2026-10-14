@@ -117,6 +117,12 @@ Muitas organizações novas do Google Cloud bloqueiam a criação dessas chaves 
   enviada). A tabela fica salva na aba `Listas do CRM`, nas colunas “Tabela de preços” e
   “Ajuste por nicho”, no formato `Serviço | implantação | mensal` e `Nicho | %`.
 
+- **Follow-up pelo WhatsApp:** em Retornos (e no lead), o botão “Follow-up” monta a mensagem
+  conforme a etapa (primeiro contato, sem resposta, confirmar reunião, pós-reunião, proposta,
+  negociação ou retomar contato), com o nome do contato e os serviços. Dá para editar o texto,
+  e “Enviar no WhatsApp” abre a conversa já com a mensagem, registra no histórico e agenda o
+  próximo retorno.
+
 ## Testar no computador
 
 ```bash
