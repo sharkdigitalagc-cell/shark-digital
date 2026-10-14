@@ -60,8 +60,8 @@ export function Hero() {
               <ButtonLink href="#contato" arrow>
                 Conversar sobre meu marketing
               </ButtonLink>
-              <ButtonLink href="/clientes" variant="secondary">
-                Ver projetos
+              <ButtonLink href="/portfolio" variant="secondary">
+                Ver portfólio
               </ButtonLink>
             </div>
           </RevealOnLoad>

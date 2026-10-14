@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui";
-import { CLIENTS } from "@/lib/clients";
+import { FEATURED_PROJECTS } from "@/lib/portfolio";
 
 /** Names of the companies served, right after the hero. */
 export function ClientStrip() {
@@ -14,13 +14,13 @@ export function ClientStrip() {
           Empresas atendidas
         </h2>
         <ul className="flex flex-1 flex-wrap items-center gap-x-8 gap-y-3">
-          {CLIENTS.map((client) => (
-            <li key={client.slug}>
+          {FEATURED_PROJECTS.map((project) => (
+            <li key={project.slug}>
               <Link
-                href={`/clientes#${client.slug}`}
+                href={`/portfolio/${project.slug}`}
                 className="rounded-sm text-lg font-semibold tracking-tight text-fg/60 transition-colors duration-200 hover:text-fg md:text-xl"
               >
-                {client.name}
+                {project.name}
               </Link>
             </li>
           ))}

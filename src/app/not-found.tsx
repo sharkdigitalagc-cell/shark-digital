@@ -22,14 +22,14 @@ export default function NotFound() {
               Página não encontrada.
             </h1>
             <p className="mt-6 max-w-xl leading-relaxed text-muted md:text-lg">
-              O endereço pode ter mudado. Veja os serviços na página inicial, os projetos ou o blog.
+              O endereço pode ter mudado. Veja os serviços na página inicial, o portfólio ou o blog.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/" arrow>
                 Ir para o início
               </ButtonLink>
-              <ButtonLink href="/clientes" variant="secondary">
-                Ver projetos
+              <ButtonLink href="/portfolio" variant="secondary">
+                Ver portfólio
               </ButtonLink>
               <ButtonLink href="/blog" variant="secondary">
                 Ler o blog
