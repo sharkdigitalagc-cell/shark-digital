@@ -896,7 +896,8 @@ async function pull() {
   if (S.busy || S.timers.size) { schedulePull(1500); return; }
   pulling = true;
   const epoch = S.epoch;
-  let again = document.visibilityState === 'visible' ? 20000 : 60000;
+  // Hidden tabs stop polling; visibilitychange pulls again when the CRM comes back.
+  let again = document.visibilityState === 'visible' ? 20000 : 0;
   try {
     const j = await api('GET', null, '/data' + (S.ver ? '?v=' + encodeURIComponent(S.ver) : ''));
     if (S.busy || S.timers.size || epoch !== S.epoch) { again = 1500; return; } // a write landed meanwhile: this read may be stale

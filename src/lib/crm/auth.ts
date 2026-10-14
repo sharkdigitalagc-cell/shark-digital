@@ -1,5 +1,6 @@
 import { createHash, createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 import type { NextRequest } from "next/server";
+import { AppsScriptSheetIO } from "./apps-script";
 import { DevSheetIO } from "./dev-io";
 import { GoogleSheetIO, serviceAccountFromEnv } from "./sheets";
 import { CrmStore } from "./store";
@@ -37,7 +38,11 @@ export function missingConfig(): string[] {
   if (!process.env.CRM_GOOGLE_CLIENT_ID) missing.push("CRM_GOOGLE_CLIENT_ID");
   if (!process.env.CRM_GOOGLE_CLIENT_SECRET) missing.push("CRM_GOOGLE_CLIENT_SECRET");
   if (!process.env.CRM_SHEET_ID) missing.push("CRM_SHEET_ID");
-  if (!serviceAccountFromEnv()) missing.push("CRM_SERVICE_ACCOUNT_JSON");
+  // The sheet is reached through its Apps Script (default) or a service account key.
+  if (!serviceAccountFromEnv()) {
+    if (!process.env.CRM_APPS_SCRIPT_URL) missing.push("CRM_APPS_SCRIPT_URL");
+    if (!process.env.CRM_APPS_SCRIPT_SECRET) missing.push("CRM_APPS_SCRIPT_SECRET");
+  }
   return missing;
 }
 
@@ -176,6 +181,9 @@ export function crmStore(): CrmStore | null {
   const sheetId = process.env.CRM_SHEET_ID;
   const sa = serviceAccountFromEnv();
   if (sheetId && sa) return new CrmStore(new GoogleSheetIO(sheetId, sa));
+  const scriptUrl = process.env.CRM_APPS_SCRIPT_URL;
+  const scriptSecret = process.env.CRM_APPS_SCRIPT_SECRET;
+  if (scriptUrl && scriptSecret) return new CrmStore(new AppsScriptSheetIO(scriptUrl, scriptSecret));
   if (devMode) return new CrmStore(new DevSheetIO());
   return null;
 }
