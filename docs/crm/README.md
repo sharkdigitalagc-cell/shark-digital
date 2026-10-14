@@ -15,7 +15,7 @@ docs/crm/CRM Shark Digital - Banco de Dados.xlsx   modelo da planilha
 
 - **Login com Google.** Só entra quem estiver em `CRM_ADMIN_EMAILS`. Não existe senha do CRM.
 - **Sessão assinada.** Depois do login o navegador guarda um cookie `httpOnly` (o JavaScript da
-  página não lê), assinado com `CRM_SESSION_SECRET` e válido por 7 dias.
+  página não lê), assinado no servidor e válido por 7 dias.
 - **Toda chamada confere de novo.** Cada leitura e gravação valida o cookie e se o e-mail
   continua na lista. Tirou o e-mail do Vercel e fez redeploy, a pessoa perde o acesso na hora.
 - **A planilha não fica pública.** Só o servidor do site fala com ela, por uma conta de serviço do
@@ -68,17 +68,13 @@ testar nas prévias):
 | Variável | Valor |
 | --- | --- |
 | `CRM_ADMIN_EMAILS` | e-mails Google liberados, separados por vírgula (ex.: o seu e o do seu sócio) |
-| `CRM_SESSION_SECRET` | texto aleatório com 32+ caracteres (veja abaixo) |
 | `CRM_GOOGLE_CLIENT_ID` | ID do cliente OAuth (passo 2.4) |
 | `CRM_GOOGLE_CLIENT_SECRET` | chave secreta do cliente OAuth (passo 2.4) |
 | `CRM_SHEET_ID` | ID da planilha (passo 1.3) |
 | `CRM_SERVICE_ACCOUNT_JSON` | conteúdo inteiro do arquivo .json da conta de serviço (passo 2.5) |
 
-Para gerar o `CRM_SESSION_SECRET` no computador:
-
-```bash
-node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
-```
+Opcional: `CRM_SESSION_SECRET` (texto aleatório com 32+ caracteres) assina os cookies de sessão. Sem ela,
+o CRM usa uma chave derivada da chave secreta do cliente OAuth.
 
 Depois de salvar as variáveis, faça um **Redeploy** e abra `https://SEU-DOMINIO/crm`.
 

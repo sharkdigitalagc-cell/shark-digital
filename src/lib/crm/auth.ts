@@ -32,7 +32,7 @@ export function adminEmails(): string[] {
 export function missingConfig(): string[] {
   const missing: string[] = [];
   if (!adminEmails().length) missing.push("CRM_ADMIN_EMAILS");
-  if (!secret()) missing.push("CRM_SESSION_SECRET");
+  if (process.env.CRM_SESSION_SECRET && process.env.CRM_SESSION_SECRET.length < 32) missing.push("CRM_SESSION_SECRET (mínimo 32 caracteres)");
   if (devMode) return missing;
   if (!process.env.CRM_GOOGLE_CLIENT_ID) missing.push("CRM_GOOGLE_CLIENT_ID");
   if (!process.env.CRM_GOOGLE_CLIENT_SECRET) missing.push("CRM_GOOGLE_CLIENT_SECRET");
@@ -41,9 +41,17 @@ export function missingConfig(): string[] {
   return missing;
 }
 
+/**
+ * Key that signs session cookies. CRM_SESSION_SECRET wins when set; otherwise it
+ * is derived from the OAuth client secret, so there is one secret less to manage
+ * (rotating the client secret then signs everyone out, which is fine).
+ */
 function secret(): string | null {
-  const s = process.env.CRM_SESSION_SECRET ?? (devMode ? "dev-only-secret-not-for-production-use" : "");
-  return s.length >= 32 ? s : null;
+  const explicit = process.env.CRM_SESSION_SECRET;
+  if (explicit) return explicit.length >= 32 ? explicit : null;
+  if (devMode) return "dev-only-secret-not-for-production-use";
+  const client = process.env.CRM_GOOGLE_CLIENT_SECRET;
+  return client ? createHmac("sha256", client).update("crm-session-v1").digest("base64url") : null;
 }
 
 /* ---------------- signed tokens ---------------- */
