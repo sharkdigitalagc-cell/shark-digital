@@ -111,6 +111,12 @@ Pendências marcadas com `TODO(contato)` em `src/app/api/contact/route.ts`:
 > A rota `/api/contact` precisa de um runtime de servidor (ex.: Vercel ou `npm start`).
 > Exportação estática (`output: "export"`) não é compatível com ela.
 
+## CRM (/crm)
+
+CRM comercial da agência em `/crm`, com login pelo Google (só e-mails liberados) e uma planilha
+do Google Sheets como banco de dados. Configuração, segurança e uso em
+[docs/crm/README.md](docs/crm/README.md).
+
 ## Conteúdo pendente
 
 - **Cases** — `src/components/sections/cases.tsx` (`TODO(cases)`): preencher a lista
