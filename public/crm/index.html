@@ -1770,7 +1770,7 @@ function followupText(l, k) {
     saud: h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite',
     nome: String(l.contato || '').trim().split(/\s+/)[0] || '',
     eu: (S.me && S.me.name ? S.me.name.split(' ')[0] : l.resp) || 'a equipe',
-    servicos: servs.length ? (servs.length > 1 ? servs.slice(0, -1).join(', ') + ' e ' + servs[servs.length - 1] : servs[0]) : 'o marketing de vocês',
+    servicos: servs.length ? (servs.length > 1 ? servs.slice(0, -1).join(', ') + ' e ' + servs[servs.length - 1] : servs[0]) : 'o marketing da empresa',
     valor: num(l.fee) ? ` (${money(l.fee)}/mês)` : ''
   };
   return tpl.replace(/\{(\w+)\}/g, (_, v) => vars[v] ?? '').replace(/, !/g, '!').replace(/\s+([!?.,])/g, '$1');
@@ -1808,12 +1808,15 @@ function openFollowup(id) {
       const cur = S.leads.get(id) || l;
       const msg = $('#fu-msg').value.trim();
       if (!cur.e164 || !msg) return;
-      window.open(waUrl(cur) + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+      // api.whatsapp.com keeps the text when it hands over to the app or WhatsApp Web; the
+      // clipboard copy is a fallback for when WhatsApp still opens the chat empty.
+      try { navigator.clipboard.writeText(msg).catch(() => {}); } catch {}
+      window.open('https://api.whatsapp.com/send?phone=' + cur.e164.replace(/\D/g, '') + '&text=' + encodeURIComponent(msg), '_blank', 'noopener');
       if (canWrite && S.leads.has(id)) {
         const p = { hist: pushHist(cur, { t: Date.now(), k: 'note', txt: `Follow-up enviado no WhatsApp (${FOLLOWUPS.find(f => f.k === k).n}):\n${msg}` }) };
         if (next) p.prox = addDays(today(), next);
         patchLead(id, p);
-        toast(next ? `${nm(cur)}: follow-up registrado, próximo retorno em ${fmtDM(p.prox)}` : `${nm(cur)}: follow-up registrado`);
+        toast(`${next ? `Follow-up registrado, próximo retorno em ${fmtDM(p.prox)}.` : 'Follow-up registrado.'} A mensagem também foi copiada: se o WhatsApp abrir vazio, é só colar.`, { ms: 8000 });
       }
       closeModal(true);
     }
