@@ -159,7 +159,13 @@ export class CrmStore {
     const { lists } = await this.io.read();
     const hm = headerMap(lists[0]);
     let next = lists[0]?.length ?? 0;
-    const cols = (Object.keys(LIST_HEADERS) as (keyof Cfg)[]).map((key) => {
+    const current = listsFromRows(lists);
+    // Only columns that changed are written, so one list never blocks another. A missing column
+    // still equal to the defaults is left alone: reads already fall back to the defaults.
+    const keys = (Object.keys(LIST_HEADERS) as (keyof Cfg)[]).filter(
+      (key) => cfg[key].join("\n") !== current[key].join("\n"),
+    );
+    const cols = keys.map((key) => {
       const header = LIST_HEADERS[key];
       let col = hm.get(header);
       if (col == null) {
@@ -170,6 +176,6 @@ export class CrmStore {
       const used = lists.slice(1).reduce((n, r, i) => (r[c] != null && r[c] !== "" ? i + 1 : n), 0);
       return { col: c, header, items: cfg[key], rows: Math.max(used, cfg[key].length) };
     });
-    await this.io.writeLists(cols);
+    if (cols.length) await this.io.writeLists(cols);
   }
 }

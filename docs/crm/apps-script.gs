@@ -51,11 +51,12 @@ function doPost(e) {
   }
 
   var lock = LockService.getScriptLock();
-  lock.waitLock(20000);
   try {
+    lock.waitLock(20000);
     switch (body.op) {
       case 'writeCells':
         (body.cells || []).forEach(function (c) {
+          grow_(leads, c.row + 1, c.col + 1);
           leads.getRange(c.row + 1, c.col + 1).setValue(cell_(c.value));
         });
         break;
@@ -73,6 +74,7 @@ function doPost(e) {
           var vals = [[cell_(c.header)]];
           (c.items || []).forEach(function (i) { vals.push([cell_(i)]); });
           while (vals.length < c.rows + 1) vals.push(['']);
+          grow_(lists, vals.length, c.col + 1);
           lists.getRange(1, c.col + 1, vals.length, 1).setValues(vals);
         });
         break;
@@ -80,10 +82,18 @@ function doPost(e) {
         return json_({ ok: false, code: 'invalid', error: 'Operação desconhecida' });
     }
     SpreadsheetApp.flush();
+  } catch (err) {
+    return json_({ ok: false, code: 'error', error: String(err && err.message || err) });
   } finally {
     lock.releaseLock();
   }
   return json_({ ok: true });
+}
+
+/** New list columns (e.g. the price table) may fall outside the tab's grid: add rows/columns first. */
+function grow_(sh, rows, cols) {
+  if (cols > sh.getMaxColumns()) sh.insertColumnsAfter(sh.getMaxColumns(), cols - sh.getMaxColumns());
+  if (rows > sh.getMaxRows()) sh.insertRowsAfter(sh.getMaxRows(), rows - sh.getMaxRows());
 }
 
 function appendRows_(sh, rows) {
