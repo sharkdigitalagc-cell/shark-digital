@@ -111,6 +111,14 @@ Pendências marcadas com `TODO(contato)` em `src/app/api/contact/route.ts`:
 > A rota `/api/contact` precisa de um runtime de servidor (ex.: Vercel ou `npm start`).
 > Exportação estática (`output: "export"`) não é compatível com ela.
 
+## Portfólio (/portfolio)
+
+Página `/portfolio` com filtro por categoria e uma página por projeto em `/portfolio/<slug>`
+(capturas do site no ar, página inteira rolável e as peças em galeria com ampliação). Os
+projetos marcados com `featured` aparecem na home. O antigo `/clientes` redireciona para
+`/portfolio` (só com servidor; na exportação estática o endereço antigo deixa de existir).
+Como adicionar ou trocar projetos e imagens: [docs/imagens.md](docs/imagens.md#portfólio-portfolio-e-home).
+
 ## CRM (/crm)
 
 CRM comercial da agência em `/crm`, com login pelo Google (só e-mails liberados) e uma planilha
@@ -119,9 +127,6 @@ do Google Sheets como banco de dados. Configuração, segurança e uso em
 
 ## Conteúdo pendente
 
-- **Cases** — `src/components/sections/cases.tsx` (`TODO(cases)`): preencher a lista
-  `CASES` apenas com cases verificados e autorizados. Enquanto vazia, a seção mostra
-  a estrutura com placeholders explícitos.
 - Não há telefone, e-mail, endereço, CNPJ ou redes sociais no site: adicionar quando
   houver dados oficiais.
 

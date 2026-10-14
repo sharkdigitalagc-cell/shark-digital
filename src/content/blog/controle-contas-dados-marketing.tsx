@@ -461,7 +461,7 @@ export default function Article() {
       <P>
         A Shark organiza o trabalho em <Strong>Atração, Engajamento e Venda</Strong>, e o site
         apresenta as <A href="/#metodo">etapas desse método</A> e os{" "}
-        <A href="/clientes">projetos e entregas</A> já realizados.
+        <A href="/portfolio">projetos e entregas</A> já realizados.
       </P>
       <PullQuote>
         <p>Antes de investir mais em mídia, talvez exista uma pergunta mais importante:</p>

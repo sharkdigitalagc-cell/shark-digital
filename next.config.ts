@@ -12,10 +12,14 @@ const nextConfig: NextConfig = {
     qualities: [75, 90],
   },
   // The CRM is a single static page (public/crm/index.html) served at /crm.
-  // Rewrites and headers need a server, so they are skipped in the static export.
+  // Redirects, rewrites and headers need a server, so they are skipped in the static export.
   ...(staticExport
     ? {}
     : {
+        // The projects page moved to /portfolio.
+        async redirects() {
+          return [{ source: "/clientes", destination: "/portfolio", permanent: true }];
+        },
         async rewrites() {
           return [{ source: "/crm", destination: "/crm/index.html" }];
         },
