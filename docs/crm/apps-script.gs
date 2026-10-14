@@ -46,7 +46,7 @@ function doPost(e) {
   if (!leads || !lists) return json_({ ok: false, code: 'missing_tab', error: 'A planilha precisa das abas "' + LEADS + '" e "' + LISTS + '".' });
 
   if (body.op === 'read') {
-    var tz = ss.getSpreadsheetTimeZone();
+    var tz = timeZone_(ss);
     return json_({ ok: true, leads: values_(leads, tz), lists: values_(lists, tz) });
   }
 
@@ -116,6 +116,14 @@ function appendRows_(sh, rows) {
   });
 }
 
+/** The sheet's time zone can come back empty; fall back to the script's and then to Brasília. */
+function timeZone_(ss) {
+  var tz = '';
+  try { tz = ss.getSpreadsheetTimeZone(); } catch (err) {}
+  if (!tz) { try { tz = Session.getScriptTimeZone(); } catch (err) {} }
+  return tz || 'America/Sao_Paulo';
+}
+
 /** Same shape as the Sheets API with UNFORMATTED_VALUE + SERIAL_NUMBER dates. */
 function values_(sh, tz) {
   if (sh.getLastRow() === 0) return [[]];
@@ -128,7 +136,7 @@ function values_(sh, tz) {
 }
 
 function serial_(d, tz) {
-  var p = Utilities.formatDate(d, tz, 'yyyy-MM-dd-HH-mm-ss').split('-').map(Number);
+  var p = Utilities.formatDate(d, tz || 'America/Sao_Paulo', 'yyyy-MM-dd-HH-mm-ss').split('-').map(Number);
   var ms = Date.UTC(p[0], p[1] - 1, p[2], p[3], p[4], p[5]);
   return (ms - Date.UTC(1899, 11, 30)) / 864e5;
 }
