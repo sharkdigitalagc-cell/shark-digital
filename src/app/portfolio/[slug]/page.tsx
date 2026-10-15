@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BrowserFrame, PhoneFrame } from "@/components/portfolio/device-frames";
+import { CaseStudy } from "@/components/portfolio/case-study";
 import { Gallery } from "@/components/portfolio/gallery";
-import { Reveal, RevealOnLoad } from "@/components/reveal";
+import { RevealOnLoad } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ButtonLink, Container, Eyebrow } from "@/components/ui";
-import { FULL_SERVICE_LABEL, PORTFOLIO, categoryLabel, getProject } from "@/lib/portfolio";
+import { FULL_SERVICE_LABEL, PORTFOLIO, getProject } from "@/lib/portfolio";
 import { jsonLd, organizationJsonLd } from "@/lib/seo";
 import { SITE_NAME, absoluteUrl } from "@/lib/site";
 
@@ -195,19 +196,10 @@ export default async function PortfolioProjectPage({ params }: PageProps<"/portf
               </figure>
             </RevealOnLoad>
 
-            <Reveal className="mt-12 max-w-2xl space-y-5 text-pretty text-base leading-relaxed text-fg/80 md:mt-16 md:text-lg">
-              {project.intro.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-              <p className="flex flex-wrap gap-x-2 text-sm text-muted">
-                {project.categories.map((c, i) => (
-                  <span key={c}>
-                    {i > 0 ? <span aria-hidden className="mr-2">·</span> : null}
-                    {categoryLabel(c)}
-                  </span>
-                ))}
-              </p>
-            </Reveal>
+            <CaseStudy project={project} />
+
+            {/* Target of "Telas e peças entregues" in the evidence block. */}
+            <span id="pecas" aria-hidden className="block" />
 
             {project.site ? (
               <section aria-labelledby="site-titulo" className="mt-16 md:mt-20">

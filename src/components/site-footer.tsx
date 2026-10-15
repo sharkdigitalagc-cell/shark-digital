@@ -6,7 +6,7 @@ import { CONTACT_EMAIL } from "@/lib/contact-email";
 import { WHATSAPP_NUMBER, formatWhatsapp } from "@/lib/whatsapp";
 
 const FOOTER_LINKS = [
-  { href: "/#metodo", label: "Método" },
+  { href: "/como-trabalhamos", label: "Como trabalhamos" },
   { href: "/#solucoes", label: "Soluções" },
   { href: "/portfolio", label: "Portfólio" },
   { href: "/blog", label: "Blog" },

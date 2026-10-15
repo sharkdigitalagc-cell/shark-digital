@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
   return [
     { url: absoluteUrl("/"), changeFrequency: "monthly", priority: 1 },
+    { url: absoluteUrl("/como-trabalhamos"), changeFrequency: "monthly", priority: 0.9 },
     { url: absoluteUrl("/portfolio"), changeFrequency: "monthly", priority: 0.8 },
     ...PORTFOLIO.map((p) => ({
       url: absoluteUrl(`/portfolio/${p.slug}`),
