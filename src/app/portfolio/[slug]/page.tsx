@@ -110,9 +110,9 @@ export default async function PortfolioProjectPage({ params }: PageProps<"/portf
               <header>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
                   <Eyebrow tone="brand">{project.segment}</Eyebrow>
-                  {project.fullService ? (
+                  {project.badge || project.fullService ? (
                     <span className="rounded-full bg-brand px-3 py-1 text-xs font-semibold text-on-brand">
-                      {FULL_SERVICE_LABEL}
+                      {project.badge ?? FULL_SERVICE_LABEL}
                     </span>
                   ) : null}
                 </div>

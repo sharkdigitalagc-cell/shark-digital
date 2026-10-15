@@ -48,6 +48,10 @@ export type Project = {
   gallery: GallerySection[];
   /** The Shark built the client's marketing from zero and still runs it. */
   fullService?: boolean;
+  /** Badge that replaces the full-service one, e.g. "Primeiro case". */
+  badge?: string;
+  /** What happened, in the client's own story (shown in the evidence block). */
+  outcome?: string;
   /** Shown on the home page and in the client strip, in this order. */
   featured?: boolean;
 };
@@ -214,6 +218,75 @@ export const PORTFOLIO: Project[] = [
     gallery: [],
     fullService: true,
     featured: true,
+  },
+  {
+    slug: "pesque-pague-golfinho",
+    name: "Pesque Pague Golfinho",
+    segment: "Restaurante e pesque-pague",
+    location: "Foz do Iguaçu, PR",
+    badge: "Primeiro case",
+    summary: "A primeira marca criada por Vinicius Gavioli: de um delivery a um dos pesque-pagues mais conhecidos de Foz do Iguaçu.",
+    challenge: "Transformar um delivery sem marca em um nome conhecido na cidade.",
+    startingPoint: "O Golfinho começou só com delivery, em Foz do Iguaçu, sem marca própria e com a presença digital por construir.",
+    decision: "Uma marca com personalidade, o golfinho, e presença constante onde as pessoas decidem o que comer: Instagram com pratos, promoções e delivery, e o Perfil da Empresa no Google sempre cuidado.",
+    outcome: "A procura cresceu a ponto de os clientes pedirem para conhecer o lugar. O Golfinho abriu as portas ao público e hoje é um dos restaurantes e pesque-pagues mais conhecidos de Foz do Iguaçu.",
+    operation: [
+      "Logotipo e identidade da marca",
+      "Gestão do Instagram: pratos, promoções, delivery e datas comemorativas",
+      "Perfil da Empresa no Google como canal de contato",
+      "Anúncio em revista gastronômica impressa",
+    ],
+    metrics: [
+      {
+        value: "19 mil",
+        label: "seguidores no Instagram",
+        period: "Outubro de 2026",
+        source: "Instagram @pesquepaguegolfinho",
+      },
+      {
+        value: "1.572",
+        label: "interações com clientes no Perfil da Empresa no Google",
+        period: "Painel lido em outubro de 2026",
+        source: "Perfil da Empresa no Google, área do administrador",
+      },
+    ],
+    deliveries: ["Logotipo e identidade", "Social media", "Perfil da Empresa no Google", "Peças impressas"],
+    categories: ["identidade", "social"],
+    cover: cover("pesque-pague-golfinho", "Logo do Pesque Pague Golfinho entre dois posts"),
+    og: img("pesque-pague-golfinho/og.jpg"),
+    instagram: "pesquepaguegolfinho",
+    gallery: [
+      {
+        title: "Marca",
+        layout: "logos",
+        items: series("pesque-pague-golfinho", "marca", [
+          "Logo Golfinho Pesque Pague sobre azul",
+          "Logo Golfinho sobre a paisagem do lago",
+        ]),
+      },
+      {
+        title: "Perfil da Empresa no Google",
+        layout: "wide",
+        items: [
+          shot(
+            "pesque-pague-golfinho/google-01",
+            "Painel do Perfil da Empresa no Google do Golfinho com 1.572 interações com clientes",
+          ),
+        ],
+      },
+      {
+        title: "Instagram",
+        layout: "posts",
+        items: series("pesque-pague-golfinho", "post", [
+          "Post: aqui tem prato feito",
+          "Post: hoje é dia de picanha",
+          "Post: aqui tem Negroni, em clima de Copa",
+          "Post: verão combina com caipirinha",
+          "Post: prato feito com filé de tilápia à parmegiana",
+          "Post: delivery de peixe fresquinho",
+        ]),
+      },
+    ],
   },
   {
     slug: "colen-advogados",

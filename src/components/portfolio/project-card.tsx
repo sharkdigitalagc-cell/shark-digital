@@ -15,7 +15,8 @@ export type ProjectCardData = {
   challenge: string;
   categories: Category[];
   cover: StaticImageData;
-  fullService: boolean;
+  /** Badge over the cover: the project's own badge or the full-service one. */
+  badge: string | null;
 };
 
 export function toCardData(p: Project): ProjectCardData {
@@ -27,7 +28,7 @@ export function toCardData(p: Project): ProjectCardData {
     challenge: p.challenge,
     categories: p.categories,
     cover: p.cover.image,
-    fullService: Boolean(p.fullService),
+    badge: p.badge ?? (p.fullService ? FULL_SERVICE_LABEL : null),
   };
 }
 
@@ -64,9 +65,9 @@ export function ProjectCard({
           priority={priority}
           className="h-auto w-full transition-transform duration-500 ease-out-soft group-hover:scale-[1.03]"
         />
-        {project.fullService ? (
+        {project.badge ? (
           <span className="absolute left-3 top-3 rounded-full bg-brand px-2.5 py-1 text-[0.7rem] font-semibold text-on-brand shadow-lg shadow-black/40">
-            {FULL_SERVICE_LABEL}
+            {project.badge}
           </span>
         ) : null}
       </div>

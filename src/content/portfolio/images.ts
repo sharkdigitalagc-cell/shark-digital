@@ -101,6 +101,17 @@ import i_pedro_josino_og from "./pedro-josino/og.jpg";
 import i_pedro_josino_site_celular from "./pedro-josino/site-celular.webp";
 import i_pedro_josino_site_desktop from "./pedro-josino/site-desktop.webp";
 import i_pedro_josino_site_pagina from "./pedro-josino/site-pagina.webp";
+import i_pesque_pague_golfinho_capa from "./pesque-pague-golfinho/capa.webp";
+import i_pesque_pague_golfinho_google_01 from "./pesque-pague-golfinho/google-01.webp";
+import i_pesque_pague_golfinho_marca_01 from "./pesque-pague-golfinho/marca-01.webp";
+import i_pesque_pague_golfinho_marca_02 from "./pesque-pague-golfinho/marca-02.webp";
+import i_pesque_pague_golfinho_og from "./pesque-pague-golfinho/og.jpg";
+import i_pesque_pague_golfinho_post_01 from "./pesque-pague-golfinho/post-01.webp";
+import i_pesque_pague_golfinho_post_02 from "./pesque-pague-golfinho/post-02.webp";
+import i_pesque_pague_golfinho_post_03 from "./pesque-pague-golfinho/post-03.webp";
+import i_pesque_pague_golfinho_post_04 from "./pesque-pague-golfinho/post-04.webp";
+import i_pesque_pague_golfinho_post_05 from "./pesque-pague-golfinho/post-05.webp";
+import i_pesque_pague_golfinho_post_06 from "./pesque-pague-golfinho/post-06.webp";
 import i_petria_azevedo_capa from "./petria-azevedo/capa.webp";
 import i_petria_azevedo_og from "./petria-azevedo/og.jpg";
 import i_petria_azevedo_site_celular from "./petria-azevedo/site-celular.webp";
@@ -223,6 +234,17 @@ export const IMAGES = {
   "pedro-josino/site-celular": i_pedro_josino_site_celular,
   "pedro-josino/site-desktop": i_pedro_josino_site_desktop,
   "pedro-josino/site-pagina": i_pedro_josino_site_pagina,
+  "pesque-pague-golfinho/capa": i_pesque_pague_golfinho_capa,
+  "pesque-pague-golfinho/google-01": i_pesque_pague_golfinho_google_01,
+  "pesque-pague-golfinho/marca-01": i_pesque_pague_golfinho_marca_01,
+  "pesque-pague-golfinho/marca-02": i_pesque_pague_golfinho_marca_02,
+  "pesque-pague-golfinho/og.jpg": i_pesque_pague_golfinho_og,
+  "pesque-pague-golfinho/post-01": i_pesque_pague_golfinho_post_01,
+  "pesque-pague-golfinho/post-02": i_pesque_pague_golfinho_post_02,
+  "pesque-pague-golfinho/post-03": i_pesque_pague_golfinho_post_03,
+  "pesque-pague-golfinho/post-04": i_pesque_pague_golfinho_post_04,
+  "pesque-pague-golfinho/post-05": i_pesque_pague_golfinho_post_05,
+  "pesque-pague-golfinho/post-06": i_pesque_pague_golfinho_post_06,
   "petria-azevedo/capa": i_petria_azevedo_capa,
   "petria-azevedo/og.jpg": i_petria_azevedo_og,
   "petria-azevedo/site-celular": i_petria_azevedo_site_celular,

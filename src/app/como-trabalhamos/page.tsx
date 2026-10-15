@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowRight, Check } from "lucide-react";
+import { Founder } from "@/components/growth/founder";
 import { GrowthFunnel } from "@/components/growth/growth-funnel";
 import { HeroSignals } from "@/components/growth/hero-signals";
 import { ProjectCard, toCardData } from "@/components/portfolio/project-card";
@@ -202,7 +203,10 @@ export default function ComoTrabalhamosPage() {
           </Container>
         </section>
 
-        {/* 5. Real projects */}
+        {/* 5. Who leads the strategy */}
+        <Founder />
+
+        {/* 6. Real projects */}
         <section id="projetos-reais" aria-labelledby="ct-projetos" className="border-t border-line py-20 md:py-28">
           <Container>
             <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -233,7 +237,7 @@ export default function ComoTrabalhamosPage() {
           </Container>
         </section>
 
-        {/* 6. Closing */}
+        {/* 7. Closing */}
         <section aria-labelledby="ct-final" className="grain relative overflow-hidden border-t border-line py-24 md:py-36">
           <div
             aria-hidden

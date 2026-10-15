@@ -61,6 +61,13 @@ export function CaseStudy({ project }: { project: Project }) {
           </ul>
         ) : null}
 
+        {project.outcome ? (
+          <div className="mt-5">
+            <h3 className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">O que aconteceu</h3>
+            <p className="mt-3 max-w-3xl text-pretty text-lg leading-relaxed text-fg">{project.outcome}</p>
+          </div>
+        ) : null}
+
         {project.learnings?.length ? (
           <div className="mt-5">
             <h3 className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">O que aprendemos</h3>
