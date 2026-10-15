@@ -273,3 +273,10 @@ html:not(.js) [data-reveal] {
     display: none;
   }
 }
+
+/* Hero of /como-trabalhamos: the travelling signals are decoration only. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-signal-dot {
+    display: none;
+  }
+}

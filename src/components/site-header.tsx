@@ -7,7 +7,7 @@ import { Logo } from "@/components/logo";
 import { ButtonLink, cn } from "@/components/ui";
 
 export const NAV_LINKS = [
-  { href: "/#metodo", label: "Método" },
+  { href: "/como-trabalhamos", label: "Como trabalhamos" },
   { href: "/#solucoes", label: "Soluções" },
   { href: "/portfolio", label: "Portfólio" },
   { href: "/blog", label: "Blog" },

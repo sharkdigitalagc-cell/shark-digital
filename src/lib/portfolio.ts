@@ -20,9 +20,18 @@ export type Project = {
   location?: string;
   /** Only when the folders show the dates. */
   period?: string;
-  /** One line for cards and the meta description. */
+  /** One line for cards and the meta description: what the Shark does there. */
   summary: string;
-  intro: string[];
+  /** Main challenge, shown on cards. */
+  challenge: string;
+  /** Case study, in four blocks: starting point, decision, operation, evidence. */
+  startingPoint: string;
+  decision: string;
+  operation: string[];
+  /** Verifiable, non-numeric lessons. */
+  learnings?: string[];
+  /** Results only with client authorization, period and source. */
+  metrics?: { value: string; label: string; period: string; source: string }[];
   deliveries: string[];
   categories: Category[];
   cover: Shot;
@@ -39,6 +48,10 @@ export type Project = {
   gallery: GallerySection[];
   /** The Shark built the client's marketing from zero and still runs it. */
   fullService?: boolean;
+  /** Badge that replaces the full-service one, e.g. "Primeiro case". */
+  badge?: string;
+  /** What happened, in the client's own story (shown in the evidence block). */
+  outcome?: string;
   /** Shown on the home page and in the client strip, in this order. */
   featured?: boolean;
 };
@@ -83,10 +96,15 @@ export const PORTFOLIO: Project[] = [
     location: "Belo Horizonte, MG",
     period: "2026",
     summary: "Do zero: marca, site com reserva e pagamento online, lançamento, Instagram e anúncios. A Shark cuida de tudo.",
-    intro: [
-      "A Arthemi chegou à Shark antes de abrir as portas. Criamos a marca, o site e o sistema de reservas, planejamos a inauguração e seguimos cuidando de todo o marketing: Instagram, anúncios e os ajustes do site.",
-      "O espaço aluga consultórios mobiliados por hora na área hospitalar de BH. O site apresenta as salas e leva o profissional direto para a reserva: escolhe o consultório, o horário e paga online, sem depender de alguém para confirmar.",
-      "No Instagram, a linha editorial fala com quem está começando a atender ou quer sair do custo fixo de uma clínica própria: agenda, endereço profissional e a experiência do paciente desde a chegada.",
+    challenge: "Abrir um coworking de saúde do zero e encher a agenda de consultórios por hora.",
+    startingPoint: "Consultórios mobiliados na área hospitalar de BH, antes da inauguração: sem marca, sem site, sem perfil e sem clientes.",
+    decision: "Tirar o atendimento manual do caminho da reserva. O profissional vê as salas, entende o preço e reserva sozinho, e o Instagram fala com quem está começando a atender ou quer sair do custo fixo de uma clínica própria.",
+    operation: [
+      "Marca: logotipo, versão com símbolo e aplicações",
+      "Site com páginas por profissão e reserva com pagamento online",
+      "Plano de inauguração com anúncios de preço promocional",
+      "Instagram com linha editorial para profissionais de saúde",
+      "Gestão de tráfego e ajustes contínuos no site e na oferta",
     ],
     deliveries: [
       "Identidade visual",
@@ -148,10 +166,15 @@ export const PORTFOLIO: Project[] = [
     location: "Belo Horizonte, MG",
     period: "2026",
     summary: "Do zero: página, campanha no Google e pedidos de orçamento direto no WhatsApp. A Shark cuida de toda a aquisição.",
-    intro: [
-      "A Fausto Carretos começou no digital com a Shark. Montamos tudo do zero (a página, a campanha no Google e a medição de cada contato) e seguimos cuidando da operação: quem pesquisa “carreto BH” chega ao WhatsApp pronto para pedir orçamento.",
-      "A página tem objetivo único. Mostra o responsável e o caminhão de verdade, a área atendida e o que mandar na mensagem (origem, destino e fotos), para o orçamento sair na primeira conversa.",
-      "Todo dado da página saiu do que o cliente confirmou: nada de avaliação ou número que ele não pudesse comprovar.",
+    challenge: "Começar do zero no digital e receber pedidos de quem pesquisa carreto em BH.",
+    startingPoint: "Um prestador de carretos e pequenas mudanças em BH, com 13 anos de estrada e nenhum canal próprio para captar pedidos online.",
+    decision: "Concentrar no Google Pesquisa, onde está quem precisa de carreto agora, e levar direto ao WhatsApp com o que agiliza o orçamento. Na página, só entra informação que o cliente confirma.",
+    operation: [
+      "Landing page de objetivo único, com o responsável e o veículo reais",
+      "Campanha de pesquisa no Google para carreto e mudança em BH",
+      "Medição de cada clique no WhatsApp e no telefone, com a origem da campanha",
+      "Mensagens prontas no WhatsApp para cada tipo de serviço",
+      "Gestão contínua da campanha",
     ],
     deliveries: ["Landing page", "Google Ads", "Medição de conversões", "Atendimento pelo WhatsApp", "Gestão contínua"],
     categories: ["sites"],
@@ -170,10 +193,15 @@ export const PORTFOLIO: Project[] = [
     location: "Belo Horizonte, MG",
     period: "2026",
     summary: "Do zero: Google Ads, Perfil da Empresa, página, WhatsApp e CRM. A Shark cuida de toda a aquisição.",
-    intro: [
-      "A Amaral Carretos começou no digital com a Shark. Montamos a operação de aquisição do zero e seguimos cuidando dela, com acompanhamento semanal e otimização da campanha.",
-      "Para uma verba pequena, a decisão foi concentrar tudo na pesquisa do Google e nos serviços de ticket maior, entulho e poda, com o carreto como volume.",
-      "A operação tem a página, a estrutura da campanha com palavras-chave e negativas, a otimização do Perfil da Empresa no Google, respostas prontas para o WhatsApp e um CRM em planilha com rotina semanal de decisão.",
+    challenge: "Gerar pedidos com verba pequena num mercado local disputado.",
+    startingPoint: "Prestador de entulho, poda e carretos na Zona Sul de BH, começando no digital com verba de anúncio enxuta.",
+    decision: "Tudo no Google Pesquisa, porque quem precisa de entulho ou poda pesquisa, não descobre no feed. Foco nos serviços de ticket maior, Perfil da Empresa arrumado antes do primeiro anúncio e uma regra combinada: o custo por conversa decide se a verba sobe.",
+    operation: [
+      "Perfil da Empresa no Google otimizado, com rotina de avaliações",
+      "Campanha de pesquisa com palavras-chave e negativas por serviço",
+      "Landing page com orçamento pelo WhatsApp",
+      "Links e respostas prontas para o WhatsApp",
+      "CRM em planilha com decisão semanal",
     ],
     deliveries: [
       "Landing page",
@@ -192,15 +220,93 @@ export const PORTFOLIO: Project[] = [
     featured: true,
   },
   {
+    slug: "pesque-pague-golfinho",
+    name: "Pesque Pague Golfinho",
+    segment: "Restaurante e pesque-pague",
+    location: "Foz do Iguaçu, PR",
+    badge: "Primeiro case",
+    summary: "A primeira marca criada por Vinicius Gavioli: de um delivery a um dos pesque-pagues mais conhecidos de Foz do Iguaçu.",
+    challenge: "Transformar um delivery sem marca em um nome conhecido na cidade.",
+    startingPoint: "O Golfinho começou só com delivery, em Foz do Iguaçu, sem marca própria e com a presença digital por construir.",
+    decision: "Uma marca com personalidade, o golfinho, e presença constante onde as pessoas decidem o que comer: Instagram com pratos, promoções e delivery, e o Perfil da Empresa no Google sempre cuidado.",
+    outcome: "A procura cresceu a ponto de os clientes pedirem para conhecer o lugar. O Golfinho abriu as portas ao público e hoje é um dos restaurantes e pesque-pagues mais conhecidos de Foz do Iguaçu.",
+    operation: [
+      "Logotipo e identidade da marca",
+      "Gestão do Instagram: pratos, promoções, delivery e datas comemorativas",
+      "Perfil da Empresa no Google como canal de contato",
+      "Anúncio em revista gastronômica impressa",
+    ],
+    metrics: [
+      {
+        value: "19 mil",
+        label: "seguidores no Instagram",
+        period: "Outubro de 2026",
+        source: "Instagram @pesquepaguegolfinho",
+      },
+      {
+        value: "1.572",
+        label: "interações com clientes no Perfil da Empresa no Google",
+        period: "Painel lido em outubro de 2026",
+        source: "Perfil da Empresa no Google, área do administrador",
+      },
+    ],
+    deliveries: ["Logotipo e identidade", "Social media", "Perfil da Empresa no Google", "Peças impressas"],
+    categories: ["identidade", "social"],
+    cover: cover("pesque-pague-golfinho", "Logo do Pesque Pague Golfinho entre dois posts"),
+    og: img("pesque-pague-golfinho/og.jpg"),
+    instagram: "pesquepaguegolfinho",
+    gallery: [
+      {
+        title: "Marca",
+        layout: "logos",
+        items: series("pesque-pague-golfinho", "marca", [
+          "Logo Golfinho Pesque Pague sobre azul",
+          "Logo Golfinho sobre a paisagem do lago",
+        ]),
+      },
+      {
+        title: "Perfil da Empresa no Google",
+        layout: "wide",
+        items: [
+          shot(
+            "pesque-pague-golfinho/google-01",
+            "Painel do Perfil da Empresa no Google do Golfinho com 1.572 interações com clientes",
+          ),
+        ],
+      },
+      {
+        title: "Instagram",
+        layout: "posts",
+        items: series("pesque-pague-golfinho", "post", [
+          "Post: aqui tem prato feito",
+          "Post: hoje é dia de picanha",
+          "Post: aqui tem Negroni, em clima de Copa",
+          "Post: verão combina com caipirinha",
+          "Post: prato feito com filé de tilápia à parmegiana",
+          "Post: delivery de peixe fresquinho",
+        ]),
+      },
+    ],
+  },
+  {
     slug: "colen-advogados",
     name: "Colen Advogados",
     segment: "Advocacia",
     location: "Belo Horizonte, MG",
     period: "2026",
     summary: "Site com blog e landing pages, tráfego e o Instagram do escritório, com uma série sobre planos de saúde.",
-    intro: [
-      "O site reúne as áreas de atuação, o sócio fundador e o blog, e ganhou landing pages próprias para as campanhas de cada área.",
-      "No Instagram, o feed segue a linguagem da marca do escritório: fundo escuro, tipografia limpa e textos curtos. Há uma linha só para direito da saúde, com negativa de cobertura e reajuste por faixa etária.",
+    challenge: "Transformar indicação e reputação em clientes nas áreas de maior valor, dentro das regras da OAB.",
+    startingPoint: "Escritório bem avaliado em BH, com clientes que chegavam sobretudo por indicação. Quem era indicado conferia o Instagram e o Google antes de chamar.",
+    decision: "Fortalecer onde o indicado confere (site, Instagram e avaliações) e abrir aquisição por busca e conteúdo nas áreas de ticket alto, com uma linha própria para direito da saúde e filtro de viabilidade antes do contato.",
+    operation: [
+      "Site com áreas de atuação, sócio fundador e blog",
+      "Landing pages por área para as campanhas",
+      "Instagram institucional e série de direito da saúde",
+      "Gestão de tráfego e funil até o WhatsApp",
+      "Comunicação dentro do Provimento 205/2021 da OAB",
+    ],
+    learnings: [
+      "Anúncio genérico para saúde atrai contato que o escritório não atende. A linha de saúde passou a explicar o que é viável antes do contato.",
     ],
     deliveries: ["Site e blog", "Landing pages", "Social media", "Gestão de tráfego", "Funil"],
     categories: ["sites", "social"],
@@ -233,9 +339,14 @@ export const PORTFOLIO: Project[] = [
     location: "Belo Horizonte, MG",
     period: "2026",
     summary: "Landing page para recurso de candidato reprovado na banca de heteroidentificação, com Google Ads e Instagram.",
-    intro: [
-      "Página feita para quem passou nas provas e foi eliminado na banca de heteroidentificação. Ela explica, em linguagem direta, quando cabe recurso administrativo ou mandado de segurança e leva o candidato a enviar o caso pelo WhatsApp.",
-      "O tráfego vem de campanhas de pesquisa no Google. No Instagram pessoal do advogado, os carrosséis tratam das mesmas dúvidas: prazos, limites da comissão e o que torna uma decisão contestável.",
+    challenge: "Chegar rápido a candidatos eliminados na banca de heteroidentificação, que têm prazo curto para recorrer.",
+    startingPoint: "Advogado com atuação em cotas e heteroidentificação, mestre pela UFMG, atendendo candidatos de concursos em todo o país.",
+    decision: "Busca no Google em escala nacional, porque quem foi reprovado pesquisa a solução com urgência, e uma página que explica o caminho do recurso antes de pedir o contato.",
+    operation: [
+      "Landing page sobre recurso administrativo e mandado de segurança",
+      "Campanha de pesquisa no Google em 25 estados, com palavras negativas",
+      "Revisão contínua de termos de pesquisa e anúncios",
+      "Instagram pessoal com carrosséis sobre prazos e limites da banca",
     ],
     deliveries: ["Landing page", "Google Ads", "Social media"],
     categories: ["sites", "social"],
@@ -268,9 +379,17 @@ export const PORTFOLIO: Project[] = [
     location: "Foz do Iguaçu, PR",
     period: "2026",
     summary: "Conteúdo e anúncios no Meta para uma loja de produtos de unhas e cílios, com pedido pelo WhatsApp.",
-    intro: [
-      "A Sereia vende géis, bases, colas e acessórios para profissionais de unhas e cílios. Os carrosséis ensinam (preparação, escolha do gel, erros que fazem o alongamento descolar) e os anúncios levam a profissional a pedir pelo WhatsApp.",
-      "A identidade das peças usa o universo do nome: tons lilás e azul-piscina, conchas e pérolas, com o produto sempre em destaque.",
+    challenge: "Vender mais para profissionais de unhas e cílios que compram pelo WhatsApp.",
+    startingPoint: "Loja de produtos para nail e lash designers em Foz do Iguaçu, com as vendas fechadas na conversa do WhatsApp.",
+    decision: "Anúncios no Meta levando direto à conversa, conteúdo que ensina a escolher produto e, antes de aumentar a verba, olhar o que acontece depois do clique.",
+    operation: [
+      "Anúncios no Meta para novidade e reposição",
+      "Carrosséis educativos sobre preparação, gel e alongamento",
+      "Palavras-chave simples para pedir pelo WhatsApp",
+      "Análise das vendas por horário, criativo e recompra",
+    ],
+    learnings: [
+      "O maior gargalo estava depois do anúncio: pedidos de produto em falta e clientes que abriam conversa e sumiam. Reposição e follow-up entraram na pauta.",
     ],
     deliveries: ["Social media", "Anúncios no Meta", "Funil de pedido pelo WhatsApp"],
     categories: ["social"],
@@ -306,9 +425,14 @@ export const PORTFOLIO: Project[] = [
     location: "Belo Horizonte, MG",
     period: "2026",
     summary: "Carrosséis educativos para uma médica acupunturista, com base em evidência e direção de arte própria.",
-    intro: [
-      "Cada carrossel parte de uma dúvida real de consultório, como enxaqueca, dor no pescoço ou o que significa a dor sair de 10 para 3, e organiza a resposta em sequência, com a fonte dos estudos citada.",
-      "A direção de arte alterna fotos da médica com fundos em verde e areia e uma tipografia serifada, para o feed ter cara de consultório e não de anúncio.",
+    challenge: "Ser lembrada como médica especialista em acupuntura em BH, dentro das regras da publicidade médica.",
+    startingPoint: "Médica acupunturista em BH, já presente no Instagram e à vontade em vídeo, ainda sem anúncio nem site próprio.",
+    decision: "Começar pelo orgânico: o que as pessoas salvam e perguntam guia o anúncio e o site depois. Perfil e canal de agendamento ficam prontos antes de investir em mídia.",
+    operation: [
+      "Estratégia em três fases: orgânico, tráfego pago e site",
+      "Roteiros, gravação e edição de Reels",
+      "Carrosséis com base em evidência e fontes citadas",
+      "Acompanhamento de alcance, salvamentos e cliques no contato",
     ],
     deliveries: ["Estratégia de conteúdo", "Carrosséis", "Direção de arte"],
     categories: ["social"],
@@ -341,8 +465,14 @@ export const PORTFOLIO: Project[] = [
     segment: "Direito da saúde",
     location: "Foz do Iguaçu, PR",
     summary: "Site institucional com blog para um escritório de direito da saúde, e gestão de tráfego no Google.",
-    intro: [
-      "O site apresenta as advogadas, as áreas de atuação e um caminho direto para o WhatsApp. O blog trabalha os temas que as pessoas pesquisam no Google quando têm um tratamento ou medicamento negado pelo SUS ou pelo plano.",
+    challenge: "Ser encontrado em todo o país por quem teve tratamento negado pelo plano ou pelo SUS.",
+    startingPoint: "Escritório com 17 anos de dedicação ao direito da saúde, em Foz do Iguaçu, atendendo pacientes de todo o Brasil.",
+    decision: "Unir busca paga e conteúdo: Google Ads para quem precisa de ajuda agora e um blog que responde às dúvidas que as famílias pesquisam depois de uma negativa.",
+    operation: [
+      "Site institucional com caminho direto para o WhatsApp",
+      "Blog com SEO para temas de direito da saúde",
+      "Gestão de tráfego no Google",
+      "Direção de marca e design do site",
     ],
     deliveries: ["Site", "Blog com SEO", "Gestão de tráfego"],
     categories: ["sites"],
@@ -359,9 +489,13 @@ export const PORTFOLIO: Project[] = [
     segment: "Direito imobiliário",
     period: "2026",
     summary: "Identidade visual e landing pages para regularização de imóveis e leilões.",
-    intro: [
-      "A marca junta uma coluna clássica às iniciais P e J, em dourado sobre preto, com versões em verde-escuro e vinho.",
-      "As landing pages seguem a mesma linguagem e explicam cada serviço em etapas, da análise dos documentos ao registro em cartório, sempre com o caminho para falar com o advogado.",
+    challenge: "Posicionar um advogado imobiliário em serviços técnicos, como regularização e leilão.",
+    startingPoint: "Advogado imobiliário com atuação em regularização de imóveis e leilões, construindo a marca do escritório.",
+    decision: "Uma marca sóbria, de tradição, e uma página para cada serviço, porque cada demanda tem dúvidas e documentos diferentes.",
+    operation: [
+      "Identidade visual com versões de cor",
+      "Landing pages de regularização e de leilão de imóveis",
+      "Página institucional e imagens de compartilhamento",
     ],
     deliveries: ["Identidade visual", "Landing pages"],
     categories: ["identidade", "sites"],
@@ -398,9 +532,14 @@ export const PORTFOLIO: Project[] = [
     segment: "Direitos da gestante no trabalho",
     period: "2026",
     summary: "Landing page para gestantes demitidas, com campanha no Google, perfil da empresa e roteiro de triagem no WhatsApp.",
-    intro: [
-      "A página responde, em ordem, às dúvidas de quem foi demitida grávida: quando existe estabilidade, o que muda em contrato de experiência ou sem registro e como pedir uma análise do caso.",
-      "Junto com a página foram entregues o briefing da campanha no Google Ads, o checklist do Perfil da Empresa no Google e o roteiro de triagem para o atendimento no WhatsApp.",
+    challenge: "Chegar à gestante demitida no momento em que ela descobre que pode ter direitos.",
+    startingPoint: "Advogada trabalhista focada nos direitos da gestante, com atendimento online para todo o Brasil.",
+    decision: "Google Pesquisa organizado por tema (alta intenção, dúvida e termos próximos) e uma página que responde às situações mais comuns antes do contato.",
+    operation: [
+      "Landing page sobre demissão de gestante",
+      "Campanhas no Google com grupos de tema único",
+      "Conversão medida no clique do WhatsApp",
+      "Checklist do Perfil da Empresa e roteiro de triagem no WhatsApp",
     ],
     deliveries: ["Landing page", "Google Ads", "Perfil da Empresa no Google", "Roteiro de atendimento no WhatsApp"],
     categories: ["sites"],
@@ -417,9 +556,13 @@ export const PORTFOLIO: Project[] = [
     segment: "Advocacia",
     period: "2026",
     summary: "Identidade visual completa: monograma, versões do logotipo, paleta e documento de voz e posicionamento.",
-    intro: [
-      "O monograma une o C e o G em um losango de traço contínuo, em azul e dourado. A marca tem três composições (principal, horizontal e só o símbolo), cada uma em cor, azul, negativo e branco.",
-      "A entrega veio com os arquivos em AI, PDF, SVG e PNG e com o documento de voz e posicionamento, que define como o escritório fala e quando usar cada versão.",
+    challenge: "Criar uma marca que transmita solidez para um escritório de advocacia.",
+    startingPoint: "Escritório de advocacia construindo a marca desde o início.",
+    decision: "Explorar direções visuais antes de decidir e fechar a marca junto com a voz: como o escritório fala e quando usar cada versão.",
+    operation: [
+      "Monograma e versões principal, horizontal e símbolo",
+      "Paleta e arquivos em AI, PDF, SVG e PNG",
+      "Documento de voz e posicionamento",
     ],
     deliveries: ["Identidade visual", "Manual de voz e posicionamento"],
     categories: ["identidade"],
@@ -446,9 +589,13 @@ export const PORTFOLIO: Project[] = [
     segment: "Vinhos, cafés, chocolates e charutos",
     location: "Foz do Iguaçu, PR",
     summary: "Logotipo, loja virtual com checkout em PIX e as peças de lançamento da marca.",
-    intro: [
-      "O logo encaixa uma taça e um cacho de uva entre o D e o Terroir, em vinho escuro. As peças de lançamento apresentam a curadoria em fundo bordô, com uva, saca-rolhas e os produtos da casa.",
-      "A loja virtual organiza o catálogo por categoria (vinhos, charutos e chocolates) e tem checkout com PIX.",
+    challenge: "Lançar uma curadoria de vinhos, cafés, chocolates e charutos com venda online.",
+    startingPoint: "Uma loja nova em Foz do Iguaçu, com curadoria de produtos importados, ainda sem marca nem canal de venda online.",
+    decision: "Marca com cara de curadoria e loja própria com checkout em PIX, para vender sem depender só do atendimento.",
+    operation: [
+      "Logotipo",
+      "Loja virtual com catálogo por categoria e checkout em PIX",
+      "Peças de lançamento para as redes",
     ],
     deliveries: ["Logotipo", "Loja virtual", "Social media"],
     categories: ["identidade", "social"],
