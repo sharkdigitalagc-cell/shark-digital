@@ -404,6 +404,53 @@ select.inp{appearance:none;-webkit-appearance:none;padding-right:30px}
 .tl .w{font-size:11.5px;color:var(--muted);font-family:var(--f-mono)}
 .d-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:18px;flex-wrap:wrap}
 
+/* ---------- diagnóstico de canais ---------- */
+.dg-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.dg-score{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);white-space:nowrap}
+.dg-score i{width:7px;height:7px;border-radius:50%;background:var(--muted)}
+.dg-score.s3{background:var(--bad-soft);color:var(--bad);border-color:color-mix(in oklab,var(--bad) 30%,var(--line))}
+.dg-score.s3 i{background:var(--bad)}
+.dg-score.s2{background:var(--warn-soft);color:var(--warn);border-color:color-mix(in oklab,var(--warn) 30%,var(--line))}
+.dg-score.s2 i{background:var(--warn)}
+.dg-score.s1{background:var(--good-soft);color:var(--good);border-color:color-mix(in oklab,var(--good) 30%,var(--line))}
+.dg-score.s1 i{background:var(--good)}
+
+.pf-head,.pf-row{display:grid;grid-template-columns:minmax(0,1fr) 74px 80px 62px 28px;gap:6px;align-items:center}
+.pf-head{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:720;padding:0 2px}
+.pf-head span:nth-child(n+2){text-align:right}
+.pf-rows{display:grid;gap:6px}
+.pf-row .inp{height:32px;font-size:13px;padding:0 8px}
+.pf-row .inp.n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.pf-x{border:0;background:none;color:var(--muted);width:26px;height:26px;border-radius:6px;display:grid;place-items:center;justify-self:center}
+.pf-x:hover{background:var(--bad-soft);color:var(--bad)}
+.pf-x .ic{width:14px;height:14px}
+.reach{display:grid;place-items:center;height:32px;border-radius:8px;font-family:var(--f-mono);font-size:12.5px;font-weight:700;background:var(--surface-2);color:var(--muted);font-variant-numeric:tabular-nums}
+.reach.hi{background:var(--good-soft);color:var(--good)}
+.reach.mid{background:var(--warn-soft);color:var(--warn)}
+.reach.lo{background:var(--bad-soft);color:var(--bad)}
+.pf-add{border:1px dashed var(--line-2);background:transparent;color:var(--muted);border-radius:9px;height:32px;font-size:12.5px;font-weight:650;display:flex;align-items:center;justify-content:center;gap:6px;width:100%}
+.pf-add:hover{border-color:var(--gold);color:var(--ink)}
+.pf-add .ic{width:14px;height:14px}
+.pf-note{margin:0;font-size:11.5px;color:var(--muted)}
+
+.dg-list{display:grid;gap:5px}
+.dg-item{display:grid;grid-template-columns:16px minmax(0,1fr) 26px;gap:8px;align-items:start;background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:7px 8px 7px 10px;font-size:13px;line-height:1.4}
+.dg-item.gap{border-left:3px solid var(--bad);padding-left:8px}
+.dg-item.win{border-left:3px solid var(--good);padding-left:8px}
+.dg-item b{font-family:var(--f-mono);font-size:11px;color:var(--muted);padding-top:1px}
+.dg-item span{overflow-wrap:anywhere}
+.dg-item button{border:0;background:none;color:var(--muted);width:24px;height:22px;border-radius:5px;display:grid;place-items:center}
+.dg-item button:hover{background:var(--bad-soft);color:var(--bad)}
+.dg-item button .ic{width:13px;height:13px}
+.dg-add{display:flex;gap:6px}
+.dg-add .inp{height:34px;font-size:13px}
+
+.pitch{display:grid;gap:8px;background:var(--gold-soft);border:1px solid color-mix(in oklab,var(--gold) 40%,var(--line));border-radius:12px;padding:12px}
+.pitch textarea.inp{background:var(--surface);min-height:140px;font-size:13px;line-height:1.5}
+.pitch-act{display:flex;gap:6px;flex-wrap:wrap}
+
+.c-dg{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:750;padding:2px 6px;border-radius:5px;background:var(--gold-soft);color:var(--gold-ink);white-space:nowrap}
+
 /* ---------- modal & toast & tip ---------- */
 .modal-wrap{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px}
 .modal{position:relative;width:min(520px,100%);max-height:calc(100% - 8px);overflow:auto;background:var(--surface);border-radius:20px;box-shadow:var(--shadow-lift);padding:22px 22px 20px;display:grid;gap:14px;animation:pop .24s cubic-bezier(.2,.8,.2,1)}
@@ -756,7 +803,9 @@ function filtered() {
     (!UI.fResp || l.resp === UI.fResp) &&
     (!UI.fServ || (l.servicos || []).includes(UI.fServ)) &&
     (!UI.fCanal || l.canal === UI.fCanal) &&
-    (!q || norm([l.empresa, l.contato, l.whats, l.e164, fmtPhone(l.e164), l.email, l.insta, l.cidade, l.nicho, l.demanda, l.obs, '#' + l.num].join(' ')).includes(q)));
+    (!q || norm([l.empresa, l.contato, l.whats, l.e164, fmtPhone(l.e164), l.email, l.insta, l.cidade, l.nicho, l.demanda, l.obs,
+      l.site, l.siteNota, l.abordagem, (l.achados || []).join(' '), (l.forcas || []).join(' '), (l.perfis || []).map(p => p && p.h).join(' '),
+      '#' + l.num].join(' ')).includes(q)));
 }
 function dupPhones() {
   const c = new Map();
@@ -773,6 +822,7 @@ function blankLead(p = {}) {
     num: maxNum() + 1, empresa: '', contato: '', whats: '', e164: '', foneAviso: '', email: '', insta: '', cidade: '', nicho: '',
     canal: '', origem: '', servicos: [], demanda: '', stage: 'novo', order: 0, fee: 0, setup: 0, verba: 0, temp: 'morno',
     resp: S.cfg.resps[0] || '', prox: '', obs: '', perda: '', criado: today(), createdAt: t, updatedAt: t, stageAt: t, wonAt: 0,
+    perfis: [], site: '', siteNota: '', adsMeta: '', adsGoogle: '', achados: [], forcas: [], abordagem: '', diagAt: 0,
     hist: [{ t, k: 'create' }]
   };
   const l = { ...base, ...p };
@@ -1119,6 +1169,7 @@ function cardHTML(l, dup) {
   const open = isOpen(l);
   const due = open ? dueInfo(l.prox) : null;
   const servs = Array.isArray(l.servicos) ? l.servicos : [];
+  const sc = diagScore(l);
   const sub = [l.empresa ? l.contato : '', l.nicho].filter(Boolean).join(' · ');
   const days = Math.floor((Date.now() - num(l.stageAt || l.createdAt)) / 864e5);
   const flags = [];
@@ -1134,7 +1185,7 @@ function cardHTML(l, dup) {
   <div class="card-in">
     <div class="c-top"><h3 class="c-name">${esc(nm(l))}</h3>${flags.join('')}${tempHTML(l.temp)}</div>
     ${sub ? `<p class="c-sub">${esc(sub)}</p>` : ''}
-    ${servs.length || l.exemplo ? `<div class="c-tags">${servs.slice(0, 2).map(s => `<span class="tag">${esc(s)}</span>`).join('')}${servs.length > 2 ? `<span class="tag" title="${esc(servs.slice(2).join(', '))}">+${servs.length - 2}</span>` : ''}${l.exemplo ? '<span class="tag ex">exemplo</span>' : ''}</div>` : ''}
+    ${servs.length || l.exemplo || sc ? `<div class="c-tags">${sc ? `<span class="c-dg" title="${esc(sc.txt)}${l.abordagem ? ' · abordagem escrita' : ''}">◆ ${sc.n ? sc.n + ' furo' + (sc.n === 1 ? '' : 's') : 'diagnóstico'}</span>` : ''}${servs.slice(0, 2).map(s => `<span class="tag">${esc(s)}</span>`).join('')}${servs.length > 2 ? `<span class="tag" title="${esc(servs.slice(2).join(', '))}">+${servs.length - 2}</span>` : ''}${l.exemplo ? '<span class="tag ex">exemplo</span>' : ''}</div>` : ''}
     ${l.stage === 'perdido' && l.perda ? `<p class="c-loss">${esc(l.perda)}</p>` : ''}
     <div class="c-foot"><span class="c-fee">${num(l.fee) ? money(l.fee) + '<small>/mês</small>' : ''}</span>${right.join('')}</div>
   </div></article>`;
@@ -1545,6 +1596,86 @@ function savePrice(el) {
 }
 
 /* ================= drawer ================= */
+/* ---------- diagnóstico de canais ----------
+   Levantado na prospecção, antes do primeiro contato. O índice de alcance
+   (views médias ÷ seguidores) é o número que abre conversa: acima de 1x o conteúdo
+   já sai da base de seguidores, então o gargalo é o destino do clique. */
+const arr = v => Array.isArray(v) ? v : [];
+const hasDiag = l => arr(l.perfis).length || arr(l.achados).length || (l.abordagem || '').trim() || l.site;
+function reachOf(p) { const s = num(p && p.s), v = num(p && p.v); return s > 0 ? v / s : 0; }
+function reachCls(r) { return !r ? '' : r >= 1 ? 'hi' : r >= 0.4 ? 'mid' : 'lo'; }
+const reachTxt = r => r ? (r >= 10 ? Math.round(r) : r.toFixed(1).replace('.', ',')) + 'x' : '—';
+function diagScore(l) {
+  const n = arr(l.achados).length;
+  if (!hasDiag(l)) return null;
+  return { n, cls: n >= 4 ? 's3' : n >= 2 ? 's2' : 's1', txt: n ? `${n} ponto${n === 1 ? '' : 's'} de ruptura` : 'sem furos anotados' };
+}
+const adsTxt = v => v === '' || v == null ? 'não checado' : num(v) ? `${num(v)} ativo${num(v) === 1 ? '' : 's'}` : 'nenhum';
+function perfisHTML(l) {
+  const P = arr(l.perfis);
+  const rows = P.map((p, i) => {
+    const r = reachOf(p);
+    return `<div class="pf-row" data-pf="${i}">
+      <input class="inp" data-pf-f="h" value="${esc(p.h || '')}" placeholder="@perfil ou canal" aria-label="Perfil"${S.readOnly ? ' disabled' : ''}>
+      <input class="inp n" data-pf-f="s" inputmode="numeric" value="${num(p.s) ? esc(NUMF.format(num(p.s))) : ''}" placeholder="seg." aria-label="Seguidores"${S.readOnly ? ' disabled' : ''}>
+      <input class="inp n" data-pf-f="v" inputmode="numeric" value="${num(p.v) ? esc(NUMF.format(num(p.v))) : ''}" placeholder="views" aria-label="Views médias"${S.readOnly ? ' disabled' : ''}>
+      <span class="reach ${reachCls(r)}" data-tip="${esc(r ? `${reachTxt(r)} o tamanho da base por publicação` : 'Preencha seguidores e views médias')}">${reachTxt(r)}</span>
+      <button class="pf-x needs-write" type="button" data-pf-rm="${i}" title="Remover linha" aria-label="Remover perfil">${I.x}</button>
+    </div>`;
+  }).join('');
+  const best = P.map(p => ({ p, r: reachOf(p) })).filter(x => x.r).sort((a, b) => b.r - a.r);
+  let note = '';
+  if (best.length > 1) {
+    const top = best[0], low = best[best.length - 1];
+    note = num(top.p.s) < num(low.p.s)
+      ? `O perfil menor (${esc(top.p.h || '—')}) entrega mais alcance por seguidor que o maior. O esforço está na conta errada.`
+      : `${esc(top.p.h || '—')} é quem puxa o alcance: ${reachTxt(top.r)} a base.`;
+  } else if (best.length === 1 && best[0].r >= 1) {
+    note = 'O conteúdo já sai da base de seguidores. O gargalo não é alcance, é destino do clique.';
+  }
+  return `<div class="pf-head"><span>Perfil</span><span>Seguidores</span><span>Views méd.</span><span>Alcance</span><span></span></div>
+    <div class="pf-rows" id="d-perfis">${rows}</div>
+    <button class="pf-add needs-write" type="button" data-pf-add>${I.plus}Adicionar perfil ou canal</button>
+    ${note ? `<p class="pf-note">${note}</p>` : ''}`;
+}
+function findsHTML(l, f) {
+  const list = arr(l[f]);
+  const cls = f === 'achados' ? 'gap' : 'win';
+  return `<div class="dg-list" id="d-${f}">${list.map((t, i) => `<div class="dg-item ${cls}"><b>${f === 'achados' ? String(i + 1).padStart(2, '0') : '✓'}</b><span>${esc(t)}</span><button class="needs-write" type="button" data-find-rm="${f}:${i}" title="Remover" aria-label="Remover">${I.x}</button></div>`).join('') || `<p class="hint">${f === 'achados' ? 'Nenhum furo anotado ainda.' : 'Nada anotado ainda.'}</p>`}</div>
+    <form class="dg-add needs-write" data-find-add="${f}"><input class="inp" placeholder="${f === 'achados' ? 'Ex.: link da bio leva a domínio que não existe' : 'Ex.: já produz vídeo com constância'}" autocomplete="off" aria-label="Novo item"><button class="btn btn-sm" type="submit">Anotar</button></form>`;
+}
+function pitchUrl(l) {
+  if (!l.e164) return '';
+  const t = (l.abordagem || '').trim();
+  return 'https://wa.me/' + l.e164.replace(/\D/g, '') + (t ? '?text=' + encodeURIComponent(t) : '');
+}
+function diagHTML(l) {
+  const sc = diagScore(l);
+  return `<section class="d-sec"><div class="dg-head"><h4>Diagnóstico de canais</h4>${sc ? `<span class="dg-score ${sc.cls}"><i></i>${esc(sc.txt)}</span>` : ''}</div>
+      ${perfisHTML(l)}
+      <div class="grid2">
+        ${fld('Site do lead', inpF('site', l.site, 'placeholder="dominio.com.br ou —"'))}
+        ${fld('Situação do site', inpF('siteNota', l.siteNota, 'placeholder="Ex.: template, fala de outro serviço"'))}
+      </div>
+      <div class="grid2">
+        <div class="field"><label class="lbl-s" for="d-adsMeta">Anúncios ativos no Meta</label>${inpF('adsMeta', l.adsMeta, 'inputmode="numeric" placeholder="em branco = não checado"')}<p class="hint">${esc(adsTxt(l.adsMeta))}</p></div>
+        <div class="field"><label class="lbl-s" for="d-adsGoogle">Anúncios ativos no Google</label>${inpF('adsGoogle', l.adsGoogle, 'inputmode="numeric" placeholder="em branco = não checado"')}<p class="hint">${esc(adsTxt(l.adsGoogle))}</p></div>
+      </div>
+      <div class="field"><span class="lbl-s">Pontos de ruptura</span>${findsHTML(l, 'achados')}</div>
+      <div class="field"><span class="lbl-s">O que já funciona</span>${findsHTML(l, 'forcas')}</div>
+    </section>
+    <section class="d-sec"><h4>Abordagem</h4>
+      <div class="pitch">
+        <textarea class="inp" data-f="abordagem" id="d-abordagem" placeholder="A mensagem que abre a conversa: o achado mais forte primeiro, antes de oferecer qualquer coisa."${S.readOnly ? ' disabled' : ''}>${esc(l.abordagem)}</textarea>
+        <div class="pitch-act">
+          <button class="btn btn-sm" type="button" data-copy-pitch>${I.copy}Copiar mensagem</button>
+          ${l.e164 ? `<a class="btn btn-sm${l.e164 ? ' btn-wa' : ''}" href="${esc(pitchUrl(l))}" target="_blank" rel="noopener">${I.wa}Abrir no WhatsApp</a>` : '<span class="hint" style="align-self:center">Preencha o WhatsApp para enviar daqui</span>'}
+        </div>
+        <p class="hint">Para quem já está em conversa, use o botão de follow-up, que tem texto por etapa do funil.</p>
+      </div>
+    </section>`;
+}
+
 const fld = (label, inner, cls = '') => `<label class="field ${cls}"><span>${label}</span>${inner}</label>`;
 function inpF(f, v, attrs = '') { return `<input class="inp" data-f="${f}" id="d-${f}" value="${esc(v)}" ${attrs}${S.readOnly ? ' disabled' : ''}>`; }
 function selF(f, list, v, empty = 'Selecionar') {
@@ -1616,6 +1747,7 @@ function openDrawer(id) {
         ${fld('Demanda / dor do cliente', `<textarea class="inp" data-f="demanda" id="d-demanda" placeholder="O que o cliente precisa resolver?"${S.readOnly ? ' disabled' : ''}>${esc(l.demanda)}</textarea>`)}
         <div class="grid2">${fld('Nicho', selF('nicho', S.cfg.nichos, l.nicho))}<div class="field"><span class="lbl-s">Temperatura</span><div class="temp-seg" id="d-temp">${tempSegHTML(l)}</div></div></div>
       </section>
+      <div id="d-diag">${diagHTML(l)}</div>
       <section class="d-sec"><h4>Origem</h4>
         <div class="grid2">${fld('Canal de entrada', selF('canal', S.cfg.canais, l.canal))}${fld('Origem detalhada', selF('origem', S.cfg.origens, l.origem))}${fld('Data de entrada', inpF('criado', l.criado, 'type="date"'))}</div>
       </section>
@@ -1648,13 +1780,14 @@ function syncDrawer() {
     if (el.tagName === 'SELECT' && v && ![...el.options].some(o => o.value === v)) el.add(new Option(v, v));
     if (el.value !== String(v)) el.value = String(v);
   });
-  const set = (id, html) => { const e = $('#' + id, d); if (e && e.innerHTML !== html && !(e.contains(act) && act.tagName === 'INPUT')) e.innerHTML = html; };
+  const set = (id, html) => { const e = $('#' + id, d); if (e && e.innerHTML !== html && !(e.contains(act) && (act.tagName === 'INPUT' || act.tagName === 'TEXTAREA'))) e.innerHTML = html; };
   const st = $('#d-stages', d); const prevStage = st && st.querySelector('.stp.on')?.dataset.stage;
   set('d-stages', stagesHTML(l));
   if (prevStage !== l.stage) centerStage(true);
   set('d-temp', tempSegHTML(l));
   set('d-servs', servsHTML(l));
   set('d-quick', quickHTML(l));
+  set('d-diag', diagHTML(l));
   set('d-hist', histHTML(l));
   set('d-loss', lossHTML(l));
   const pw = $('#d-phonewarn', d); if (pw) pw.textContent = l.foneAviso || '';
@@ -2366,8 +2499,20 @@ function bindStatic() {
   const dw = $('#drawerWrap'), dr = $('#drawer');
   dw.addEventListener('click', e => { if (e.target.closest('[data-close-drawer]')) closeDrawer(); });
   dr.addEventListener('input', e => {
-    const el = e.target; const f = el.dataset.f; const id = UI.drawerId;
-    if (!f || !id || el.type === 'date' || el.tagName === 'SELECT' || el.hasAttribute('data-money')) return;
+    const el = e.target; const id = UI.drawerId;
+    if (!id) return;
+    const pf = el.dataset.pfF;
+    if (pf) {
+      const row = el.closest('[data-pf]'); const cur = S.leads.get(id);
+      if (!row || !cur) return;
+      const i = +row.dataset.pf; const P = arr(cur.perfis).map(x => ({ ...x }));
+      if (!P[i]) return;
+      P[i][pf] = pf === 'h' ? el.value : (parseMoney(el.value) || 0);
+      patchLead(id, { perfis: P }, 700);
+      return;
+    }
+    const f = el.dataset.f;
+    if (!f || el.type === 'date' || el.tagName === 'SELECT' || el.hasAttribute('data-money')) return;
     if (f === 'whats') {
       const ph = phoneInfo(el.value);
       const enough = el.value.replace(/\D/g, '').length >= 10 || !el.value.trim();
@@ -2392,6 +2537,20 @@ function bindStatic() {
     if ((el = t.closest('[data-temp]'))) { patchLead(id, { temp: el.dataset.temp }); return; }
     if ((el = t.closest('[data-serv]'))) { const s = el.dataset.serv; const cur = l.servicos || []; patchLead(id, { servicos: cur.includes(s) ? cur.filter(x => x !== s) : [...cur, s] }); return; }
     if ((el = t.closest('[data-prox]'))) { const v = el.dataset.prox; patchLead(id, { prox: v === 'clear' ? '' : addDays(today(), +v) }); return; }
+    if (t.closest('[data-pf-add]')) { patchLead(id, { perfis: [...arr(l.perfis), { h: '', s: 0, v: 0 }], diagAt: Date.now() }); return; }
+    if ((el = t.closest('[data-pf-rm]'))) { const P = arr(l.perfis).slice(); P.splice(+el.dataset.pfRm, 1); patchLead(id, { perfis: P }); return; }
+    if ((el = t.closest('[data-find-rm]'))) {
+      const [f, i] = el.dataset.findRm.split(':'); const L2 = arr(l[f]).slice(); const [gone] = L2.splice(+i, 1);
+      patchLead(id, { [f]: L2 });
+      toast('Item removido', { action: 'Desfazer', onAction: () => { const cur = arr(S.leads.get(id)?.[f]).slice(); cur.splice(+i, 0, gone); patchLead(id, { [f]: cur }); } });
+      return;
+    }
+    if (t.closest('[data-copy-pitch]')) {
+      const txt = (l.abordagem || '').trim();
+      if (!txt) { toast('Escreva a mensagem de abordagem primeiro.'); return; }
+      copyPitch(txt);
+      return;
+    }
     if ((el = t.closest('[data-copy]'))) { copyText(el.dataset.copy); return; }
     if (t.closest('[data-quote]')) { flushLead(id); openQuote(id); return; }
     if (t.closest('[data-followup]')) { flushLead(id); openFollowup(id); return; }
@@ -2402,9 +2561,20 @@ function bindStatic() {
   });
   dr.addEventListener('submit', e => {
     e.preventDefault();
+    const id = UI.drawerId; const l = S.leads.get(id);
+    if (!l) return;
+    const fa = e.target.dataset.findAdd;
+    if (fa) {
+      const inp = e.target.querySelector('input'); const v = inp.value.trim();
+      if (!v) return;
+      patchLead(id, { [fa]: [...arr(l[fa]), v], diagAt: Date.now() });
+      inp.value = '';
+      setTimeout(() => { const i2 = $(`[data-find-add="${fa}"] input`); if (i2) i2.focus(); }, 60);
+      return;
+    }
     if (e.target.id !== 'noteForm') return;
-    const inp = $('#noteIn'); const v = inp.value.trim(); const id = UI.drawerId; const l = S.leads.get(id);
-    if (!v || !l) return;
+    const inp = $('#noteIn'); const v = inp.value.trim();
+    if (!v) return;
     patchLead(id, { hist: pushHist(l, { t: Date.now(), k: 'note', txt: v }) });
     inp.value = '';
   });
@@ -2443,6 +2613,11 @@ function bindStatic() {
 async function copyText(s) {
   try { await navigator.clipboard.writeText(s); toast('Copiado: ' + s); }
   catch { toast('Não deu para copiar automaticamente: ' + s); }
+}
+/* Texto longo não cabe no toast, então só confirma que copiou. */
+async function copyPitch(s) {
+  try { await navigator.clipboard.writeText(s); toast('Mensagem copiada. É só colar na conversa.'); }
+  catch { toast('Não consegui copiar. Selecione o texto e copie à mão.', { tone: 'bad' }); }
 }
 function clearExamples(btn) {
   const ex = all().filter(l => l.exemplo);

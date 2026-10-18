@@ -50,7 +50,24 @@ export type Lead = {
   wonAt: number;
   exemplo: boolean;
   hist: HistEntry[];
+  /* Diagnóstico de canais: levantado na prospecção, antes do primeiro contato. */
+  perfis: Perfil[];
+  site: string;
+  siteNota: string;
+  adsMeta: string;
+  adsGoogle: string;
+  achados: string[];
+  forcas: string[];
+  abordagem: string;
+  diagAt: number;
 };
+
+/**
+ * Um canal do prospect com o tamanho da audiência e o alcance médio por publicação.
+ * `v / s` é o índice que abre conversa: acima de 1 o conteúdo já sai da base de
+ * seguidores, então o gargalo é o destino do clique e não a distribuição.
+ */
+export type Perfil = { h: string; s: number; v: number };
 
 export const LEADS_SHEET = "Leads";
 export const LISTS_SHEET = "Listas do CRM";
@@ -72,7 +89,7 @@ const STAGE_LABEL = Object.fromEntries(STAGES) as Record<StageKey, string>;
 const TEMPS = { frio: "Frio", morno: "Morno", quente: "Quente" } as const;
 export type TempKey = keyof typeof TEMPS;
 
-type Kind = "text" | "num" | "date" | "list" | "stage" | "temp" | "bool" | "json" | "converted";
+type Kind = "text" | "num" | "date" | "list" | "stage" | "temp" | "bool" | "json" | "data" | "converted";
 
 /** Column order used when the CRM has to create a header that is missing. */
 export const FIELDS: { header: string; key: keyof Lead | null; kind: Kind }[] = [
@@ -101,6 +118,15 @@ export const FIELDS: { header: string; key: keyof Lead | null; kind: Kind }[] = 
   { header: "Motivo de Perda", key: "perda", kind: "text" },
   { header: "Observações", key: "obs", kind: "text" },
   { header: "Aviso Telefone", key: "foneAviso", kind: "text" },
+  { header: "Perfis e Alcance", key: "perfis", kind: "data" },
+  { header: "Site do Lead", key: "site", kind: "text" },
+  { header: "Situação do Site", key: "siteNota", kind: "text" },
+  { header: "Anúncios Meta", key: "adsMeta", kind: "text" },
+  { header: "Anúncios Google", key: "adsGoogle", kind: "text" },
+  { header: "Pontos de Ruptura", key: "achados", kind: "data" },
+  { header: "O Que Já Funciona", key: "forcas", kind: "data" },
+  { header: "Mensagem de Abordagem", key: "abordagem", kind: "text" },
+  { header: "_diagnostico_em", key: "diagAt", kind: "num" },
   { header: "_id", key: "id", kind: "text" },
   { header: "_ordem", key: "order", kind: "num" },
   { header: "_criado_em", key: "createdAt", kind: "num" },
@@ -231,6 +257,33 @@ export function headerMap(row: Cell[] | undefined): HeaderMap {
   return m;
 }
 
+/**
+ * Lê uma célula de diagnóstico. Aceita o JSON que o CRM grava e também texto
+ * digitado direto na planilha, uma frase por linha, porque é comum alguém anotar
+ * um achado no Sheets antes de abrir o CRM.
+ */
+function parseData<T>(v: Cell, keep: (x: unknown) => x is T): T[] {
+  if (typeof v !== "string" || !v.trim()) return [];
+  const s = v.trim();
+  if (s.startsWith("[")) {
+    try {
+      const parsed: unknown = JSON.parse(s);
+      if (Array.isArray(parsed)) return parsed.filter(keep);
+    } catch {
+      /* cai para a leitura por linha */
+    }
+  }
+  const lines: unknown[] = s
+    .split("\n")
+    .map((line) => line.replace(/^\s*(?:\d+[.)]|[-•◆])\s*/, "").trim())
+    .filter(Boolean);
+  return lines.filter(keep);
+}
+
+const isText = (x: unknown): x is string => typeof x === "string" && x.trim() !== "";
+const isPerfil = (x: unknown): x is Perfil =>
+  !!x && typeof x === "object" && typeof (x as Perfil).h === "string";
+
 function parseHist(v: Cell): HistEntry[] {
   if (typeof v !== "string" || !v.trim()) return [];
   try {
@@ -298,6 +351,19 @@ export function rowToLead(row: Cell[], hm: HeaderMap): Lead | null {
     wonAt: cellToNum(get("_fechado_em")) || 0,
     exemplo: ex === true || /^(true|verdadeiro|sim|1)$/i.test(String(ex ?? "")),
     hist: parseHist(get("_historico")),
+    perfis: parseData(get("Perfis e Alcance"), isPerfil).map((p) => ({
+      h: cellToText(p.h),
+      s: cellToNum(p.s as unknown as Cell),
+      v: cellToNum(p.v as unknown as Cell),
+    })),
+    site: cellToText(get("Site do Lead")),
+    siteNota: cellToText(get("Situação do Site")),
+    adsMeta: cellToText(get("Anúncios Meta")),
+    adsGoogle: cellToText(get("Anúncios Google")),
+    achados: parseData(get("Pontos de Ruptura"), isText),
+    forcas: parseData(get("O Que Já Funciona"), isText),
+    abordagem: cellToText(get("Mensagem de Abordagem")),
+    diagAt: cellToNum(get("_diagnostico_em")),
   };
 }
 
@@ -329,6 +395,11 @@ function valueToCell(kind: Kind, v: unknown): Cell {
       return v === true;
     case "json":
       return histToCell(Array.isArray(v) ? (v as HistEntry[]) : []);
+    case "data": {
+      if (!Array.isArray(v) || !v.length) return "";
+      const s = JSON.stringify(v);
+      return s.length > MAX_CELL ? JSON.stringify(v.slice(0, 20)).slice(0, MAX_CELL) : s;
+    }
     default:
       return typeof v === "string" ? v.slice(0, MAX_CELL) : v == null ? "" : String(v).slice(0, MAX_CELL);
   }
@@ -389,8 +460,25 @@ export function sanitizeFields(input: unknown): Partial<Lead> {
       case "cidade": case "nicho": case "canal": case "origem": case "resp": case "perda":
         out[k] = str(v, 500).trim();
         break;
-      case "demanda": case "obs":
+      case "demanda": case "obs": case "abordagem":
         out[k] = str(v, 10_000);
+        break;
+      case "site": case "siteNota": case "adsMeta": case "adsGoogle":
+        out[k] = str(v, 500).trim();
+        break;
+      case "diagAt":
+        out.diagAt = numOr0(v);
+        break;
+      case "achados": case "forcas":
+        if (Array.isArray(v)) out[k] = v.filter(isText).map((x) => x.slice(0, 1000)).slice(0, 20);
+        break;
+      case "perfis":
+        if (Array.isArray(v)) {
+          out.perfis = v
+            .filter(isPerfil)
+            .slice(0, 10)
+            .map((p) => ({ h: str(p.h, 120).trim(), s: numOr0(p.s), v: numOr0(p.v) }));
+        }
         break;
       case "id":
         if (typeof v === "string" && /^[A-Za-z0-9_-]{1,64}$/.test(v)) out.id = v;
