@@ -3,6 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { crmStore, readUser, sameOrigin } from "@/lib/crm/auth";
 import { type Lead, sanitizeCfg, sanitizeFields } from "@/lib/crm/fields";
 import { SheetsError } from "@/lib/crm/sheets";
+import { SupabaseError } from "@/lib/crm/supabase";
 
 const NO_STORE = { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" };
 const json = (body: object, status = 200) => NextResponse.json(body, { status, headers: NO_STORE });
@@ -12,6 +13,10 @@ function fail(error: unknown) {
     console.error("[crm] sheets", error.code, error.message);
     const status = error.code === "rate_limited" ? 429 : 502;
     return json({ ok: false, code: error.code, message: error.message }, status);
+  }
+  if (error instanceof SupabaseError) {
+    console.error("[crm] supabase", error.message);
+    return json({ ok: false, code: error.code, message: error.message }, 502);
   }
   console.error("[crm] unexpected", error);
   return json({ ok: false, code: "error", message: "Erro inesperado no servidor do CRM." }, 500);
@@ -56,22 +61,22 @@ export async function POST(request: NextRequest) {
           if (!lead.id) lead.id = "l" + Date.now().toString(36) + randomBytes(4).toString("hex");
           return lead;
         });
-        return json({ ok: true, ...(await store.create(leads)) });
+        return json({ ok: true, ...(await store.create(leads, user.email)) });
       }
       case "patch": {
         if (typeof body.id !== "string") return json({ ok: false, code: "invalid" }, 400);
-        const found = await store.patch(body.id, sanitizeFields(body.fields));
-        return found ? json({ ok: true }) : json({ ok: false, code: "not_found", message: "Esse lead não existe mais na planilha." }, 404);
+        const found = await store.patch(body.id, sanitizeFields(body.fields), user.email);
+        return found ? json({ ok: true }) : json({ ok: false, code: "not_found", message: "Esse lead não existe mais no banco do CRM." }, 404);
       }
       case "delete": {
         if (!Array.isArray(body.ids)) return json({ ok: false, code: "invalid" }, 400);
         const ids = body.ids.filter((i): i is string => typeof i === "string").slice(0, 2000);
-        return json({ ok: true, deleted: await store.remove(ids) });
+        return json({ ok: true, deleted: await store.remove(ids, user.email) });
       }
       case "saveCfg": {
         const cfg = sanitizeCfg(body.cfg);
         if (!cfg) return json({ ok: false, code: "invalid" }, 400);
-        await store.saveCfg(cfg);
+        await store.saveCfg(cfg, user.email);
         return json({ ok: true });
       }
       default:
