@@ -1,0 +1,171 @@
+---
+name: prospeccao-advocacia
+description: >-
+  Prospecta escritórios de advocacia de ponta a ponta para a Shark Digital: varre uma fonte de
+  leads (seguidores de evento, perfil ou concorrente), tria quem encaixa no perfil de cliente,
+  faz o diagnóstico dos canais do prospect (Instagram, site, domínio, Google, Meta Ads, Google
+  Ads, ficha local), escreve o fluxo de abordagem e lança o lead pronto no CRM da agência.
+  Use SEMPRE que o usuário pedir para achar, analisar, diagnosticar, varrer, triar ou prospectar
+  advogado e escritório de advocacia, pedir "mais leads", mandar um @ de advogado pedindo
+  análise, perguntar "esse serve pra gente?", ou disser que quer "botar gente no CRM".
+  Use também quando ele mandar só uma lista de perfis ou o link de um evento jurídico.
+  NÃO use para criar conteúdo de cliente já fechado (voz-marcelo-colen, posts-colenadvogados),
+  nem para auditar landing page (revisor-lp-juridica), nem para definir verba e media mix
+  (arquiteto-aquisicao).
+---
+
+# Prospecção de escritórios de advocacia
+
+Esta skill existe porque prospecção de advogado falha de dois jeitos, e os dois custam caro.
+
+O primeiro é mirar errado: gastar uma tarde diagnosticando um escritório que já tem agência,
+já roda anúncio e já tem site bom. Ele não vai trocar, e se trocar vai ser por preço.
+
+O segundo é abordar errado: mandar o diagnóstico inteiro na primeira mensagem. Parece
+desespero, entrega todo o valor de graça e não sobra motivo para a pessoa responder.
+
+O trabalho aqui é achar quem **já produz conteúdo que funciona e não tem para onde mandar
+quem assiste**. Esse é o cliente da Shark. Ele tem tração orgânica e nenhuma estrutura, então
+o primeiro resultado aparece rápido e a conta fecha.
+
+## Fases
+
+Siga na ordem. Cada fase alimenta a seguinte, e pular a triagem é o erro que mais queima tempo.
+
+### 1. Fonte de leads
+
+Pergunte ao usuário a fonte se ele não disser. As que funcionam:
+
+- **Seguidores de evento do nicho** (o @safeexperience.oficial já foi usado e rendeu bem). A
+  vantagem é dupla: são advogados que investem em formação, e se o usuário esteve no evento
+  isso vira ponte na primeira mensagem, o que muda a taxa de resposta.
+- Seguidores de um concorrente ou de um perfil de referência da área.
+- Uma lista de @ que o usuário já mandou.
+
+Abra a lista no Chrome logado (`mcp__claude-in-chrome__*`), role com paciência e colete handle
+mais a linha de bio. Trabalhe com screenshots em escala 0,5, que é mais barato que ler a árvore
+inteira do modal a cada rolagem.
+
+### 2. Triagem
+
+A maior parte da lista não serve. Descarte sem dó:
+
+| Descarte | Por quê |
+|---|---|
+| Agência e mentor de marketing jurídico | É concorrência. Procure "Marketing Jurídico", "Tráfego Pago para Advogados", "Posicionamento para Advogados", "Mentor" na bio. |
+| Perfil verificado grande (acima de ~5 mil) | Quase sempre já tem fornecedor. Se entrar, entra como exceção justificada. |
+| Quem já tem tudo pronto | Site bom, anúncios rodando nas duas plataformas e ficha do Google ativa. Sobra pouco para vender e a conversa vira preço. |
+| Perfil sem operação | Menos de ~10 publicações, menos de ~100 seguidores, perfil privado. Não tem caixa. |
+
+O alvo é **pequeno e médio porte**: operação real, audiência entre mais ou menos 150 e 3 mil
+seguidores, e estrutura faltando. Quanto menos canais no Google, melhor, porque é exatamente o
+que a Shark vende.
+
+Priorize escritório (nome de banca) sobre advogado solo quando der: tem caixa e decisão mais
+clara. E registre sempre a cidade, porque prospect perto de Foz do Iguaçu permite café
+presencial, o que nenhuma agência remota compete.
+
+### 3. Diagnóstico
+
+Para cada aprovado na triagem, levante o que está em `references/diagnostico-canais.md`. O
+resumo do que não pode faltar:
+
+- **Todos os perfis de Instagram** da pessoa e do escritório, com seguidores e views médias dos
+  últimos 10 a 15 reels.
+- **O índice de alcance**: views médias ÷ seguidores. É o número que abre conversa.
+- **Link da bio**: para onde vai de verdade, e se funciona.
+- **Site**: existe? Fala do mesmo serviço que o conteúdo vende?
+- **Meta Ads** (Biblioteca de Anúncios) e **Google Ads** (Central de Transparência).
+- **Busca pelo nome** no Google e consistência de nome, endereço e telefone.
+
+O índice de alcance separa o joio do trigo mais rápido que qualquer outra métrica:
+
+- **Acima de 1x** o conteúdo já sai da base de seguidores. O gargalo não é alcance, é o destino
+  do clique. Esse é o cliente ideal: o caro já está resolvido.
+- **Entre 0,3x e 1x** a entrega está presa dentro da base. Normalmente é formato (card em vez de
+  rosto falando) ou base inflada por follow.
+- **Abaixo de 0,3x** com nicho bom é oportunidade grande, mas a conversa é sobre refazer o
+  conteúdo, não sobre tráfego.
+
+Compare sempre o perfil pessoal com o do escritório. O padrão mais comum nesse mercado é a
+audiência estar na pessoa e a marca institucional estar abandonada, e isso rende um ótimo
+primeiro argumento.
+
+### 4. Abordagem
+
+Escreva o fluxo de 4 mensagens seguindo `references/abordagem.md`. A regra que importa mais:
+**a primeira mensagem não vende nada**. Ela aponta um erro verificável e faz uma pergunta fácil
+de responder. O diagnóstico só é oferecido na mensagem 3, depois de duas respostas.
+
+Nada de travessão, nada de "ou seja", nada de listas de três. Tem que ler como mensagem de
+WhatsApp de alguém que olhou o perfil, não como texto gerado.
+
+### 5. Lançamento no CRM
+
+Grave o lead completo no CRM da agência, em **https://www.agcsharkdigital.com.br/crm**. O schema
+e os três jeitos de gravar (pela tela, pela API em lote, por importação de arquivo) estão em
+`references/crm-schema.md`. Precifique com o botão **Montar orçamento** do próprio CRM e ajuste
+pelo que o diagnóstico mostrou: quem já gasta com mídia aguenta fee maior, quem nunca gastou
+precisa de setup maior e fee menor.
+
+Leia o CRM antes de escrever para descobrir o próximo `num` livre e não duplicar lead.
+
+## Como achar o furo
+
+O valor da abordagem está em mostrar uma coisa específica, verificável em dez segundos, que a
+pessoa não sabia. Estes padrões apareceram repetidas vezes e vale procurar por todos:
+
+**No link da bio**
+- Domínio que não existe. Confira com `Resolve-DnsName` e no RDAP do registro.br. Já apareceu
+  escritório anunciando um domínio sem registro nenhum, de graça para qualquer concorrente pegar.
+- `wa.me` com número de 10 dígitos, ou seja, sem o nono dígito. O link não abre conversa.
+- URL com codificação dupla (`%25C3%25A1` em vez de `%C3%A1`). A mensagem pré-pronta chega como
+  lixo literal na tela do cliente.
+- Linktree ou encurtador com um botão só. Cobra um clique a mais, não rastreia e, no caso do
+  Linktree, ainda mostra "explore outros Linktrees" com dezenas de perfis aleatórios na hora da
+  decisão.
+- Perfil sem link nenhum, com reels fazendo milhares de views.
+
+**Entre canais**
+- O site fala de um serviço e o Instagram vende outro. Acontece muito: anúncio de trabalhista
+  caindo em página de desbloqueio bancário, Instagram de previdenciário com site de família.
+- Dois domínios no ar para o mesmo escritório, os dois indexados, competindo entre si.
+- Nome, endereço ou telefone divergentes entre Instagram, site e Receita Federal. O Google não
+  consolida a ficha assim e a busca pelo nome devolve agregador em vez do escritório.
+
+**No conteúdo**
+- O formato campeão já existe e não virou linha editorial. Procure o pico de views e veja o que
+  ele tem de diferente. Quase sempre é bastidor, rotina, ou tese aplicada a marca conhecida.
+- Card com texto em vez de pessoa falando. Derruba a entrega e é fácil de provar comparando.
+- Conteúdo mirado em colega de profissão (piada de honorário, rotina de escritório) quando o
+  cliente é leigo. Viraliza e não converte.
+- Destaques fixados todos pessoais (viagem, casamento, família) num perfil que vende serviço.
+
+**Na mídia**
+- Zero anúncios num nicho saturado. Dimensione: busque o termo genérico na Biblioteca de
+  Anúncios e cite quantos concorrentes estão ativos agora.
+- Anúncio cujo criativo termina em pergunta de engajamento em vez de CTA. É post impulsionado,
+  não anúncio de performance.
+- Viral grande e base pequena. Alcance que não virou audiência nem lista é dinheiro no chão.
+
+## Entrega
+
+Ao terminar, diga ao usuário em texto corrido, sem travessão:
+
+1. Quantos leads entraram e quem são, com o número que justifica cada um.
+2. Quem você descartou e por quê, nominalmente. Isso evita que ele reencontre os mesmos perfis
+   depois e também mostra que o filtro foi aplicado.
+3. Qualquer conexão útil que apareceu: prospect perto de casa, prospect seguido por cliente
+   atual (abre indicação, que vale mais que DM fria), prospect que esteve no mesmo evento.
+
+Se um número contradisser a sua própria recomendação anterior, corrija na hora e diga. Já
+aconteceu de um perfil parecer o melhor da lista pela bio e desabar quando as views apareceram.
+Bio não é dado, view é.
+
+## Arquivos de apoio
+
+- `references/diagnostico-canais.md`: o checklist completo, com as ferramentas e URLs de cada
+  verificação e como medir o alcance sem errar.
+- `references/abordagem.md`: a estrutura das 4 mensagens, as regras de escrita e exemplos reais
+  que funcionaram.
+- `references/crm-schema.md`: campos do lead, como ler e gravar no CRM e como precificar.
