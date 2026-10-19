@@ -780,7 +780,7 @@ const tempHTML = t => { const k = TEMPS.some(x => x.k === t) ? t : 'morno'; retu
 /* ================= state ================= */
 const S = {
   mode: 'loading', ready: false, db: null, readOnly: false, canWrite: null, localReason: '',
-  me: null, sheetUrl: '', ver: null, epoch: 0, busy: 0,
+  me: null, db: '', sheetUrl: '', ver: null, epoch: 0, busy: 0,
   leads: new Map(), cfg: clone(DEFAULT_CFG),
   overlay: new Map(), inflight: new Map(), chains: new Map(), timers: new Map(), creating: new Set(), deleted: new Set()
 };
@@ -1028,7 +1028,7 @@ async function pull() {
     again = 15000;
     if (!S.ready) {
       S.ready = true; scheduleRender();
-      toast(e && e.message ? 'Planilha: ' + e.message : 'Não consegui ler a planilha. Tentando de novo…', { tone: 'bad', ms: 9000 });
+      toast(e && e.message ? (S.db === 'supabase' ? 'Banco: ' : 'Planilha: ') + e.message : 'Não consegui ler os dados do CRM. Tentando de novo…', { tone: 'bad', ms: 9000 });
     }
   } finally {
     pulling = false;
@@ -1061,7 +1061,7 @@ async function startApi() {
   if (r.status === 404) { startLocal('static'); return; } // static hosting without the CRM server
   if (r.status === 503 && j.code === 'not_configured') { showLogin('config', j.missing); return; }
   if (r.status === 401 || !j.ok) { showLogin(erro || ''); return; }
-  S.me = j.user; S.sheetUrl = j.sheetUrl || ''; S.canWrite = true;
+  S.me = j.user; S.db = j.db || ''; S.sheetUrl = j.sheetUrl || ''; S.canWrite = true;
   const me = $('#meBtn');
   me.hidden = false; me.textContent = initials(S.me.name); me.title = `${S.me.name} · ${S.me.email}`;
   me.addEventListener('click', () => setView('ajustes'));
@@ -1078,11 +1078,12 @@ async function logout() {
 function setSync(mode) {
   const dot = $('#syncDot'), txt = $('#syncTxt');
   dot.className = 'sync-dot ' + ({ api: 'cloud', offline: 'local' }[mode] || mode);
-  txt.textContent = { cloud: 'Na nuvem', api: 'Planilha conectada', offline: 'Sem conexão', local: 'Só neste navegador' }[mode] || 'Conectando';
+  const sb = S.db === 'supabase';
+  txt.textContent = { cloud: 'Na nuvem', api: sb ? 'Supabase conectado' : 'Planilha conectada', offline: 'Sem conexão', local: 'Só neste navegador' }[mode] || 'Conectando';
   $('#railFoot').title = {
     cloud: 'Dados salvos na nuvem do Claude e sincronizados entre aparelhos',
-    api: 'Dados salvos na planilha do Google. Atualiza a cada 20 segundos.',
-    offline: 'Não consegui falar com a planilha agora. Tentando de novo.',
+    api: sb ? 'Dados salvos no banco Supabase. Atualiza a cada 20 segundos.' : 'Dados salvos na planilha do Google. Atualiza a cada 20 segundos.',
+    offline: sb ? 'Não consegui falar com o banco agora. Tentando de novo.' : 'Não consegui falar com a planilha agora. Tentando de novo.',
     local: 'Dados salvos apenas neste navegador'
   }[mode] || '';
 }
@@ -1524,7 +1525,9 @@ function renderDash(view) {
 function renderSettings(view) {
   setSub('Listas do CRM, importação e exportação');
   const ex = all().filter(l => l.exemplo).length;
-  const storeTxt = S.mode === 'api'
+  const storeTxt = S.mode === 'api' && S.db === 'supabase'
+    ? '<b>Salvo no banco Supabase.</b> Você e quem tiver acesso ao CRM veem as mudanças em até 20 segundos. Cada alteração fica registrada em crm_eventos e os contatos do site entram sozinhos como novo lead.'
+    : S.mode === 'api'
     ? `<b>Salvo na planilha do Google.</b> Você e quem tiver acesso ao CRM veem as mudanças em até 20 segundos.${S.sheetUrl ? ` <a href="${esc(S.sheetUrl)}" target="_blank" rel="noopener">Abrir a planilha</a>` : ''}`
     : S.mode === 'cloud'
       ? '<b>Salvo na nuvem.</b> O CRM abre igual no computador e no celular, e quem você compartilhar como editor vê as mudanças na hora.'
