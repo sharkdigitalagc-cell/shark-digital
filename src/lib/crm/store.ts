@@ -35,9 +35,18 @@ export interface SheetIO {
 
 export type Snapshot = { leads: Lead[]; cfg: Cfg; version: string };
 
+/** What the API routes need from a CRM database (Google Sheets or Supabase). `by` is the e-mail of who made the change. */
+export interface CrmBackend {
+  load(): Promise<Snapshot>;
+  create(items: Partial<Lead>[], by?: string): Promise<{ created: number; skipped: number }>;
+  patch(id: string, fields: Partial<Lead>, by?: string): Promise<boolean>;
+  remove(ids: string[], by?: string): Promise<number>;
+  saveCfg(cfg: Cfg, by?: string): Promise<void>;
+}
+
 const newId = () => "l" + Date.now().toString(36) + randomBytes(4).toString("hex");
 
-export class CrmStore {
+export class CrmStore implements CrmBackend {
   constructor(private io: SheetIO) {}
 
   /** Adds any header the CRM needs that the Leads tab does not have yet. */

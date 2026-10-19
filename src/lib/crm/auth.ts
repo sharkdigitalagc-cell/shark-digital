@@ -3,7 +3,9 @@ import type { NextRequest } from "next/server";
 import { AppsScriptSheetIO } from "./apps-script";
 import { DevSheetIO } from "./dev-io";
 import { GoogleSheetIO, serviceAccountFromEnv } from "./sheets";
-import { CrmStore } from "./store";
+import { type CrmBackend, CrmStore } from "./store";
+import { Supabase, supabaseFromEnv } from "./supabase";
+import { SupabaseCrmStore } from "./supabase-store";
 
 /**
  * CRM access: Google sign-in limited to the e-mails in CRM_ADMIN_EMAILS, and a
@@ -37,6 +39,8 @@ export function missingConfig(): string[] {
   if (devMode) return missing;
   if (!process.env.CRM_GOOGLE_CLIENT_ID) missing.push("CRM_GOOGLE_CLIENT_ID");
   if (!process.env.CRM_GOOGLE_CLIENT_SECRET) missing.push("CRM_GOOGLE_CLIENT_SECRET");
+  // With Supabase as the database the spreadsheet is optional (only read once, at the switch).
+  if (supabaseFromEnv()) return missing;
   if (!process.env.CRM_SHEET_ID) missing.push("CRM_SHEET_ID");
   // The sheet is reached through its Apps Script (default) or a service account key.
   if (!serviceAccountFromEnv()) {
@@ -177,7 +181,23 @@ export async function finishGoogleLogin(request: NextRequest): Promise<CrmUser |
 
 /* ---------------- data store ---------------- */
 
-export function crmStore(): CrmStore | null {
+/**
+ * The CRM database. With SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY set, Supabase is
+ * the database (the spreadsheet, if still configured, is copied in once at the switch).
+ * Without them, the Google Sheet as before.
+ */
+export function crmStore(): CrmBackend | null {
+  return supabaseStore() ?? sheetStore();
+}
+
+export function supabaseStore(): SupabaseCrmStore | null {
+  const cfg = supabaseFromEnv();
+  return cfg ? new SupabaseCrmStore(new Supabase(cfg), sheetStore()) : null;
+}
+
+export const crmDatabase = (): "supabase" | "planilha" => (supabaseFromEnv() ? "supabase" : "planilha");
+
+function sheetStore(): CrmStore | null {
   const sheetId = process.env.CRM_SHEET_ID;
   const sa = serviceAccountFromEnv();
   if (sheetId && sa) return new CrmStore(new GoogleSheetIO(sheetId, sa));
