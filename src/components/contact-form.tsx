@@ -12,7 +12,7 @@ import {
   type ContactField,
 } from "@/lib/contact";
 import { cn } from "@/components/ui";
-import { CONTACT_EMAIL, sendContactEmail } from "@/lib/contact-email";
+import { CONTACT_EMAIL, registerContact, sendContactEmail } from "@/lib/contact-email";
 import { whatsappLink } from "@/lib/whatsapp";
 
 type Status =
@@ -113,7 +113,10 @@ export function ContactForm() {
     setStatus({ kind: "submitting" });
     try {
       if (CONTACT_EMAIL) {
-        const sent = await sendContactEmail(data, String(raw.site ?? ""));
+        const emailSent = await sendContactEmail(data, String(raw.site ?? "")).catch(() => false);
+        // Also saves the contact in the CRM database (Supabase) as a new lead.
+        const saved = await registerContact(data, String(raw.site ?? ""), emailSent);
+        const sent = emailSent || saved;
         if (sent) {
           setStatus({ kind: "success", whatsapp, canal: data.canal });
           formRef.current?.reset();
