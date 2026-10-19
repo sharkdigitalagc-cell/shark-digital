@@ -40,3 +40,26 @@ export async function sendContactEmail(
   const result = (await res.json().catch(() => null)) as { success?: unknown } | null;
   return res.ok && String(result?.success) === "true";
 }
+
+/**
+ * Saves the submission in the CRM database (Supabase) through POST /api/contact/registro,
+ * which also opens a lead in "Novo lead". Returns true only when it was saved; never throws.
+ */
+export async function registerContact(
+  data: ContactPayload,
+  honeypot: string,
+  emailEnviado: boolean,
+): Promise<boolean> {
+  try {
+    const res = await fetch("/api/contact/registro", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...data, site: honeypot, emailEnviado }),
+      keepalive: true,
+    });
+    const result = (await res.json().catch(() => null)) as { ok?: unknown } | null;
+    return res.ok && result?.ok === true;
+  } catch {
+    return false;
+  }
+}
