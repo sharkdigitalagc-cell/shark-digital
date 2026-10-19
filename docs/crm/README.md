@@ -99,6 +99,51 @@ ativada, a planilha compartilhada com ela como Editor e o arquivo .json da chave
 `CRM_SERVICE_ACCOUNT_JSON` (nesse caso as duas variáveis do Apps Script não são necessárias).
 Muitas organizações novas do Google Cloud bloqueiam a criação dessas chaves por padrão.
 
+## Banco de dados no Supabase
+
+Com o Supabase ligado, o CRM lê e grava no banco (Postgres) do Supabase em vez da planilha.
+É mais rápido, não depende do Apps Script e registra tudo o que acontece.
+
+```
+docs/crm/supabase.sql            cria as tabelas (rodar uma vez no SQL Editor do Supabase)
+src/lib/crm/supabase.ts          cliente da API REST do Supabase (só no servidor)
+src/lib/crm/supabase-store.ts    o CRM no Supabase (mesmas regras do CRM na planilha)
+src/app/api/contact/registro/    grava o formulário de contato do site e cria o lead
+```
+
+**Tabelas**
+
+| Tabela | O que guarda |
+| --- | --- |
+| `crm_leads` | um lead por linha (mesmos campos do CRM; datas internas em milissegundos) |
+| `crm_listas` | listas de Ajustes (serviços, canais, nichos, responsáveis, preços...) |
+| `crm_eventos` | log de tudo: lead criado, atualizado, mudou de etapa, excluído, listas salvas, contato do site, com quem fez e quando |
+| `contatos_site` | cada envio do formulário de contato do site, ligado ao lead criado |
+
+O RLS fica ligado e sem políticas: a chave pública (anon) não lê nem grava nada. Só o servidor do
+site acessa, com a chave secreta.
+
+**Como ligar**
+
+1. Supabase → SQL Editor → cole e rode `docs/crm/supabase.sql` (já foi rodado no projeto da agência).
+2. Supabase → Project Settings → API Keys: copie a **Project URL** e a chave **secret**
+   (`sb_secret_...`) ou a **service_role** (aba Legacy).
+3. Vercel → Settings → Environment Variables (Production):
+   `SUPABASE_URL` = Project URL e `SUPABASE_SERVICE_ROLE_KEY` = chave secreta. Depois, **Redeploy**.
+
+Sem essas duas variáveis o CRM continua na planilha, exatamente como antes.
+
+**A virada da planilha para o Supabase.** Na primeira abertura do CRM depois do redeploy, o
+servidor copia a planilha inteira (leads e listas) para o Supabase, uma vez só, e marca isso em
+`crm_eventos` (tipo `importacao_planilha`). O Supabase fica igual à planilha naquele momento. A
+partir daí a planilha não é mais atualizada (fica como backup); as variáveis `CRM_SHEET_ID` e do
+Apps Script podem ser removidas depois. Para refazer a cópia, apague a linha `importacao_planilha`
+de `crm_eventos` e abra o CRM.
+
+**Formulário de contato.** Cada envio continua indo por e-mail e também é gravado em
+`contatos_site`, criando um lead em “Novo lead” (canal e origem “Site”). Se o e-mail falhar mas o
+Supabase gravar, o visitante vê sucesso, e o contrário também.
+
 ## Dia a dia
 
 - **Incluir ou tirar alguém:** edite `CRM_ADMIN_EMAILS` no Vercel e faça redeploy.
