@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { devMode, missingConfig, readUser, sheetUrl } from "@/lib/crm/auth";
+import { crmDatabase, devMode, missingConfig, readUser, sheetUrl } from "@/lib/crm/auth";
 
 const NO_STORE = { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" };
 
@@ -11,5 +11,5 @@ export async function GET(request: NextRequest) {
   }
   const user = readUser(request);
   if (!user) return NextResponse.json({ ok: false, code: "unauthenticated" }, { status: 401, headers: NO_STORE });
-  return NextResponse.json({ ok: true, user, sheetUrl: sheetUrl(), dev: devMode }, { headers: NO_STORE });
+  return NextResponse.json({ ok: true, user, db: crmDatabase(), sheetUrl: crmDatabase() === "supabase" ? null : sheetUrl(), dev: devMode }, { headers: NO_STORE });
 }
