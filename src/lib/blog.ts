@@ -246,6 +246,31 @@ const POSTS: BlogPost[] = [
       height: 630,
     },
   },
+  {
+    slug: "escritorio-contatos-poucos-contratos",
+    title:
+      "Meu escritório recebe contatos, mas fecha poucos contratos: como o marketing pode ajudar?",
+    seoTitle: "Escritório recebe contatos, mas fecha poucos contratos?",
+    description:
+      "Seu escritório recebe mensagens, mas poucas viram contrato? Veja como o marketing ajuda a atrair demandas compatíveis, apresentar o trabalho e acompanhar os contatos.",
+    excerpt:
+      "Antes de aumentar a verba, entenda o que acontece nas conversas: se as pessoas procuram o trabalho que o escritório oferece, onde o atendimento para e o que esperar de uma agência.",
+    category: "Marketing Jurídico",
+    publishedAt: "2026-10-20",
+    readingMinutes: 7,
+    cover: {
+      src: "/blog/escritorio-contatos-poucos-contratos.jpg",
+      alt: "Smartphone sobre uma mesa escura com balões de mensagem, um deles em verde, ao lado de uma pasta de couro com documento e caneta, com o título: Muitos contatos. Poucos contratos. Como o marketing pode ajudar seu escritório.",
+      width: 1672,
+      height: 941,
+    },
+    ogImage: {
+      src: "/blog/escritorio-contatos-poucos-contratos-og.jpg",
+      alt: "Smartphone sobre uma mesa escura com balões de mensagem, um deles em verde, ao lado de uma pasta de couro com documento e caneta, com o título: Muitos contatos. Poucos contratos. Como o marketing pode ajudar seu escritório.",
+      width: 1200,
+      height: 630,
+    },
+  },
 ];
 
 export function getAllPosts(): BlogPost[] {

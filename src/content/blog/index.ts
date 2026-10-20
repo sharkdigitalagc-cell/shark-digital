@@ -25,6 +25,11 @@ import ControleContasDadosMarketing, {
   sources as controleContasSources,
   toc as controleContasToc,
 } from "./controle-contas-dados-marketing";
+import EscritorioContatosPoucosContratos, {
+  cta as contatosContratosCta,
+  sources as contatosContratosSources,
+  toc as contatosContratosToc,
+} from "./escritorio-contatos-poucos-contratos";
 import FollowUpLeadsVendas, {
   cta as followUpCta,
   sources as followUpSources,
@@ -109,5 +114,11 @@ export const POST_CONTENT: Record<string, PostContent> = {
     toc: dependenciaCanaisToc,
     sources: dependenciaCanaisSources,
     cta: dependenciaCanaisCta,
+  },
+  "escritorio-contatos-poucos-contratos": {
+    Body: EscritorioContatosPoucosContratos,
+    toc: contatosContratosToc,
+    sources: contatosContratosSources,
+    cta: contatosContratosCta,
   },
 };
