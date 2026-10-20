@@ -5,22 +5,45 @@ import { cn } from "@/components/ui";
 /*
  * Building blocks for blog posts. Text column is ~68ch for comfortable
  * reading; wide blocks (tables, diagrams, the calculator) use <Wide>.
+ *
+ * Heading outline: the article page renders the post title as the page's
+ * only <h1>, so bodies start at <H2> for sections and use <H3> for their
+ * subdivisions. Never put an <h1> inside a body.
  */
+
+const sectionHeading =
+  "mt-16 text-balance text-[1.6rem] font-semibold leading-[1.15] tracking-[-0.025em] text-fg md:mt-20 md:text-[2rem]";
 
 export function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
-    <h2
-      id={id}
-      className="mt-16 text-balance text-[1.6rem] font-semibold leading-[1.15] tracking-[-0.025em] text-fg md:mt-20 md:text-[2rem]"
-    >
+    <h2 id={id} className={sectionHeading}>
       {children}
     </h2>
   );
 }
 
-export function H3({ children }: { children: React.ReactNode }) {
+// `appearance="section"` keeps the look of an <H2> for subdivisions that were
+// designed to read as full sections (e.g. a numbered series under one H2).
+export function H3({
+  id,
+  appearance = "default",
+  children,
+}: {
+  id?: string;
+  appearance?: "default" | "section";
+  children: React.ReactNode;
+}) {
   return (
-    <h3 className="mt-10 text-lg font-semibold tracking-tight text-fg md:text-xl">{children}</h3>
+    <h3
+      id={id}
+      className={
+        appearance === "section"
+          ? sectionHeading
+          : "mt-10 text-lg font-semibold tracking-tight text-fg md:text-xl"
+      }
+    >
+      {children}
+    </h3>
   );
 }
 
