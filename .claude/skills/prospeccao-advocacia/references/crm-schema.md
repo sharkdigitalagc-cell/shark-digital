@@ -2,8 +2,12 @@
 
 O CRM da Shark é o do próprio site: **https://www.agcsharkdigital.com.br/crm**
 
-Entra com a conta Google da agência (só os e-mails liberados). Os dados ficam numa planilha do
-Google Sheets, e o código vive neste repositório em `public/crm/index.html` e `src/lib/crm/`.
+Entra com a conta Google da agência (só os e-mails liberados). Os dados ficam no **Supabase**, e
+o código vive neste repositório em `public/crm/index.html` e `src/lib/crm/`. O rodapé da tela diz
+qual banco está ativo. O Google Sheets continua no código como reserva e só entra se as variáveis
+do Supabase faltarem (`crmStore()` é `supabaseStore() ?? sheetStore()`).
+
+Nada disso muda como você grava: a API é a mesma dos dois jeitos.
 
 > Existe um CRM antigo como artifact do claude.ai. Ele virou rascunho e **não deve mais ser
 > usado**. Se alguma instrução mandar gravar com `ArtifactData`, está desatualizada.
