@@ -4,7 +4,7 @@ import type { ContactPayload } from "@/lib/contact";
  * Shark Digital WhatsApp, digits only with country code (e.g. "5511912345678").
  * While empty, the form does not offer the WhatsApp hand-off.
  */
-export const WHATSAPP_NUMBER = "5545998052763";
+export const WHATSAPP_NUMBER = "554599096511";
 
 /** Display format for a Brazilian number with country code, e.g. (45) 99805-2763. */
 export function formatWhatsapp(digits: string): string {
