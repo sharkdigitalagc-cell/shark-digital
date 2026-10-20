@@ -68,6 +68,15 @@ Se não achou link na bio, procure no Google pelo nome do escritório e do sóci
 - Rodapé com ano antigo, página órfã indexada, mais de um domínio no ar?
 - E-mail de contato em domínio próprio ou @hotmail/@gmail?
 
+Quando o domínio do e-mail não abre página, não conclua que ele não existe. Rode
+`Resolve-DnsName <dominio> -Type MX`: se vier MX (Zoho, Google) sem registro A, o domínio está
+pago e serve só o e-mail. É achado, e é comum em escritório que trocou de site e esqueceu o
+domínio antigo.
+
+Procure também o site em plataforma de terceiros (`<nome>.escritorio-online.com` e parecidos).
+Escritório que não tem domínio próprio às vezes tem o site completo num subdomínio assim, e ele
+não aparece em busca por domínio nenhuma.
+
 Para ver o conteúdo real, `get_page_text` no Chrome costuma funcionar melhor que WebFetch em
 site feito com construtor visual.
 
@@ -83,10 +92,24 @@ ativos agora. Esse número é ótimo na conversa.
 Dos anúncios ativos, anote: quantos, desde quando, para onde levam (WhatsApp, formulário, site)
 e se o criativo termina em CTA de conversão ou em pergunta de engajamento.
 
-**Google.** `adstransparency.google.com/?region=BR`, digitando na caixa de busca. Procure pelo
-nome, pelo nome dos sócios e **pelo domínio**: a busca por domínio revela anúncios veiculados por
-um anunciante com outro nome, que é o caso mais comum em escritório, onde a conta está no CPF de
-um sócio.
+Use `search_type=keyword_exact_phrase` com o nome entre aspas (`q="Nome do Escritório"`). A busca
+sem aspas devolve qualquer anúncio que tenha uma das palavras e enche a tela de lixo.
+
+Confira o **destino** de cada anúncio, que aparece no rodapé do card. Quando diz INSTAGRAM.COM o
+anúncio leva para o perfil, não para uma página: o clique chega e ninguém mede o que acontece
+depois. E repare se vários cards repetem o mesmo texto, variando só o vídeo.
+
+**Google.** Quando o escritório **tem domínio**, vá direto a
+`adstransparency.google.com/?region=BR&domain=<dominio>`. Essa URL devolve a contagem exata
+("0 anúncio", "2 anúncios") e revela anúncios veiculados por anunciante com outro nome, que é o
+caso mais comum em escritório, onde a conta está no CPF de um sócio. Teste **todos** os domínios
+que o escritório tiver, um a um: já apareceu banca com três domínios em que só um recebia
+anúncio, e era o que estava vazio.
+
+Quando **não tem domínio**, só resta a caixa de busca por nome em
+`adstransparency.google.com/?region=BR`. Aí vale um cuidado: se aparecerem só homônimos
+verificados com nome completo diferente, você não provou que o prospect não anuncia, provou que
+não achou. Registre a ressalva na ficha em vez de dar o zero por conclusivo.
 
 ## 5. Busca e ficha local
 
@@ -108,7 +131,7 @@ Antes de fechar o diagnóstico, confirme que você tem:
 - [ ] O reel de maior alcance e o que ele tem de diferente
 - [ ] O link da bio testado, com o resultado do teste
 - [ ] Situação do site e se ele fala do mesmo serviço do conteúdo
-- [ ] Anúncios ativos no Meta e no Google, com número
+- [ ] Anúncios ativos no Meta e no Google, com número e com o destino de cada um
 - [ ] Quantos concorrentes anunciam no termo genérico do nicho
 - [ ] Nome, endereço, telefone e CNPJ, com as divergências anotadas
 - [ ] Cidade, para saber se dá reunião presencial

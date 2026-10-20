@@ -125,11 +125,36 @@ pessoa não sabia. Estes padrões apareceram repetidas vezes e vale procurar por
   Linktree, ainda mostra "explore outros Linktrees" com dezenas de perfis aleatórios na hora da
   decisão.
 - Perfil sem link nenhum, com reels fazendo milhares de views.
+- Link de bio **pausado**. Encurtador pago (w.app, bio.site) cai numa tela dizendo que o dono
+  precisa escolher um plano para reativar. O perfil fica sem nenhum caminho de contato, e o dono
+  costuma não saber, porque quem clica não avisa.
+- Página de links com o nome de **quem a montou**. Beacons e Linktree herdam o nome da conta de
+  quem criou, e esse nome vai junto no título da aba e no compartilhamento. Já apareceu escritório
+  divulgando um link que se apresenta com o nome de outra pessoa.
+- **Dois encurtadores em série**: a bio aponta para lnk.bio, que aponta para contate.me, que aí
+  sim abre o WhatsApp. São dois cliques e duas páginas de terceiros antes da conversa, e nenhuma
+  das duas devolve dado de quem desistiu no caminho.
+- `wa.me` ou `wa.link` apontando para **telefone fixo**. Funciona no WhatsApp Business, mas o
+  cartão que abre na conversa mostra um nome que às vezes não está escrito em lugar nenhum no
+  perfil, e o cliente estranha.
 
 **Entre canais**
 - O site fala de um serviço e o Instagram vende outro. Acontece muito: anúncio de trabalhista
   caindo em página de desbloqueio bancário, Instagram de previdenciário com site de família.
 - Dois domínios no ar para o mesmo escritório, os dois indexados, competindo entre si.
+- **Domínio no ar servindo WordPress recém-instalado.** Procure o título "My WordPress Blog" e o
+  post "Hello world!". O domínio está pago, o DNS resolve e a página nunca foi montada. Fica muito
+  pior quando existe anúncio pago apontando para ela, e isso acontece.
+- **Domínio que só serve e-mail.** O registro A não resolve mas o MX está configurado. O endereço
+  profissional do escritório vive num domínio sem página nenhuma. Confira com
+  `Resolve-DnsName <dominio> -Type MX` quando o A vier vazio.
+- Bio da sócia e bio do escritório vendendo **áreas diferentes**. Quem chega pela pessoa e procura
+  a banca encontra outra coisa do que foi buscar.
+- Perfil de escritório classificado como **"Criador de conteúdo digital"** em vez de advogado e
+  escritório de advocacia. Tira dele a categoria certa e os botões de contato que o Instagram só
+  mostra para quem está classificado como negócio.
+- Número de anos de casa **divergente entre canais**: 17 anos no anúncio e 14 no site. O cliente
+  vê contas diferentes conforme o lugar por onde entra.
 - Nome, endereço ou telefone divergentes entre Instagram, site e Receita Federal. O Google não
   consolida a ficha assim e a busca pelo nome devolve agregador em vez do escritório.
 
@@ -147,6 +172,13 @@ pessoa não sabia. Estes padrões apareceram repetidas vezes e vale procurar por
 - Anúncio cujo criativo termina em pergunta de engajamento em vez de CTA. É post impulsionado,
   não anúncio de performance.
 - Viral grande e base pequena. Alcance que não virou audiência nem lista é dinheiro no chão.
+- **Anúncio que leva para o perfil do Instagram** em vez de uma página. O clique chega e a pessoa
+  tem que descobrir sozinha como falar com o escritório, e nada disso é medido.
+- **Anúncio apontando para o domínio errado.** Confira o destino de cada anúncio contra os
+  domínios que o escritório tem. Já apareceu banca pagando Google Ads para um WordPress vazio
+  enquanto o site de verdade morava em outro endereço, sem anúncio nenhum.
+- **Vários anúncios com o mesmo texto**, variando só o criativo. Sem variação de copy não dá para
+  saber qual argumento traz o cliente, só qual rosto prende.
 
 ## Entrega
 
