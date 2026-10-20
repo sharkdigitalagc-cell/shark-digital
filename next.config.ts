@@ -16,9 +16,16 @@ const nextConfig: NextConfig = {
   ...(staticExport
     ? {}
     : {
-        // The projects page moved to /portfolio.
+        // The projects page moved to /portfolio; the first law-firm leads post was replaced.
         async redirects() {
-          return [{ source: "/clientes", destination: "/portfolio", permanent: true }];
+          return [
+            { source: "/clientes", destination: "/portfolio", permanent: true },
+            {
+              source: "/blog/leads-advogados-nao-convertem",
+              destination: "/blog/escritorio-contatos-poucos-contratos",
+              permanent: true,
+            },
+          ];
         },
         async rewrites() {
           return [{ source: "/crm", destination: "/crm/index.html" }];

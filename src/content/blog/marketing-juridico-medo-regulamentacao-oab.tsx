@@ -207,8 +207,8 @@ export default function Article() {
       <P>
         Se o escritório já anuncia e o problema é outro, contatos que não viram contrato, o artigo
         sobre{" "}
-        <A href="/blog/leads-advogados-nao-convertem">leads de advocacia que não convertem</A>{" "}
-        mostra como encontrar em que etapa as oportunidades se perdem.
+        <A href="/blog/escritorio-contatos-poucos-contratos">escritórios que recebem contatos, mas fecham poucos contratos</A>{" "}
+        mostra onde os contatos deixam de avançar.
       </P>
 
       <H2 id="invisibilidade">O problema de transformar prudência em invisibilidade</H2>

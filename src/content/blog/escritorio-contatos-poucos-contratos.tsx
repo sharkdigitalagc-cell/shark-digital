@@ -154,13 +154,6 @@ export default function Article() {
         o escritório consegue discutir o que precisa melhorar com mais contexto, sem depender apenas
         da impressão de uma semana movimentada ou de alguns atendimentos frustrados.
       </P>
-      <P>
-        Para um roteiro mais detalhado das etapas entre o anúncio e o contrato, veja também o{" "}
-        <A href="/blog/leads-advogados-nao-convertem">
-          artigo sobre leads de escritórios que não viram contratos
-        </A>
-        .
-      </P>
 
       <H2 id="o-que-esperar">O que esperar de uma agência ao analisar essa dificuldade</H2>
       <P>
