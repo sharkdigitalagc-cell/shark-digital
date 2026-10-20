@@ -148,8 +148,14 @@ pessoa não sabia. Estes padrões apareceram repetidas vezes e vale procurar por
 - **Domínio que só serve e-mail.** O registro A não resolve mas o MX está configurado. O endereço
   profissional do escritório vive num domínio sem página nenhuma. Confira com
   `Resolve-DnsName <dominio> -Type MX` quando o A vier vazio.
-- Bio da sócia e bio do escritório vendendo **áreas diferentes**. Quem chega pela pessoa e procura
-  a banca encontra outra coisa do que foi buscar.
+- Bio da sócia e bio do escritório vendendo **áreas diferentes**, com o perfil institucional parado
+  e a audiência toda na pessoa. Aí é abandono, não recorte.
+- **Não confunda segmentação com bagunça.** Dois perfis de tamanho parecido, os dois ativos, cada
+  um num nicho, é estratégia deliberada e boa: na Meta, público de engajamento separado por tema
+  dá remarketing limpo e lookalike mais preciso, enquanto perfil misturado entrega público sujo.
+  Nunca aborde isso como defeito, porque o prospect fez de propósito e vai sentir na hora que você
+  não entendeu o negócio dele. O que vale apontar é a segmentação pela metade (um dos perfis ainda
+  lista três áreas na bio) ou a separação que ninguém usa, porque não há anúncio rodando.
 - Perfil de escritório classificado como **"Criador de conteúdo digital"** em vez de advogado e
   escritório de advocacia. Tira dele a categoria certa e os botões de contato que o Instagram só
   mostra para quem está classificado como negócio.
