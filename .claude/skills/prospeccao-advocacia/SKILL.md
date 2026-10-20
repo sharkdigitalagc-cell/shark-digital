@@ -40,6 +40,13 @@ Pergunte ao usuário a fonte se ele não disser. As que funcionam:
   vantagem é dupla: são advogados que investem em formação, e se o usuário esteve no evento
   isso vira ponte na primeira mensagem, o que muda a taxa de resposta.
 - Seguidores de um concorrente ou de um perfil de referência da área.
+- **Comentário em post de mentor rende quase nada.** Parece atalho, porque o post de captação
+  ("comente BLACK e entre no grupo") junta centenas de advogados, mas quem comenta ali é o público
+  do mentor: outro mentor vendendo método, infoprodutor, ou escritório grande que já tem
+  fornecedor. Numa varredura de 17 handles sobrou um único lead. Se for usar, triar pela bio antes
+  de medir qualquer coisa e descartar na hora quem tem link de VSL, kiwify ou hotmart, ou quem
+  escreve "mentoria", "método para advogados", "ensino a construir escritório" e "+XX milhões
+  faturados". Seguidor de evento rende melhor porque é quem foi aprender, não quem foi vender.
 - Uma lista de @ que o usuário já mandou.
 
 Abra a lista no Chrome logado (`mcp__claude-in-chrome__*`), role com paciência e colete handle
