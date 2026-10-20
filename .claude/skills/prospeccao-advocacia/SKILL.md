@@ -100,12 +100,19 @@ primeiro argumento.
 
 ### 4. Abordagem
 
-Escreva o fluxo de 4 mensagens seguindo `references/abordagem.md`. A regra que importa mais:
-**a primeira mensagem não vende nada**. Ela aponta um erro verificável e faz uma pergunta fácil
-de responder. O diagnóstico só é oferecido na mensagem 3, depois de duas respostas.
+Escreva o fluxo de 4 mensagens seguindo `references/abordagem.md`. O padrão é o que já fechou
+reunião em menos de uma hora: a primeira mensagem **só se apresenta e elogia o número que
+impressiona**, sem furo, sem pergunta e sem link. A oferta do relatório vem logo em seguida, na
+mensagem 2, sem esperar resposta. O furo todo fica dentro do relatório, onde vem acompanhado da
+leitura inteira em vez de soar como crítica de desconhecido.
+
+O número do elogio não pode ser inflado. Quando o alcance for abaixo de 1x, elogie outra coisa
+verdadeira (constância, ticket do nicho, anos de casa, mídia já rodando), nunca o alcance.
 
 Nada de travessão, nada de "ou seja", nada de listas de três. Tem que ler como mensagem de
-WhatsApp de alguém que olhou o perfil, não como texto gerado.
+WhatsApp de alguém que olhou o perfil, não como texto gerado. Entregue o texto em **linha
+corrida**, sem quebra manual a cada 70 caracteres: o WhatsApp respeita a quebra e a mensagem
+chega picotada.
 
 ### 5. Lançamento no CRM
 

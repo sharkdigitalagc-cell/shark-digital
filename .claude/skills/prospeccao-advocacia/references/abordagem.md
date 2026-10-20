@@ -10,31 +10,52 @@ graça, então não sobra motivo para responder. E, pior, quem escreve assim som
 dezenas de mensagens iguais que todo advogado com perfil ativo recebe por semana.
 
 A primeira mensagem tem **um trabalho só: ganhar resposta**. Nada de oferta, nada de link, nada
-de "posso te mandar?". O material só aparece depois que a pessoa respondeu duas vezes, porque aí
-ela já investiu na conversa e quer saber.
+de "posso te mandar?".
+
+E aqui vem a parte que contraria a intuição, comprovada em conversa real: **a primeira mensagem
+também não precisa apontar o furo**. Elogiar o número certo e dizer que vê potencial já ganha a
+resposta, e o furo rende muito mais dentro do relatório, onde ele vem acompanhado da leitura
+inteira. Apontar o problema logo de cara faz o prospect se defender antes de conversar.
 
 ## Estrutura das 4 mensagens
 
 Grave as quatro no campo `abordagem` do lead, separadas por rótulo, para a pessoa que for
 abordar saber onde está.
 
-**[1] Primeira mensagem.** Três a cinco linhas. Um elogio específico e verdadeiro (prova que
-olhou), o furo mais verificável, e uma pergunta que se responde em dez segundos. A melhor
-pergunta é aquela que dá uma saída honrosa: "isso é de propósito ou passou batido?", "são duas
-frentes mesmo ou o pessoal do tráfego misturou?". Ninguém precisa admitir erro para responder.
+**[1] Primeira mensagem.** Abre com "Olá tudo bem?", a apresentação em uma frase (nome, fundador
+da Shark Digital, o que faz), depois "cheguei no seu perfil e fiquei alguns minutos olhando seu
+conteúdo", **o número específico que impressiona**, e fecha com "vejo grande potencial aqui".
+Sem furo, sem pergunta, sem oferta.
 
-**[2] Se responder.** Explique o porquê do furo em duas ou três linhas e faça uma pergunta de
-qualificação. É aqui que se descobre se tem verba, se tem agência e de onde vêm os casos hoje.
-Perguntas que funcionam: "quanto vocês estão botando por mês?", "os casos chegam mais por
-indicação ou pelo conteúdo?", "vocês conseguem ver quantos chegam por esse link?".
+**[2] Logo em seguida.** Na sequência, sem esperar resposta, oferece o material: "dito isso,
+gostaria de mandar um mini relatório que fiz de pontos que você pode melhorar e, se achar
+pertinente apresentar melhor meu trabalho e como a Shark poderia te ajudar igual faz com outros
+escritórios hoje." O "faz hoje" importa: diz operação rodando agora, não caso antigo.
 
-**[3] Se engajar.** Agora sim: diga o que você faz, em uma linha, e entregue o segundo achado,
-o mais contraintuitivo. Termine oferecendo o material com uma saída fácil: "quer ver o resto ou
-já está resolvido aí?". A saída fácil é o que faz a pessoa aceitar.
+**[3] Quando aceitar.** Manda o PDF do mini relatório e, junto, o link de como vocês trabalham
+(agcsharkdigital.com.br/como-trabalhamos). O link responde a dúvida seguinte antes dela ser feita.
 
-**[4] Sem resposta em 4 dias.** Curto, sem cobrança, com permissão explícita para dizer não:
-"se já tem alguém cuidando, me fala que eu paro". Repita o furo principal uma vez e ofereça algo
-que ela pode aplicar sozinha. Isso deixa porta aberta sem parecer insistência.
+**[4] Fechamento.** "Gostaria de marcar uma reunião para eu te mostrar um pouco mais a fundo meu
+trabalho e como isso pode ajudar você?" Direto, sem rodeio e sem oferecer três horários.
+
+### O elogio tem que ser verdadeiro
+
+O número do passo 1 é o que sustenta a mensagem inteira, então ele não pode ser inventado nem
+inflado. Quando o índice de alcance é **abaixo de 1x**, não dá para dizer "você entrega Xx a sua
+base", porque seria elogiar justamente o que está ruim e o prospect percebe. Nesses casos elogie
+outra coisa real: constância de publicação, ticket do nicho, site com blog alimentado, mídia já
+rodando, anos de casa, prova social no Google.
+
+### Quando acrescentar que não vai substituir ninguém
+
+Para prospect que **já roda anúncio**, vale um parágrafo a mais no passo 2: que não é para tomar
+o lugar de agência ou equipe, e que o trabalho é o ajuste técnico do funil mais um Google forte,
+no orgânico e no pago. Isso desarma a objeção de "esse cara quer que eu demita quem trabalha
+comigo".
+
+Para quem **não tem ninguém**, deixe de fora. Não há fornecedor para desarmar, e a frase só
+ancora o prospect num serviço menor do que o que ele precisa, o que atrapalha vender Gestão 360
+depois.
 
 ## Como escrever para não parecer gerado
 
@@ -54,7 +75,32 @@ O que ajuda: linguagem falada ("beleza?", "é que", "faz sentido", "fui olhar"),
 e desiguais, e **um detalhe que só quem olhou saberia**. Citar o reel pelo nome, o número exato
 de views, o nome do destaque. É isso que separa de mensagem em massa.
 
-## Exemplos que funcionaram
+## O caso que converteu
+
+Vale mais que qualquer exemplo escrito de cabeça, porque aconteceu. Em 20/10/2026, abordagem a um
+advogado de 2.024 seguidores que entregava 4,1x a base com 14 publicações:
+
+> Meu nome é Vinicius, sou fundador da Shark Digital. Trabalho com aquisição e estruturação de
+> crescimento para escritórios, principalmente na parte de conectar marketing, geração de demanda
+> e resultado comercial.
+>
+> Cheguei no seu perfil e fiquei alguns minutos olhando seu conteúdo. Vi que com apenas 14
+> publicações você já está entregando mais de 4x a sua base de seguidores, com dois reels passando
+> de 11 mil views.
+>
+> Vejo grande potencial aqui.
+
+Enviada às 14h42. Resposta em **dois minutos**. Relatório enviado às 15h09, link de como
+trabalhamos às 15h10, e às 15h30 ele respondeu "Vamos" ao convite de reunião. Agendada para as
+11h no Meet. **Menos de uma hora da primeira mensagem até a reunião marcada.**
+
+Repare no que essa mensagem **não** tem: nenhum furo, nenhuma pergunta, nenhum link. Só
+apresentação, número e potencial.
+
+## Aberturas alternativas (ainda não testadas)
+
+As abaixo foram escritas para casos específicos e **nenhuma foi enviada ainda**. Servem de
+repertório para quando o furo for forte demais para esperar o relatório, não de padrão.
 
 **Domínio morto.** O escritório anunciava na bio um domínio sem registro nenhum.
 
