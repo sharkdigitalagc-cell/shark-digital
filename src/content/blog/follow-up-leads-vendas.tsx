@@ -225,7 +225,7 @@ export default function Article() {
       <P>
         Esse é o mesmo padrão que aparece em outros segmentos: na{" "}
         <A href="/blog/leads-clinica-nao-agendam">clínica que recebe leads que não agendam</A> e
-        no <A href="/blog/leads-advogados-nao-convertem">escritório que recebe leads e não fecha
+        no <A href="/blog/escritorio-contatos-poucos-contratos">escritório que recebe contatos e fecha poucos
         contratos</A>, boa parte da perda acontece depois do primeiro contato, e não no anúncio.
       </P>
 

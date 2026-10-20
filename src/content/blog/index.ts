@@ -35,11 +35,6 @@ import FollowUpLeadsVendas, {
   sources as followUpSources,
   toc as followUpToc,
 } from "./follow-up-leads-vendas";
-import LeadsAdvogadosNaoConvertem, {
-  cta as leadsAdvogadosCta,
-  sources as leadsAdvogadosSources,
-  toc as leadsAdvogadosToc,
-} from "./leads-advogados-nao-convertem";
 import LeadsClinicaNaoAgendam, {
   sources as leadsClinicaSources,
   toc as leadsClinicaToc,
@@ -66,12 +61,6 @@ export const POST_CONTENT: Record<string, PostContent> = {
     Body: LeadsClinicaNaoAgendam,
     toc: leadsClinicaToc,
     sources: leadsClinicaSources,
-  },
-  "leads-advogados-nao-convertem": {
-    Body: LeadsAdvogadosNaoConvertem,
-    toc: leadsAdvogadosToc,
-    sources: leadsAdvogadosSources,
-    cta: leadsAdvogadosCta,
   },
   "agencia-nao-entende-meu-segmento": {
     Body: AgenciaNaoEntendeMeuSegmento,

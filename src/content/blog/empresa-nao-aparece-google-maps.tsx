@@ -482,7 +482,7 @@ export default function Article() {
       <P>
         Se esses pontos soam familiares, os artigos sobre{" "}
         <A href="/blog/leads-clinica-nao-agendam">leads da clínica que não agendam</A> e sobre{" "}
-        <A href="/blog/leads-advogados-nao-convertem">leads de advocacia que não viram contrato</A>{" "}
+        <A href="/blog/escritorio-contatos-poucos-contratos">escritórios que recebem contatos e fecham poucos contratos</A>{" "}
         mostram como encontrar em que etapa as oportunidades se perdem.
       </P>
       <PullQuote>
