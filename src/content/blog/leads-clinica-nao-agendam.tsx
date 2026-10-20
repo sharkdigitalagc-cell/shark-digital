@@ -6,6 +6,7 @@ import {
   FlowRow,
   Formula,
   H2,
+  H3,
   List,
   P,
   StepChain,
@@ -128,7 +129,7 @@ export default function Article() {
         <Strong>pontos de partida para investigar</Strong>, não veredictos.
       </P>
 
-      <H2 id="leads-ruins">1. Os leads realmente são ruins?</H2>
+      <H3 id="leads-ruins" appearance="section">1. Os leads realmente são ruins?</H3>
       <P>
         “Lead ruim” costuma ser uma impressão formada pelas últimas conversas difíceis. Para
         transformar impressão em evidência, cada lead que não avançou precisa de um{" "}
@@ -157,7 +158,7 @@ export default function Article() {
         comum, marketing e recepção contam coisas diferentes e os números nunca batem.
       </P>
 
-      <H2 id="tempo-resposta">2. Quanto tempo sua clínica demora para responder?</H2>
+      <H3 id="tempo-resposta" appearance="section">2. Quanto tempo sua clínica demora para responder?</H3>
       <P>
         Muitos conteúdos citam um tempo ideal de resposta, quase sempre sem fonte verificável. Mais
         útil do que perseguir o número de outra pessoa é medir o da sua clínica. Para cada lead,
@@ -172,7 +173,7 @@ export default function Article() {
         processo. Se não houver, o gargalo está em outro lugar.
       </P>
 
-      <H2 id="preco">3. O paciente pergunta o preço e desaparece?</H2>
+      <H3 id="preco" appearance="section">3. O paciente pergunta o preço e desaparece?</H3>
       <P>
         “Sumiu depois do preço” descreve a ordem dos acontecimentos, não a causa. A última mensagem
         antes do silêncio foi o valor, mas a pessoa pode ter sumido porque comparava várias
@@ -199,7 +200,7 @@ export default function Article() {
         o número.
       </P>
 
-      <H2 id="conduzir">4. Sua recepção responde ou conduz?</H2>
+      <H3 id="conduzir" appearance="section">4. Sua recepção responde ou conduz?</H3>
       <P>
         Responder é tirar a dúvida que a pessoa trouxe. Conduzir é, depois de responder, propor
         uma próxima ação concreta: oferecer dois ou três horários, explicar como funciona a
@@ -218,7 +219,7 @@ export default function Article() {
         </p>
       </Callout>
 
-      <H2 id="follow-up">5. Quantos leads recebem follow-up?</H2>
+      <H3 id="follow-up" appearance="section">5. Quantos leads recebem follow-up?</H3>
       <Callout label="A pergunta central">
         <p>
           Dos leads que não agendaram na primeira conversa, quantos têm uma próxima ação
@@ -237,7 +238,7 @@ export default function Article() {
         demais incomoda e não melhora a decisão.
       </P>
 
-      <H2 id="whatsapp-crm">6. Seu WhatsApp virou seu CRM?</H2>
+      <H3 id="whatsapp-crm" appearance="section">6. Seu WhatsApp virou seu CRM?</H3>
       <P>
         Para muitas clínicas, o WhatsApp é onde tudo acontece, e a lista de conversas acaba
         funcionando como sistema de gestão. Isso funciona até certo ponto. Alguns sinais de que a
@@ -264,7 +265,7 @@ export default function Article() {
         atendimento comercial e limite quem tem acesso.
       </P>
 
-      <H2 id="agenda">7. O problema pode estar na própria agenda</H2>
+      <H3 id="agenda" appearance="section">7. O problema pode estar na própria agenda</H3>
       <P>
         Às vezes o lead é bom, a conversa é bem conduzida e mesmo assim não há agendamento, porque
         o horário que a pessoa quer não existe. Isso aparece pouco nos relatórios, porque fica
@@ -281,7 +282,7 @@ export default function Article() {
         Se a agenda é o gargalo, aumentar a mídia só gera mais contatos que não cabem nela.
       </P>
 
-      <H2 id="comparecimento">8. Agendamento não significa paciente</H2>
+      <H3 id="comparecimento" appearance="section">8. Agendamento não significa paciente</H3>
       <P>Depois do agendamento, ainda há duas passagens que podem esconder perdas:</P>
       <FlowRow
         steps={["Lead", "Agendamento", "Comparecimento", "Paciente"]}
@@ -298,7 +299,7 @@ export default function Article() {
         olhar como a proposta é apresentada e se existe acompanhamento de quem saiu com orçamento.
       </P>
 
-      <H2 id="atribuicao">9. O marketing sabe quais leads viraram pacientes?</H2>
+      <H3 id="atribuicao" appearance="section">9. O marketing sabe quais leads viraram pacientes?</H3>
       <P>
         O Google Ads e o Meta registram conversões como envio de formulário ou clique para o
         WhatsApp. Isso é um lead, não um paciente. Se a informação sobre quem compareceu e contratou
@@ -320,7 +321,7 @@ export default function Article() {
         “como nos conheceu?”.
       </P>
 
-      <H2 id="marketing-ou-atendimento">10. Como descobrir se o problema está no marketing ou no atendimento</H2>
+      <H3 id="marketing-ou-atendimento" appearance="section">10. Como descobrir se o problema está no marketing ou no atendimento</H3>
       <P>
         Com as etapas contadas, a tabela abaixo ajuda a decidir por onde começar. Ela indica onde
         investigar primeiro, não a causa.
