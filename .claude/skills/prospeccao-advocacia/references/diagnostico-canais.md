@@ -140,6 +140,51 @@ Para os dados cadastrais, o CNPJ aparece no rodapé do site ou numa busca por no
 que está publicado nos perfis. Divergência de endereço e telefone impede o Google de consolidar a
 ficha e é um achado concreto, fácil de mostrar.
 
+### O site existir não quer dizer que ele preste
+
+"Tem site" não é força, e escrever isso num relatório queima credibilidade na hora, porque o dono
+sabe melhor que ninguém o estado do site dele. Abra e colete estes quatro dados, que separam site
+institucional de site que gera cliente:
+
+```js
+// no console da página
+JSON.stringify({
+  metaDesc: (document.querySelector('meta[name=description]')||{}).content || 'AUSENTE',
+  h1: [...document.querySelectorAll('h1')].map(e => e.innerText.trim()),
+  forms: document.querySelectorAll('form').length,
+  inputs: document.querySelectorAll('input:not([type=hidden])').length,
+  temGA: !!(window.gtag || window.dataLayer),
+  temPixel: !!window.fbq,
+})
+```
+
+- **Nenhum formulário** significa que só quem quer puxar conversa agora vira contato. Quem está no
+  trabalho, de madrugada ou só pesquisando, vai embora sem deixar rastro.
+- **Sem Analytics e sem pixel** é o achado mais pesado: o escritório não sabe quantas pessoas
+  visitam, de onde vêm, e não pode falar de novo com quem já esteve lá. Todo mês recomeça do zero.
+- **Meta description ausente** deixa o Google escrever o resumo sozinho, e **mais de um `<h1>`**
+  confunde o buscador sobre qual é o tema da página.
+
+### Presença no Google: três perguntas, sempre
+
+Buscar o nome do escritório é obrigatório, não opcional, e tem três respostas que importam:
+
+1. **O site aparece quando se busca o nome do próprio escritório?** Já apareceu banca cujo site
+   não vinha nem assim, perdendo para Instagram, Facebook e agregador de CNPJ.
+2. **A ficha do Google foi reivindicada?** Se a página ainda mostra "É proprietário desta
+   empresa?" ou "Adicionar website", a ficha não está sob controle deles. Isso é grave quando a
+   ficha tem avaliação boa: a reputação existe e não leva a lugar nenhum.
+3. **Os concorrentes que aparecem no mapa têm site na ficha?** Comparar os três primeiros com o
+   prospect transforma uma observação técnica em desvantagem concreta.
+
+### Meça a concorrência nos dois lados
+
+Conte quantos anunciam no termo genérico do nicho **na Meta e no Google**, e diga os dois números
+ao prospect. O contraste é o que dá noção de tamanho, e costuma apontar para onde ir primeiro:
+num caso recente eram 31 anunciantes ativos na Meta e nenhum no Google para o mesmo termo, numa
+capital. O Instagram estava disputado e a busca, que é onde a pessoa procura depois de decidir
+resolver, estava vazia.
+
 ## Checklist final
 
 Antes de fechar o diagnóstico, confirme que você tem:
@@ -147,9 +192,11 @@ Antes de fechar o diagnóstico, confirme que você tem:
 - [ ] Todos os perfis, com seguidores e índice de alcance de cada um
 - [ ] O reel de maior alcance e o que ele tem de diferente
 - [ ] O link da bio testado, com o resultado do teste
-- [ ] Situação do site e se ele fala do mesmo serviço do conteúdo
+- [ ] Situação do site: tem formulário? tem Analytics e pixel? meta description? quantos h1?
+- [ ] Se o site fala do mesmo serviço que o conteúdo vende
 - [ ] Anúncios ativos no Meta e no Google, com número e com o destino de cada um
-- [ ] Quantos concorrentes anunciam no termo genérico do nicho
+- [ ] Quantos concorrentes anunciam no termo genérico, **na Meta e no Google**, com os dois números
+- [ ] O site aparece na busca pelo nome do escritório? A ficha do Google foi reivindicada? Tem site nela?
 - [ ] Nome, endereço, telefone e CNPJ, com as divergências anotadas
 - [ ] Cidade, para saber se dá reunião presencial
 - [ ] De 4 a 6 pontos de ruptura e de 4 a 5 forças
