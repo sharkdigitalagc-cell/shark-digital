@@ -72,6 +72,21 @@ Priorize escritório (nome de banca) sobre advogado solo quando der: tem caixa e
 clara. E registre sempre a cidade, porque prospect perto de Foz do Iguaçu permite café
 presencial, o que nenhuma agência remota compete.
 
+### Lead que chega pronto no CRM também passa pela triagem
+
+Quando alguém pede para "completar o diagnóstico" de leads que outra pessoa já lançou, é fácil
+pular direto para a fase 3, porque o lead já está lá e parece decidido. Não pule. **Rode a triagem
+antes, como se o lead fosse novo.**
+
+Já passou uma advogada com 10 publicações e 97 seguidores, que bate nos dois critérios de descarte
+ao mesmo tempo, porque o diagnóstico foi completado sem ninguém revalidar o porte. Diagnosticar
+custa caro e, pior, enche o funil de lead que não vai fechar, o que faz o pipeline mentir.
+
+Se o lead não passar na triagem, não diagnostique: mova para Perdido com o motivo
+"Desqualificado", zere fee, setup e verba para ele não contar no pipeline, e escreva no card por
+que saiu e o que teria que mudar para ele voltar a servir. Quem lançou o lead merece saber o
+critério, não só ver o card sumir.
+
 ### 3. Diagnóstico
 
 Para cada aprovado na triagem, levante o que está em `references/diagnostico-canais.md`. O
