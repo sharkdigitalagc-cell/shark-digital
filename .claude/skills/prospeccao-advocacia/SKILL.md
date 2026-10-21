@@ -63,6 +63,21 @@ A maior parte da lista não serve. Descarte sem dó:
 | Perfil verificado grande (acima de ~5 mil) | Quase sempre já tem fornecedor. Se entrar, entra como exceção justificada. |
 | Quem já tem tudo pronto | Site bom, anúncios rodando nas duas plataformas e ficha do Google ativa. Sobra pouco para vender e a conversa vira preço. |
 | Perfil sem operação | Menos de ~10 publicações, menos de ~100 seguidores, perfil privado. Não tem caixa. |
+| Base construída por follow | Segue duas ou três vezes mais contas do que tem de seguidores, e o alcance fica abaixo de 0,7x. A audiência não escolheu estar ali, então o número de seguidores não representa gente que quer ouvir |
+
+Esse último derrubou três leads de uma vez, e nenhum deles batia nos critérios antigos: tinham
+publicações suficientes e mais de cem seguidores. O que os unia era a conta seguindo 2 a 3 vezes
+mais do que era seguida, com alcance de 0,32x e 0,61x. Seguidor conquistado com follow não assiste
+ao conteúdo, e por isso a entrega nem sai da base.
+
+O sinal sozinho não basta: perfil que segue muito **e** entrega acima de 1x tem tração real e
+continua servindo. O descarte é a combinação dos dois.
+
+Vale também olhar o **ticket do nicho** antes de diagnosticar. Causa de valor pequeno, como
+salário-maternidade, é volume com margem apertada: o escritório fatura por quantidade e tem pouca
+folga para contratar estrutura. Isso não é regra automática, porque depende do que o usuário quer
+vender, mas quando o recorte for de ticket baixo vale confirmar com ele antes de gastar uma tarde
+diagnosticando.
 
 O alvo é **pequeno e médio porte**: operação real, audiência entre mais ou menos 150 e 3 mil
 seguidores, e estrutura faltando. Quanto menos canais no Google, melhor, porque é exatamente o
