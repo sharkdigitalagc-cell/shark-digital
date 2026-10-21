@@ -124,6 +124,32 @@ precisa de setup maior e fee menor.
 
 Leia o CRM antes de escrever para descobrir o próximo `num` livre e não duplicar lead.
 
+## A regra que não se quebra
+
+Todo erro caro desta skill até hoje teve a mesma causa: **uma afirmação sobre algo que não foi
+aberto**. Não foi falta de cuidado na conta nem erro de leitura. Foi herdar um dado do card, de um
+diagnóstico anterior ou de uma suposição razoável, e tratá-lo como verificado.
+
+Antes de um dado virar frase em mensagem, em relatório ou em card, ele precisa ter sido **aberto
+nesta sessão**. Vale para o lead novo e vale para o lead que já está no CRM há semanas.
+
+| O dado | O que abrir, sempre |
+|---|---|
+| Um perfil de Instagram | O perfil. Confira o **nome próprio** na bio, não só o handle. Handles quase idênticos são de pessoas diferentes: `adv.valdeci.jr`, `valdecijunioradv` e `adv.valdeci_jr` já foram tratados como o mesmo advogado, e são três pessoas |
+| Qual perfil é o institucional | Os dois. O que o card chama de escritório nem sempre é: já entrou um perfil de 111 seguidores como institucional quando o real tinha 977 |
+| Um anúncio no Google | O criativo, para ler a linha **Última exibição**. A contagem inclui anúncio desligado há meses |
+| Um anúncio na Meta | A busca com `active_status=active`, e os nomes dos anunciantes, porque homônimo é comum |
+| Um domínio | A fonte onde ele aparece: bio, rodapé do site, endereço de e-mail. **Nunca invente uma variação plausível para testar**, porque um zero obtido de domínio inventado não prova nada e entra no card com cara de verificado |
+| Quantos domínios existem | Todos os perfis e o rodapé do site. Já apareceu escritório com quatro domínios no ar enquanto o card registrava dois |
+
+Quando não der para verificar, **escreva no card que não foi verificado**, com o motivo. Um campo
+que diz "não checado" é útil. Um campo que parece checado e não foi destrói a confiança no card
+inteiro, porque ninguém mais sabe quais dos outros são confiáveis.
+
+E se um dado que vai sustentar uma mensagem veio do diagnóstico anterior, reabra antes de enviar.
+Reabrir custa um minuto. Afirmar errado custa o prospect descobrir, na primeira resposta, que você
+não olhou aquilo que disse ter olhado.
+
 ## Como achar o furo
 
 O valor da abordagem está em mostrar uma coisa específica, verificável em dez segundos, que a
