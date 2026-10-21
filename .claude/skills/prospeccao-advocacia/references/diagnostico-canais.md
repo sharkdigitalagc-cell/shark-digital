@@ -106,6 +106,23 @@ caso mais comum em escritório, onde a conta está no CPF de um sócio. Teste **
 que o escritório tiver, um a um: já apareceu banca com três domínios em que só um recebia
 anúncio, e era o que estava vazio.
 
+Duas armadilhas da Central, e as duas já me fizeram gravar dado errado:
+
+**A contagem inclui anúncio arquivado.** Ao contrário da Biblioteca da Meta filtrada por ativo, a
+Central mostra criativo que parou de rodar faz meses. "2 anúncios" não quer dizer dois anúncios no
+ar. **Abra o criativo e leia a linha "Última exibição"** antes de gravar qualquer coisa. Em três
+leads seguidos a contagem apareceu como ativa e as datas eram de maio, junho e julho: nenhum deles
+anunciava no Google. Abordar alguém dizendo que ele investe em busca quando ele desligou a conta há
+meses derruba a sua credibilidade na primeira resposta.
+
+**Deslogado o resultado muda.** A mesma URL que devolve "2 anúncios" num Chrome logado na conta
+Google devolve "Nenhum anúncio foi encontrado" num navegador sem sessão. Faça a consulta sempre no
+navegador logado, e se o usuário disser que não encontrou o que você achou, confira primeiro se ele
+está logado antes de duvidar do dado.
+
+Quando o anúncio for antigo, isso não é um zero qualquer: um escritório que anunciou e parou tem
+conta criada, cartão cadastrado e, quase sempre, uma frustração para contar. Pergunte como foi.
+
 Quando **não tem domínio**, só resta a caixa de busca por nome em
 `adstransparency.google.com/?region=BR`. Aí vale um cuidado: se aparecerem só homônimos
 verificados com nome completo diferente, você não provou que o prospect não anuncia, provou que
