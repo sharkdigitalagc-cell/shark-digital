@@ -133,6 +133,28 @@ outro serviço.
 > Uma coisa me chamou atenção: teu perfil não tem link nenhum na bio. Teus reels fazem mil, três
 > mil view e quem assiste não tem pra onde ir. É proposital?
 
+## Ler a resposta do prospect
+
+Resposta curta em prospecção quase nunca quer dizer o que diz literalmente, e ler errado custa
+caro dos dois lados: ou você insiste com quem recusou, ou desiste de quem topou.
+
+| O que ele responde | O que normalmente significa |
+|---|---|
+| "Agradeço" ou "Agradecemos o contato", sozinho | **Não.** É a recusa educada padrão do atendimento brasileiro. Não é aceite, não é "pode mandar" |
+| "Obrigado, vou ver" / "Qualquer coisa eu chamo" | Não, com a porta encostada. Não force: marque e volte em alguns meses |
+| "Pode mandar", "Manda aí", "Por favor" | Sim. É o aceite de verdade |
+| "Vou encaminhar para a equipe responsável" | Sim para o material, mas quem decide é outra pessoa. O documento precisa se sustentar sozinho |
+| "Quanto custa?" logo de cara | Interesse real, mas ainda sem contexto. Responder preço agora ancora barato |
+| Silêncio depois de ter respondido antes | Não decidiu, não recusou. Vale um retorno, nunca dois seguidos |
+
+Na dúvida entre aceite e cortesia, **pergunte ao usuário antes de mover o card**: ele conhece o
+registro do próprio mercado melhor do que qualquer leitura de texto. Já aconteceu de "Agradeço!"
+ser tratado como sim, do card voltar para Primeiro contato e o lead ter dito não.
+
+E quando for não de verdade, marque como **Disse não** na perda, não como "Sem resposta". A aba
+"Disseram não" do CRM existe para separar quem recusou de quem sumiu, porque quem sumiu volta a
+ser abordável e quem recusou não.
+
 ## Pontes que valem mais que mensagem fria
 
 Antes de escrever, procure uma dessas. Qualquer uma muda o tom da conversa inteira:
