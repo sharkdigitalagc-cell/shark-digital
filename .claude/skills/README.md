@@ -13,6 +13,7 @@ esquece de atualizar.
 | Skill | Para quê |
 |---|---|
 | `prospeccao-advocacia` | Prospectar escritório de advocacia de ponta a ponta: varre a fonte de leads, tria quem encaixa, diagnostica os canais do prospect, escreve o fluxo de abordagem e lança o lead no CRM |
+| `sdr-whatsapp` | Escrever as mensagens de WhatsApp da prospecção na voz do Vinicius: primeiro contato, resposta a objeção, follow-up e pedido de reunião, a partir das conversas que de fato converteram |
 
 ## Como usar
 
