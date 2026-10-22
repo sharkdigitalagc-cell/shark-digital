@@ -659,7 +659,7 @@ const DEFAULT_CFG = {
   origens: ['Google Ads', 'Meta Ads - Facebook', 'Meta Ads - Instagram', 'Site', 'Instagram orgânico', 'Indicação', 'WhatsApp', 'Prospecção ativa', 'Evento', 'Outro', 'Não informado'],
   nichos: ['Advocacia', 'Saúde', 'Estética e beleza', 'Alimentação', 'Varejo', 'Imobiliário', 'Educação', 'Energia solar', 'Serviços locais', 'Outro'],
   resps: ['Vinicius'],
-  perdas: ['Sem orçamento', 'Fechou com outra agência', 'Sem resposta', 'Desqualificado', 'Adiou a decisão', 'Vai fazer por conta própria', 'Outro'],
+  perdas: ['Disse não', 'Sem orçamento', 'Fechou com outra agência', 'Sem resposta', 'Desqualificado', 'Adiou a decisão', 'Vai fazer por conta própria', 'Outro'],
   // Orçamento: "Serviço | setup | mensal" e "Nicho | ajuste %". Editados em Ajustes → Tabela de preços.
   precos: ['Tráfego Pago | 500 | 1500', 'Social Media | 0 | 1800', 'Landing Page | 1800 | 0', 'Site | 3500 | 0', 'Identidade Visual | 2500 | 0', 'Produção de Vídeo | 0 | 1200', 'Gestão 360 | 1000 | 4500', 'Consultoria | 1500 | 0', 'SEO | 800 | 1200', 'Automação / CRM | 1500 | 300'],
   fatores: ['Advocacia | 15', 'Saúde | 15', 'Imobiliário | 10', 'Energia solar | 10']
@@ -1315,7 +1315,10 @@ function askLoss(id, order) {
 }
 
 /* ================= lista ================= */
-const LIST_TABS = [['todos', 'Todos'], ['abertos', 'Em aberto'], ['fechado', 'Fechados'], ['perdido', 'Perdidos'], ['pend', 'Pendências']];
+const LIST_TABS = [['todos', 'Todos'], ['abertos', 'Em aberto'], ['fechado', 'Fechados'], ['naos', 'Disseram não'], ['perdido', 'Perdidos'], ['pend', 'Pendências']];
+// Recusa vinda do prospect. Fica de fora quem sumiu (Sem resposta), quem adiou e quem nós descartamos (Desqualificado).
+const MOTIVOS_NAO = ['Disse não', 'Fechou com outra agência', 'Vai fazer por conta própria', 'Sem orçamento'];
+const disseNao = l => l.stage === 'perdido' && MOTIVOS_NAO.includes(l.perda);
 function pendencias(l, dup) {
   const p = [];
   if (l.foneAviso) p.push('Telefone a confirmar');
@@ -1330,10 +1333,10 @@ function renderList(view) {
   const base = filtered();
   const counts = {
     todos: base.length, abertos: base.filter(isOpen).length, fechado: base.filter(l => l.stage === 'fechado').length,
-    perdido: base.filter(l => l.stage === 'perdido').length, pend: base.filter(l => pendencias(l, dup).length).length
+    perdido: base.filter(l => l.stage === 'perdido').length, naos: base.filter(disseNao).length, pend: base.filter(l => pendencias(l, dup).length).length
   };
   const tab = UI.listTab;
-  let L = base.filter(l => tab === 'todos' ? true : tab === 'abertos' ? isOpen(l) : tab === 'pend' ? pendencias(l, dup).length : l.stage === tab);
+  let L = base.filter(l => tab === 'todos' ? true : tab === 'abertos' ? isOpen(l) : tab === 'naos' ? disseNao(l) : tab === 'pend' ? pendencias(l, dup).length : l.stage === tab);
   const { k, dir } = UI.sort;
   const val = l => ({ num: num(l.num), criado: l.criado || '', nome: norm(nm(l)), canal: norm(l.canal), stage: STAGE[l.stage]?.i ?? 0, fee: num(l.fee), prox: l.prox || '', resp: norm(l.resp) }[k]);
   L.sort((a, b) => {

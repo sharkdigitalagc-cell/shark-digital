@@ -425,7 +425,7 @@ export const DEFAULT_CFG: Cfg = {
   origens: ["Google Ads", "Meta Ads - Facebook", "Meta Ads - Instagram", "Site", "Instagram orgânico", "Indicação", "WhatsApp", "Prospecção ativa", "Evento", "Outro", "Não informado"],
   nichos: ["Advocacia", "Saúde", "Estética e beleza", "Alimentação", "Varejo", "Imobiliário", "Educação", "Energia solar", "Serviços locais", "Outro"],
   resps: ["Vinicius"],
-  perdas: ["Sem orçamento", "Fechou com outra agência", "Sem resposta", "Desqualificado", "Adiou a decisão", "Vai fazer por conta própria", "Outro"],
+  perdas: ["Disse não", "Sem orçamento", "Fechou com outra agência", "Sem resposta", "Desqualificado", "Adiou a decisão", "Vai fazer por conta própria", "Outro"],
   precos: ["Tráfego Pago | 500 | 1500", "Social Media | 0 | 1800", "Landing Page | 1800 | 0", "Site | 3500 | 0", "Identidade Visual | 2500 | 0", "Produção de Vídeo | 0 | 1200", "Gestão 360 | 1000 | 4500", "Consultoria | 1500 | 0", "SEO | 800 | 1200", "Automação / CRM | 1500 | 300"],
   fatores: ["Advocacia | 15", "Saúde | 15", "Imobiliário | 10", "Energia solar | 10"],
 };
