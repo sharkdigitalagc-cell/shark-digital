@@ -177,13 +177,29 @@ Buscar o nome do escritório é obrigatório, não opcional, e tem três respost
 3. **Os concorrentes que aparecem no mapa têm site na ficha?** Comparar os três primeiros com o
    prospect transforma uma observação técnica em desvantagem concreta.
 
-### Meça a concorrência nos dois lados
+### Meça a concorrência onde dá para medir
 
-Conte quantos anunciam no termo genérico do nicho **na Meta e no Google**, e diga os dois números
-ao prospect. O contraste é o que dá noção de tamanho, e costuma apontar para onde ir primeiro:
-num caso recente eram 31 anunciantes ativos na Meta e nenhum no Google para o mesmo termo, numa
-capital. O Instagram estava disputado e a busca, que é onde a pessoa procura depois de decidir
-resolver, estava vazia.
+Conte quantos anunciam no termo genérico do nicho **na Biblioteca de Anúncios da Meta**, que é
+fonte oficial, lista os criativos e dá para conferir um a um. Esse número é sólido e é ótimo na
+conversa: "há 87 anúncios ativos agora para advogado de INSS na sua cidade e nenhum é seu" dá
+noção de tamanho na hora.
+
+**Não conte anúncio do Google pela página de busca.** Contar blocos "Patrocinado" não funciona em
+navegador automatizado: a busca por "advogado INSS", um dos termos mais disputados do país,
+devolveu zero patrocinado em três consultas seguidas, o que é impossível. O Google simplesmente
+não entrega anúncio nesse contexto, e um bloqueador no perfil do navegador piora. Eu já escrevi
+"nenhum anunciante no Google" em dois relatórios a partir dessa medição, e os dois estavam errados.
+
+O que **é** confiável sobre o Google:
+
+- **Se o próprio prospect anuncia**, pela Central de Transparência, buscando o domínio dele ou o
+  nome do anunciante, sempre abrindo o criativo para ler a data da última exibição.
+- **A presença orgânica dele**: se o site aparece na busca pelo nome, se a ficha está reivindicada
+  e se ela tem o site cadastrado.
+
+Para dimensionar a concorrência paga no Google de verdade, o caminho é o Planejador de
+Palavras-chave dentro de uma conta de anúncios, com volume e faixa de lance. Sem isso, não afirme
+número: diga que não foi medido.
 
 ## Checklist final
 
@@ -195,7 +211,7 @@ Antes de fechar o diagnóstico, confirme que você tem:
 - [ ] Situação do site: tem formulário? tem Analytics e pixel? meta description? quantos h1?
 - [ ] Se o site fala do mesmo serviço que o conteúdo vende
 - [ ] Anúncios ativos no Meta e no Google, com número e com o destino de cada um
-- [ ] Quantos concorrentes anunciam no termo genérico, **na Meta e no Google**, com os dois números
+- [ ] Quantos concorrentes anunciam no termo genérico **na Biblioteca da Meta** (no Google, só pelo Planejador de Palavras-chave; a busca não serve)
 - [ ] O site aparece na busca pelo nome do escritório? A ficha do Google foi reivindicada? Tem site nela?
 - [ ] Nome, endereço, telefone e CNPJ, com as divergências anotadas
 - [ ] Cidade, para saber se dá reunião presencial
