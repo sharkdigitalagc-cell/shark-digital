@@ -319,6 +319,74 @@ Para dimensionar a concorrência paga no Google de verdade, o caminho é o Plane
 Palavras-chave dentro de uma conta de anúncios, com volume e faixa de lance. Sem isso, não afirme
 número: diga que não foi medido.
 
+## 6. Quem está por trás: registro de domínio e CNPJ
+
+Quando a bio não tem telefone, ou quando a DM institucional empaca e você precisa chegar em quem
+decide, o caminho não é caçar o celular da pessoa. É olhar o que a empresa publica por obrigação.
+São escritórios com CNPJ, e dado cadastral de CNPJ é público por desenho.
+
+**Nunca** use base colaborativa de agenda telefônica (Truecaller, Eyecon, Sync.ME) nem base
+vazada. São contatos que terceiros entregaram sem o titular saber: além de ilegal sob a LGPD,
+entrega número pessoal onde você queria o comercial.
+
+### O registro do domínio (`.com.br`)
+
+```
+curl -s -H 'Accept: application/json' https://rdap.registro.br/domain/<dominio>
+```
+
+O Registro.br devolve o titular e o contato técnico. Para domínio sob CNPJ o `handle` do
+titular **é o próprio CNPJ**. Isso resolve três coisas de uma vez:
+
+| O que aparece no titular | O que significa |
+|---|---|
+| O nome do próprio advogado | Ele mesmo cuida da casa. O e-mail técnico costuma ser o pessoal dele, e a decisão é dele |
+| Uma **agência de publicidade** | **O prospect já tem fornecedor.** Rebaixe na hora: é conversa de troca, e troca vira preço |
+| Uma banca com outro nome | O prospect provavelmente é associado, não titular. Quem decide é o dono daquele CNPJ |
+
+Os três apareceram na varredura de 27/10/2026. O Wilson Alves registrou o próprio domínio e
+deixou `wilsonalves.jur@gmail.com` como contato. O domínio da Amanda Franco está em nome da
+VIRTU ASSESSORIA E MARKETING LTDA, agência de publicidade de João Pessoa, com um e-mail
+`gestordetrafego` no técnico, e foi isso que explicou a mídia dela rodando nas duas plataformas:
+ela saiu de quente para fria no mesmo dia. E a bio da Jenneffer Paixão aponta para um domínio da
+LARISSA MENEZES DALAPOLA SOCIEDADE INDIVIDUAL DE ADVOCACIA, ou seja, o reel de 166 mil
+visualizações manda tráfego para a marca de outra pessoa.
+
+### Do CNPJ para o telefone
+
+```
+curl -s https://brasilapi.com.br/api/cnpj/v1/<14 digitos>
+```
+
+Vem razão social, CNAE, situação cadastral, QSA e o telefone declarado na Receita. Em escritório
+pequeno esse telefone costuma ser o do sócio. A situação cadastral também vale: um CNPJ
+**BAIXADO** explica por que a conta de anúncio hoje está no nome da pessoa física.
+
+A Central de Transparência do Google entrega a **raiz do CNPJ** no nome de anunciante pessoa
+jurídica (`54.778.068 FULANO DE TAL`). Os dígitos verificadores você calcula, e aí consulta a
+Receita. Foi assim que a dúvida sobre a Laura Gatto fechou: o CNPJ é de Guarulhos e o LinkedIn
+dela diz Guarulhos, então o anunciante é ela mesma.
+
+### `.com` e o que o DNS denuncia
+
+Em `.com` o titular vem oculto por GDPR, mas `rdap.verisign.com/com/v1/domain/<dominio>` ainda
+dá **data de registro e nameservers**, e os dois contam história: `DNS-PARKING` é site parado ou
+abandonado, Vercel ou Netlify é site recente. Em 27/10/2026 o domínio da Francielli Fernandes
+estava em parking e devolvendo 500 até na raiz, e o da banca do Márcio Tricotti tinha menos de
+dois meses de registro.
+
+### O resto, e o limite
+
+Para quem não tem domínio, o que sobra é o que a própria pessoa publicou: página de Facebook,
+perfil profissional, publicação de tribunal com a OAB. O Gabriel Ramos publica o WhatsApp na
+página dele no Facebook de 860 seguidores e não no Instagram de 2.776, e a OAB da Irla Cândida
+(42663/CE) saiu numa publicação do TJCE.
+
+E o limite, que é o mais importante: busca por nome devolve homônimo o tempo todo. Na mesma
+varredura apareceram dois DDD 88 diferentes para a Irla e um telefone de uma blogueira de
+estética para a Francielli. **Número que não está amarrado à pessoa não entra na ficha.**
+Escreva "telefone público não encontrado" e siga.
+
 ## Checklist final
 
 Antes de fechar o diagnóstico, confirme que você tem:
