@@ -25,13 +25,17 @@ mais recentes. Views aparecem no canto de cada miniatura.
 índice de alcance = média das views ÷ seguidores
 ```
 
-Dois cuidados que evitam erro grosseiro:
+Três cuidados que evitam erro grosseiro:
 
 - **Reel em colaboração aparece nos dois perfis com a mesma contagem.** Se o sócio e o escritório
   publicam juntos, compare só os reels exclusivos de cada um, senão os dois índices ficam iguais
   e a comparação perde sentido.
 - **Um viral distorce a média.** Se um reel fez 1,9 milhão e os outros fazem 4 mil, registre o
   viral como achado separado e use a mediana para o índice. Média com outlier engana.
+- **Isto mede distribuição, não distribuição orgânica.** View de reel não distingue entrega
+  natural de impulsionamento, e impulsionamento some da Biblioteca quando para. Então o índice é
+  um fato, mas "o alcance é orgânico" é uma conclusão que o dado não sustenta. Fica tudo em
+  `4. Mídia paga`.
 
 Anote também qual reel fez mais e o que ele tem de diferente. Esse é o formato que já funciona,
 e apontar isso vale mais que qualquer crítica.
@@ -98,6 +102,56 @@ sem aspas devolve qualquer anúncio que tenha uma das palavras e enche a tela de
 Confira o **destino** de cada anúncio, que aparece no rodapé do card. Quando diz INSTAGRAM.COM o
 anúncio leva para o perfil, não para uma página: o clique chega e ninguém mede o que acontece
 depois. E repare se vários cards repetem o mesmo texto, variando só o vídeo.
+
+Duas armadilhas da Biblioteca, e as duas me fizeram escrever bobagem num relatório:
+
+**"Zero anúncios ativos" não quer dizer "nunca anunciou".** `active_status=active` mostra só o que
+está no ar neste minuto, e a maior parte do mercado não está. Troque para `active_status=all` e
+compare: para a frase exata "advogado criminalista" no Brasil deram ~1.000 ativos e ~5.300
+contando os parados. Quatro em cada cinco anúncios do nicho estavam desligados. **Rode sempre as
+duas buscas.** A diferença entre elas é o número honesto do nicho, e é melhor na conversa do que o
+ativo sozinho, porque mostra quanta gente já testou e quanta continua.
+
+**As duas buscas enxergam coisas diferentes, e nenhuma sozinha resolve.** Isto foi testado nos
+dois caminhos no mesmo escritório, e o resultado foi o oposto do que eu supunha:
+
+| Caminho | O que ele mostra |
+|---|---|
+| `q="Nome"` + `search_type=keyword_exact_phrase` + `active_status=all` | **É o único que devolve histórico.** No Teixeira & Góis achou um anúncio de 6 a 20 de julho. Limite: só lê o **texto do criativo**, então anúncio que não escreveu o nome do escritório no corpo não aparece |
+| Ficha do anunciante (`view_all_page_id`) | **Só o que está no ar agora**, mesmo com `active_status=all`. No mesmo escritório, com o mesmo anúncio existindo, respondeu "No momento, esse anunciante não está veiculando anúncios". Serve para confirmar ativo e para pegar o `page_id`, não para histórico |
+
+Então rode as duas: a frase exata com `all` para o histórico, e a ficha do anunciante para o que
+está no ar. Para chegar à ficha, digite o @ do perfil no campo de busca da Biblioteca e escolha
+embaixo de **Anunciantes** — é lá também que aparecem os homônimos e os perfis irmãos do
+escritório, que a busca por texto não revela.
+
+E mesmo com tudo isso, **um zero não prova que nunca anunciou**. Escreva "nada no ar hoje".
+
+**Quando achar um anúncio arquivado, o card vale ouro.** Anúncio que a Meta classificou como tema
+social vem com **verba, impressões e tamanho de público estimado** na própria ficha. Um escritório
+apareceu com "R$100 a R$199" e "25 mil a 30 mil impressões" em quatorze dias: dá para conversar
+sobre o que aconteceu com números que ele reconhece. Abra o card ampliado para ler, porque na
+grade os dados ficam ilegíveis.
+
+E leia a linha miúda embaixo do anunciante. **"Este anúncio foi veiculado sem um rótulo
+obrigatório"** quer dizer que a Meta classificou o conteúdo como tema social e a declaração não
+foi feita, ou seja, o anúncio foi **derrubado, não encerrado**. É achado forte e muito concreto:
+não foi falta de verba nem desistência, foi um detalhe de configuração que ninguém explicou para
+eles. Direito previdenciário, assédio, violência doméstica e direito do consumidor caem nessa
+classificação com frequência.
+
+**E cuidado com a conclusão que vem de graça disso:** view de reel **não** é prova de alcance
+orgânico. Qualquer reel pode ter sido impulsionado, e impulsionamento some da vista quando para.
+O índice de alcance mede distribuição total, não distribuição orgânica. Nunca escreva "o alcance
+sai da base sozinho, sem mídia paga" a partir de view de reel. Pico isolado no meio de uma base
+estável é justamente o desenho de quem botou verba numa peça e parou. Quando o padrão aparecer,
+trate como hipótese explícita no relatório, do tipo "o cenário mais provável é que tenha havido
+impulsionamento e a torneira tenha sido fechada", e use isso a favor: quem já gastou e parou tem
+conta criada, cartão cadastrado e uma frustração para contar.
+
+E não superlative o índice. Perfil pequeno entrega múltiplo alto da base com facilidade, porque a
+base é pequena. "4x os seguidores" é bom e é verdade; "isso é raro" é exagero que o prospect
+desmonta sozinho.
 
 **Google.** Quando o escritório **tem domínio**, vá direto a
 `adstransparency.google.com/?region=BR&domain=<dominio>`. Essa URL devolve a contagem exata
@@ -184,6 +238,11 @@ fonte oficial, lista os criativos e dá para conferir um a um. Esse número é s
 conversa: "há 87 anúncios ativos agora para advogado de INSS na sua cidade e nenhum é seu" dá
 noção de tamanho na hora.
 
+Dê o par, não só o ativo: rode a mesma busca com `active_status=active` e com `active_status=all`
+e cite os dois. "Mil no ar agora e mais de cinco mil contando os que já pararam" diz duas coisas
+de uma vez, que o nicho é disputado e que a maioria não aguenta o ritmo, e é o tipo de número que
+faz o prospect perguntar por quê.
+
 **Não conte anúncio do Google pela página de busca.** Contar blocos "Patrocinado" não funciona em
 navegador automatizado: a busca por "advogado INSS", um dos termos mais disputados do país,
 devolveu zero patrocinado em três consultas seguidas, o que é impossível. O Google simplesmente
@@ -210,8 +269,9 @@ Antes de fechar o diagnóstico, confirme que você tem:
 - [ ] O link da bio testado, com o resultado do teste
 - [ ] Situação do site: tem formulário? tem Analytics e pixel? meta description? quantos h1?
 - [ ] Se o site fala do mesmo serviço que o conteúdo vende
-- [ ] Anúncios ativos no Meta e no Google, com número e com o destino de cada um
-- [ ] Quantos concorrentes anunciam no termo genérico **na Biblioteca da Meta** (no Google, só pelo Planejador de Palavras-chave; a busca não serve)
+- [ ] Anúncios do prospect no Meta pelos **dois** caminhos (frase exata com `active_status=all` para o histórico, ficha do anunciante para o que está no ar) e no Google pela Central, com o destino de cada um
+- [ ] Se achou anúncio arquivado: verba, impressões e se a ficha diz "sem um rótulo obrigatório"
+- [ ] Quantos concorrentes anunciam no termo genérico **na Biblioteca da Meta**, nos dois filtros (no Google, só pelo Planejador de Palavras-chave; a busca não serve)
 - [ ] O site aparece na busca pelo nome do escritório? A ficha do Google foi reivindicada? Tem site nela?
 - [ ] Nome, endereço, telefone e CNPJ, com as divergências anotadas
 - [ ] Cidade, para saber se dá reunião presencial

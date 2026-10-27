@@ -118,7 +118,8 @@ resumo do que não pode faltar:
 O índice de alcance separa o joio do trigo mais rápido que qualquer outra métrica:
 
 - **Acima de 1x** o conteúdo já sai da base de seguidores. O gargalo não é alcance, é o destino
-  do clique. Esse é o cliente ideal: o caro já está resolvido.
+  do clique. Esse é o cliente ideal: o caro já está resolvido. Só não chame isso de alcance
+  orgânico, porque reel impulsionado conta igual e não dá para separar os dois por fora.
 - **Entre 0,3x e 1x** a entrega está presa dentro da base. Normalmente é formato (card em vez de
   rosto falando) ou base inflada por follow.
 - **Abaixo de 0,3x** com nicho bom é oportunidade grande, mas a conversa é sobre refazer o
@@ -168,7 +169,9 @@ nesta sessão**. Vale para o lead novo e vale para o lead que já está no CRM h
 | Um perfil de Instagram | O perfil. Confira o **nome próprio** na bio, não só o handle. Handles quase idênticos são de pessoas diferentes: `adv.valdeci.jr`, `valdecijunioradv` e `adv.valdeci_jr` já foram tratados como o mesmo advogado, e são três pessoas |
 | Qual perfil é o institucional | Os dois. O que o card chama de escritório nem sempre é: já entrou um perfil de 111 seguidores como institucional quando o real tinha 977 |
 | Um anúncio no Google | O criativo, para ler a linha **Última exibição**. A contagem inclui anúncio desligado há meses |
-| Um anúncio na Meta | A busca com `active_status=active`, e os nomes dos anunciantes, porque homônimo é comum |
+| Um anúncio na Meta | Os **dois** caminhos: a frase exata com `active_status=all`, que é a única que devolve histórico, e a ficha do anunciante, que só mostra o que está no ar. Testado: a ficha disse "não está veiculando" com o anúncio existindo |
+| "Ele não anuncia" | Nada prova isso. A Biblioteca mostra o que está no ar; a visão por anunciante responde "no momento". Escreva **nada no ar hoje** |
+| "O alcance é orgânico" | Nada prova isso também. View de reel não separa entrega natural de impulsionamento. Diga o múltiplo da base e pare aí |
 | Um domínio | A fonte onde ele aparece: bio, rodapé do site, endereço de e-mail. **Nunca invente uma variação plausível para testar**, porque um zero obtido de domínio inventado não prova nada e entra no card com cara de verificado |
 | Quantos domínios existem | Todos os perfis e o rodapé do site. Já apareceu escritório com quatro domínios no ar enquanto o card registrava dois |
 
@@ -243,8 +246,9 @@ pessoa não sabia. Estes padrões apareceram repetidas vezes e vale procurar por
 - Destaques fixados todos pessoais (viagem, casamento, família) num perfil que vende serviço.
 
 **Na mídia**
-- Zero anúncios num nicho saturado. Dimensione: busque o termo genérico na Biblioteca de
-  Anúncios e cite quantos concorrentes estão ativos agora.
+- Nada no ar num nicho saturado. Dimensione: busque o termo genérico na Biblioteca de Anúncios e
+  cite quantos concorrentes estão ativos agora **e** quantos já pararam (`active_status=all`).
+  Escreva "nada no ar hoje", nunca "nunca anunciou": a Biblioteca não prova isso.
 - Anúncio cujo criativo termina em pergunta de engajamento em vez de CTA. É post impulsionado,
   não anúncio de performance.
 - Viral grande e base pequena. Alcance que não virou audiência nem lista é dinheiro no chão.
