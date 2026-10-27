@@ -63,6 +63,43 @@ poderia te ajudar igual faz com outros escritórios hoje."
 
 O "faz hoje" importa: diz operação rodando agora, não caso antigo.
 
+### A variante curta, que é a que ele usou na leva de outubro
+
+Em 27/10/2026 ele abordou seis escritórios e **não usou as duas mensagens acima**. Usou três, e a
+primeira é só o cumprimento, sozinho, esperando resposta:
+
+**[1]** `Olá, boa tarde tudo bem?`
+
+**[2]** depois que a pessoa responde: `Meu nome é Vinicius, trabalho com lapidação digital de
+escritórios em potencial. Andei curiando um pouco a estrutura de vocês, poderia mandar aqui um
+mini diagnóstico que fiz?`
+
+**[3]** na sequência: `E se gostarem, podemos marcar uma reunião onde posso mostrar um pouco do
+meu trabalho e como posso ajudar vocês a escalarem de forma significativa no digital. Já trabalho
+com escritórios com mais de 10 anos de atuação e vi que vocês tem um potencial enorme a ser
+explorado`
+
+Diferenças que importam: a apresentação encurtou para **"lapidação digital de escritórios em
+potencial"**, o elogio com número **sumiu**, e entrou prova social de carteira
+("escritórios com mais de 10 anos de atuação"). O pedido virou pergunta de permissão,
+"poderia mandar aqui", em vez de anúncio de envio.
+
+Nas duas conversas que avançaram naquele dia, a pessoa respondeu ao cumprimento sozinho antes de
+qualquer pitch. Vale as duas formas: a longa quando há um número forte para citar, a curta quando
+não há ou quando o volume é grande.
+
+### O robô de triagem do escritório
+
+Metade dos números de escritório é WhatsApp Business com atendimento automático, e ele te trata
+como **cliente**, não como fornecedor. Em 27/10 o robô da Helena Moraes respondeu ao "boa tarde"
+com o questionário de ludopatia (em que casas jogou, quanto perdeu, se tem relatório
+psiquiátrico), e o do Lins Advogados pediu CPF e nome completo.
+
+Quando isso acontecer, não responda o questionário nem siga o fluxo. Diga em uma linha que não é
+caso de cliente e peça a pessoa certa, algo como "não é caso jurídico, é sobre o marketing de
+vocês, consigo falar com quem cuida disso?". Perder essa mensagem no fluxo de intake é perder o
+lead sem nunca ter falado com um humano.
+
 ### Quando o elogio não puder ser o alcance
 
 O número do passo 1 tem que ser verdadeiro. Com alcance abaixo de 1x, elogiar entrega é elogiar o
