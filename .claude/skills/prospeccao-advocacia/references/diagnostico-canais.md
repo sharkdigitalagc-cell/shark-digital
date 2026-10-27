@@ -253,6 +253,30 @@ Para os dados cadastrais, o CNPJ aparece no rodapé do site ou numa busca por no
 que está publicado nos perfis. Divergência de endereço e telefone impede o Google de consolidar a
 ficha e é um achado concreto, fácil de mostrar.
 
+### A ficha é a melhor fonte de telefone que existe
+
+Uma busca `google.com/search?q="<nome>" <cidade>&hl=pt-BR&gl=br` já traz o painel local inteiro
+no texto da página, sem abrir o Maps. Procure por `Telefone: (NN) NNNNN-NNNN`, por
+`Endereço: ...` e por `N,N` seguido de `avaliações`. Note que a nota e a contagem vêm coladas no
+innerText: `5,045` é nota 5,0 com 45 avaliações.
+
+É o jeito mais limpo de conseguir o contato, e é o que **amarra** o número à pessoa, que é onde
+a busca por nome falha. A Irla Cândida não tinha link nenhum na bio, e a ficha trouxe o telefone
+com o endereço idêntico ao que ela publica no perfil: dois dados batendo deixam de ser palpite.
+A ficha também serve de terceira fonte para confirmar divergência, como no caso da Fabiola
+Baggio, cujo número correto apareceu igual no Linktree e na ficha enquanto o da bio seguia
+quebrado.
+
+Repare quando a ficha tem **telefone diferente do que está no link da bio**. Costuma ser o fixo
+do escritório contra o WhatsApp do sócio, e os dois valem: um abre conversa, o outro diz que a
+operação tem casa.
+
+**Não ter ficha é furo, e dos bons.** Em 27/10/2026, oito dos vinte e sete leads não tinham
+painel local nenhum: sem ficha o escritório não aparece no Maps, não entra na busca local da
+própria cidade e não acumula avaliação, que é a prova social mais barata que existe no jurídico.
+Quem tem ficha boa e não a usa também é achado: a banca Tricotti Campillay tem 45 avaliações
+nota 5,0 e não cita isso em lugar nenhum do Instagram.
+
 ### O site existir não quer dizer que ele preste
 
 "Tem site" não é força, e escrever isso num relatório queima credibilidade na hora, porque o dono
