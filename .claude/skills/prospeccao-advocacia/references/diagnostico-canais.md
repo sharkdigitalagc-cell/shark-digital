@@ -215,6 +215,32 @@ Nome e sobrenome comuns, como Diego Machado ou Daniela Prado, devolvem centenas 
 ali o número bruto não significa nada e a ficha vai com **"0 do escritório"** mais a lista de
 quem apareceu, nunca com um zero seco.
 
+### Como separar homônimo de prospect, que é o trabalho de verdade
+
+`search_type=page` não existe mais: a Meta reescreve para `keyword_unordered` e devolve a busca
+larga. Os links `view_all_page_id` também sumiram do DOM. O que sobrou funciona bem: cada card
+traz um link para **`facebook.com/<page_id>`**, o perfil do anunciante. Pegue os ids com
+
+```js
+[...document.querySelectorAll('a[href]')]
+  .filter(a => /^https:\/\/www\.facebook\.com\/\d+\/?$/.test(a.getAttribute('href')))
+```
+
+e abra um por um. A página responde em dois segundos e mata a dúvida, porque mostra categoria,
+número de seguidores e contato. Em 26/10/2026 foi assim que dois "a conferir" viraram zero: as
+duas páginas que anunciavam como "Matheus Carvalho" eram um **médico** (CRM 81830, Cirurgia
+Geral, Ponte Nova/MG) e uma página de **culinária**, e o "Gabriel Ramos" que anunciava era uma
+Figura pública com **24 seguidores** e e-mail de Hotmail, enquanto o prospect tem 2.776 no
+Instagram. Categoria e tamanho da base resolvem quase todos os casos.
+
+Do lado do Google, quando o anunciante é pessoa física o nome vem com CPF anexado e o criativo
+não renderiza nem no navegador limpo, então não dá para ler o anúncio. O que a ficha entrega e
+vale ouro é a **Última exibição**: ela diz se a torneira está aberta. `MARIO MARINHO LAGRIMANTE
+DE MIRANDA` tinha exibição em 25/10/2026, véspera da varredura, e Lagrimante é sobrenome de
+sócio da banca prospectada; `ALANA LUIZA TRENHAGO MISSIO` parou em 1º de maio. Sobrenome raro
+que bate com o nome do escritório é indício forte e **não é prova**: registre como indício, com
+a data, e pergunte na reunião. Sobrenome comum não é nem indício.
+
 ## 5. Busca e ficha local
 
 Pesquise `"Nome do Escritório" cidade` e `"Nome do Sócio" + nicho`.
