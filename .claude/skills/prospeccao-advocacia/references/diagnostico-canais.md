@@ -182,6 +182,39 @@ Quando **não tem domínio**, só resta a caixa de busca por nome em
 verificados com nome completo diferente, você não provou que o prospect não anuncia, provou que
 não achou. Registre a ressalva na ficha em vez de dar o zero por conclusivo.
 
+### Como pesquisar sem perder a viagem
+
+O `?query=` na URL **não pesquisa nada**: ele abre a home da Central e para por aí. É preciso
+digitar na caixa, e a resposta útil está no próprio autocomplete, que já traz `Verificado`, o
+país e `~N anúncios` por anunciante. Para varrer vários de uma vez, dá para focar o input e
+disparar `input` por script, mas **o `focus()` antes de cada troca de valor é obrigatório**: sem
+ele o dropdown não reabre e todos os prospects voltam vazios, o que parece zero e não é.
+
+E o mais importante: a Central indexa pelo **nome jurídico do anunciante**, o do cadastro, não
+pelo nome fantasia. Buscar "Fulano advocacia" ou "Fulano advogado" devolve vazio mesmo para quem
+anuncia; buscar "Fulano" devolve `FULANO DE TAL SOBRENOME`, às vezes com uma segunda conta no
+CNPJ. Na varredura de 26/10/2026 isso virou a diferença entre achar e não achar: `Laura Gatto`
+devolveu LAURA GATTO IENGO com cinco anúncios, enquanto `Helena Moraes advocacia` devolveu nada.
+
+Um caso que vale guardar como padrão: a Laura Gatto paga anúncio no Google e **não tem link
+nenhum na bio do Instagram**. Os dois canais não se conversam, um compra clique e o outro não
+oferece saída. Procure essa combinação, porque ela prova que já existe verba e que ela está indo
+para o ralo.
+
+### A Biblioteca da Meta mudou de porta
+
+O endpoint `ads/library/async/search_ads/` responde **404**: não existe mais atalho em JSON, é
+navegar por busca mesmo. A frase de "não achei" é literalmente `Nenhum anúncio corresponde aos
+seus critérios de pesquisa` — procure por ela, porque sem resultado a página também não escreve
+a contagem e fica fácil confundir "zero" com "ainda carregando".
+
+Conte `Ativo` e `Inativo` no texto da página e recolha os nomes dos anunciantes antes de dar
+qualquer número por bom: `"Lins Advogados"` devolveu ~30 resultados de seis escritórios
+diferentes (Freitas Lins, GOMES LINS, Miguel Lins, Fernanda Lins), nenhum deles o prospect.
+Nome e sobrenome comuns, como Diego Machado ou Daniela Prado, devolvem centenas de homônimos:
+ali o número bruto não significa nada e a ficha vai com **"0 do escritório"** mais a lista de
+quem apareceu, nunca com um zero seco.
+
 ## 5. Busca e ficha local
 
 Pesquise `"Nome do Escritório" cidade` e `"Nome do Sócio" + nicho`.
