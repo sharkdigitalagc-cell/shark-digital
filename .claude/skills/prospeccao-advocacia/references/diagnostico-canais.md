@@ -40,6 +40,40 @@ Três cuidados que evitam erro grosseiro:
 Anote também qual reel fez mais e o que ele tem de diferente. Esse é o formato que já funciona,
 e apontar isso vale mais que qualquer crítica.
 
+### Role até o fim antes de dizer que ninguém alcança ninguém
+
+Em 28/10/2026 eu ia escrever para a Daniela Prado que "nem a melhor peça alcançou quem já te
+segue", porque nos 15 reels recentes o pico era 825 contra 1.455 seguidores. Carregando 40 reels,
+apareceu um de **2.714**, quase o dobro da base. No Halley a mesma coisa, e pior: o pico dos 15
+recentes era 6.830 e o histórico é **13.500**, 4,6x o perfil.
+
+Então meça duas coisas, sempre, e elas dizem coisas diferentes:
+
+| Número | O que é | Para que serve |
+|---|---|---|
+| Mediana dos 15 mais recentes ÷ seguidores | O índice de alcance | Diz como está entregando **hoje** |
+| Pico histórico do perfil ÷ seguidores | O teto já atingido | Diz se a pessoa **sabe** furar a bolha |
+
+A combinação é o melhor argumento que existe, e é muito melhor que o índice sozinho: "vocês já
+fizeram um reel de 13,5 mil e os quatro últimos fizeram 496, 112, 253 e 77". Não é crítica, é
+constatação de que a capacidade está provada e virou exceção em vez de linha editorial. Dizer
+"você não alcança ninguém" para quem já estourou uma vez é errado e a pessoa sabe que é errado.
+
+Olhe também os reels **mais recentes um por um**, não só a mediana. No Halley os quatro últimos
+estavam todos abaixo de 500 para uma base de 2.940, muito pior que a mediana de 909. Queda
+recente é informação de urgência, e a mediana esconde.
+
+Para carregar o suficiente, role em passos e espere entre eles:
+
+```js
+for (let y=1200; y<=6000; y+=1200){ window.scrollTo(0,y); await new Promise(r=>setTimeout(r,2200)); }
+[...document.querySelectorAll('a[href*="/reel/"]')].map(a => a.innerText.trim())
+```
+
+Se o total carregado for igual ao número de reels do perfil, **não é amostra, é o universo**, e
+isso deixa o número muito mais defensável. Foi o caso da Laura Leal: seis reels no perfil, seis
+medidos, mediana 2.418 para 2.055 seguidores. Diga isso no relatório com essas palavras.
+
 ### Destaques
 
 Conte quantos são de serviço e quantos são pessoais. Destaque é a primeira coisa que alguém olha
@@ -83,6 +117,52 @@ não aparece em busca por domínio nenhuma.
 
 Para ver o conteúdo real, `get_page_text` no Chrome costuma funcionar melhor que WebFetch em
 site feito com construtor visual.
+
+### Medição: olhe o DOM carregado, nunca o HTML inicial
+
+Esta seção existe porque em 28/10/2026 eu quase mandei para o Halley Advogados um diagnóstico
+dizendo que o site dele não tinha medição nenhuma. Tem quatro ferramentas instaladas.
+
+O que me enganou: procurei `connect.facebook.net` no HTML, chequei `typeof window.fbq` logo
+depois do `navigate` e listei as requisições de rede do painel. Deu tudo vazio, e eu concluí
+"nada medindo". O GTM injeta as tags de forma assíncrona e o listador de requisições do painel
+só mostrava o documento principal e as imagens.
+
+O jeito que funciona, depois de esperar o carregamento:
+
+```js
+const scripts = [...document.querySelectorAll('script')].map(s => s.src).filter(Boolean);
+({ scripts, fbq: typeof window.fbq, gtag: typeof window.gtag,
+   clarity: typeof window.clarity, dataLayer: (window.dataLayer||[]).length })
+```
+
+A lista de `src` já resolvido é a prova: ela mostra o que de fato entrou na página. No Halley
+devolveu `googletagmanager.com/gtm.js`, `googletagmanager.com/gtag/js?id=G-…`, `clarity.ms/tag/…`
+e `s.tintim.app`. Na Laura Leal, pelo mesmo método, devolveu só arquivos do próprio domínio, e
+aí sim a conclusão "não mede conversão" se sustenta.
+
+Dois detalhes que mudam o diagnóstico:
+
+**ID no código não é tag disparando, mas ausência no HTML também não é ausência.** Confira os
+dois lados: o `src` resolvido e o `typeof` do objeto global.
+
+**Script de analytics servido como first-party.** No site da Laura havia um
+`/<hash>/script.js` no próprio domínio. Baixei com `fetch` e li: é o contador da plataforma de
+hospedagem. Isso não é pixel nem GA4, mas também não é "zero medição", e a diferença importa na
+redação. Escreva o que a ferramenta faz, não o rótulo: "diz quantas pessoas entraram e nada
+sobre quem virou caso".
+
+**Tintim** (`s.tintim.app`) é brasileiro e rastreia conversa de WhatsApp amarrando o clique do
+anúncio à conversa. Quando aparece, o escritório está mais maduro do que a média e o furo de
+"anuncia sem rastrear" não existe. Vale ainda apontar a falta do pixel da Meta, porque o Tintim
+não devolve evento de site para a campanha otimizar.
+
+### DNS: teste o domínio com e sem www
+
+`Resolve-DnsName <dominio> -Type A` e depois `www.<dominio>`. Na Laura Leal, só o `www`
+resolvia. O anúncio dela usava a versão certa, então o tráfego pago chegava, mas quem ouvisse o
+endereço e digitasse do jeito natural batia em erro. É furo verdadeiro e de conserto trivial,
+então entra no relatório com essa ressalva honesta: o pago não está perdendo, o resto está.
 
 ## 4. Mídia paga
 
