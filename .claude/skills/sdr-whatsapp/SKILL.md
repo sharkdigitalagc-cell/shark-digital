@@ -100,6 +100,33 @@ caso de cliente e peça a pessoa certa, algo como "não é caso jurídico, é so
 vocês, consigo falar com quem cuida disso?". Perder essa mensagem no fluxo de intake é perder o
 lead sem nunca ter falado com um humano.
 
+### Leia a conversa inteira antes de escrever, não só o fim
+
+Esta regra existe porque eu errei. Em 28/10/2026, ao mandar follow-up para a Camilla Cunha, li
+só as últimas mensagens, vi que a última era do próprio Vinicius e concluí que ninguém tinha
+respondido. Escrevi "Camilla, tudo bem?". Mas no meio do fio, às 15:16 do dia anterior, estava
+**"Natália Vadenal: Boa tarde, Vinicius!"**. Quem leu a cobrança foi a secretária, tratada pelo
+nome da advogada. O usuário pegou na hora: "isso é errado po".
+
+Então, sempre: **abra a conversa do começo e procure quem se apresentou**. No WhatsApp Business
+o nome do atendente aparece como prefixo da mensagem (`Natália Vadenal:`), e às vezes a pessoa
+se apresenta no texto ("Meu nome é Mariana, sou estagiária do Escritório Martins & Fernandes").
+Esse nome decide a redação inteira e ainda é informação boa para o card do lead.
+
+Na mesma leva, as oito conversas se dividiram assim, e cada caso pede uma forma:
+
+| O que a conversa mostra | Como escrever |
+|---|---|
+| Atendente identificada por nome | Fale **com ela**, sobre o advogado: "Mariana, tudo bem? Quando o Dr. Caio tiver um tempinho ele consegue me chamar?" |
+| O próprio advogado respondeu | Segunda pessoa, direto: "Diego, tudo bem? Quando você tiver um tempinho..." |
+| Respostas sem nenhum nome | Não dá para saber. Use a forma que serve aos dois: "Oi, tudo bem? Quando a Dra. Glauce tiver um tempinho ela consegue me chamar?" |
+| Ninguém respondeu, contato salvo como o escritório | Mesma coisa: fale do advogado em terceira pessoa |
+| Só robô de triagem | Diga antes que não é caso jurídico, senão o menu volta |
+
+E se a mensagem já saiu errada, o WhatsApp deixa **editar por 15 minutos**. Passe o mouse na
+mensagem, abra o menu dela e use Editar. Foi o que salvou a da Camilla, corrigida nove minutos
+depois do envio.
+
 ### Quando o elogio não puder ser o alcance
 
 O número do passo 1 tem que ser verdadeiro. Com alcance abaixo de 1x, elogiar entrega é elogiar o
