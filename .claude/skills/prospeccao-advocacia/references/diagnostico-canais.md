@@ -399,6 +399,33 @@ abandonado, Vercel ou Netlify é site recente. Em 27/10/2026 o domínio da Franc
 estava em parking e devolvendo 500 até na raiz, e o da banca do Márcio Tricotti tinha menos de
 dois meses de registro.
 
+### Cruze o titular do domínio com quem anuncia: é o melhor filtro que existe
+
+Separadamente, "tem domínio próprio" e "está anunciando" são dois dados mornos. **Cruzados, eles
+dizem quem é o cliente ideal e quem é perda de tempo**, e a conta é simples:
+
+| Titular do domínio | Está anunciando? | O que significa |
+|---|---|---|
+| O próprio advogado | **Sim** | **Melhor lead que existe.** Tem verba, tem cultura de investimento e **não tem agência para deslocar**. A conversa é somar, não substituir |
+| Uma agência | Sim | Já tem fornecedor. Vira conversa de troca, e troca vira preço. Rebaixe |
+| O próprio advogado | Não | Cliente clássico: estrutura própria e nenhuma verba. A conversa é começar |
+| Uma agência | Não | Paga alguém que não está entregando. Delicado, mas é brecha |
+
+Em 28/10/2026 a primeira linha apareceu três vezes de uma vez: Halley Advogados anunciando nas
+duas plataformas, Laura Leal com nove anúncios na Meta e Cristiane Poli com sete no Google — os
+três com o domínio registrado **em nome próprio**. No mesmo levantamento, Amanda Franco caiu de
+quente para fria porque o domínio dela estava em nome de uma agência de publicidade.
+
+Um ganho de lado que esse cruzamento entrega: o nome civil do titular do domínio é exatamente o
+que a Central de Transparência do Google indexa. Buscar `THIAGO HALLEY BARBOSA` devolve a conta
+dele com certeza, enquanto `Halley advogados` não devolveria nada. **O registro do domínio não
+dá só o contato do dono, dá a chave de busca do Google.**
+
+E a recíproca: sempre abra a ficha do anunciante antes de dar o ativo por certo. `"Poli
+Advocacia"` devolveu quatro anúncios no ar que eram de Paula Ávila Poli, outra advogada de mesmo
+sobrenome, e as duas páginas "Thaís Aguiar" que anunciavam eram de Saúde/beleza e de
+Bolsas/bagagem.
+
 ### Sociedade Individual de Advocacia: o escritório que não tem porteiro
 
 Este é o critério mais útil que apareceu, e ele vem do erro de uma leva inteira. Em 27/10/2026,
