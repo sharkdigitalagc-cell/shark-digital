@@ -157,6 +157,43 @@ anúncio à conversa. Quando aparece, o escritório está mais maduro do que a m
 "anuncia sem rastrear" não existe. Vale ainda apontar a falta do pixel da Meta, porque o Tintim
 não devolve evento de site para a campanha otimizar.
 
+### O RDAP mascara o CNPJ desde outubro de 2026
+
+A rota "handle do RDAP → BrasilAPI → QSA e telefone declarado", que funcionou na leva de 27/10,
+**parou de funcionar**. Conferido em 28/10/2026: o `rdap.registro.br` devolve o identificador do
+titular mascarado, assim:
+
+```json
+"publicIds": [{ "type": "cpf", "identifier": "***.815.945-**" }]
+```
+
+O que ele ainda entrega, e que continua valendo a consulta em todo lead:
+
+| Campo | Para que serve |
+|---|---|
+| Nome civil do titular, e se é `individual` ou `org` | Titular pessoa física É o advogado. É o que amarra o dono |
+| E-mail do registrant | Em titular PF costuma ser o e-mail pessoal (`hcmelojr@hotmail.com`, `lucas89leal@hotmail.com`) |
+| **Quem está no contato técnico** | É assim que se descobre agência no meio: `registrobr@zwa.digital`, `richard@nuclearmidia.com` |
+| Data de registro | Domínio de um mês atrás indica que investiu em estrutura agora |
+
+Vale consultar vários domínios candidatos de uma vez em vez de adivinhar um por um, porque o
+RDAP responde 404 rápido para quem não existe:
+
+```powershell
+foreach ($d in @("nome.adv.br","nomeadvogados.com.br")) {
+  try { $r = Invoke-RestMethod "https://rdap.registro.br/domain/$d" -TimeoutSec 12 -ErrorAction Stop
+    $reg = $r.entities | Where-Object { $_.roles -contains "registrant" } | Select-Object -First 1
+    "$d -> $((($reg.vcardArray[1] | Where-Object { $_[0] -eq 'fn' })[3]))"
+  } catch { "$d -> nao registrado" }
+}
+```
+
+**Confira se o titular bate com o nome do escritório antes de usar a pista.** Em 28/10/2026 dois
+domínios enganaram: `pulcinelli.adv.br` é de Rafael Ricardo Pulcinelli e o lead era Lucas
+Pulcinelli; `gbradvogados.com.br` é de Gino Berrettini Campones do Brasil e o lead era Gabbardo,
+Beal & Rodrigues. Sigla igual, dono diferente. Usar isso como prova teria posto nome errado num
+PDF.
+
 ### DNS: teste o domínio com e sem www
 
 `Resolve-DnsName <dominio> -Type A` e depois `www.<dominio>`. Na Laura Leal, só o `www`
