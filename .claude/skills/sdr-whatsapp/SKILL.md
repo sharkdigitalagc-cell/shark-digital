@@ -164,6 +164,52 @@ precisa se sustentar sozinho, porque vai ser lido por quem nunca falou com você
 É não. Recusa educada. Não insista, não mande o material. Marque como **Disse não** no CRM.
 Mais sinais em `prospeccao-advocacia/references/abordagem.md`.
 
+## Como anexar o PDF no WhatsApp Web sem perder meia hora
+
+O WhatsApp Web tem **dois** inputs de arquivo, e o que o `find` acha primeiro é o errado.
+
+Em 28/10/2026 eu mandei o PDF da Daniela três vezes e nada chegou. O motivo: o input que o
+`find` devolve na área de composição tem `accept="image/*"`. Ele é o de **Fotos e vídeos**.
+O WhatsApp recebe o PDF, não reconhece como imagem e **descarta calado**, sem erro nenhum na
+tela. Arrastar e soltar via `DataTransfer` sintético também não resolve, porque os listeners
+checam `isTrusted`.
+
+O input certo (`accept="*"`) só nasce quando se clica em **Documento** no menu de anexos, e esse
+clique abre o seletor de arquivos do sistema, que não dá para operar. A saída é interceptar o
+`click()` antes:
+
+```js
+// 1. antes de abrir o menu
+window.__origClick = HTMLInputElement.prototype.click;
+window.__capturado = null;
+HTMLInputElement.prototype.click = function(){ window.__capturado = this; };
+```
+
+Depois clique no clipe, clique em **Documento** (o seletor do sistema não abre, porque o click
+foi engolido) e restaure:
+
+```js
+// 2. depois de clicar em Documento
+HTMLInputElement.prototype.click = window.__origClick;
+window.__capturado.accept;   // "*" confirma que é o de documento
+```
+
+Agora `find` devolve dois inputs de arquivo: use o **segundo**, o que apareceu por último na
+árvore, e confira pelo `accept`. Aí sim `file_upload` funciona e a prévia renderiza o PDF.
+
+Para enviar, não clique por coordenada: o botão da prévia e o de mensagem ficam quase no mesmo
+lugar e errar fecha a prévia sem avisar. Busque por **"Enviar 1 item selecionado"**, que é o
+nome exato do botão certo, e clique pelo `ref`.
+
+Confirme sempre o envio lendo as últimas linhas da conversa, nunca por screenshot só:
+
+```js
+[...document.querySelectorAll('[role="row"]')].slice(-3).map(r => r.innerText.replace(/\n+/g,' | '))
+```
+
+Tem que aparecer `PDF | <nome do arquivo> | 1 página•PDF•175 KB | <hora>`. Se a última linha
+ainda for a resposta do prospect, não foi.
+
 ## Do aceite até a reunião
 
 1. Manda o **PDF do mini relatório**.
