@@ -399,6 +399,36 @@ abandonado, Vercel ou Netlify é site recente. Em 27/10/2026 o domínio da Franc
 estava em parking e devolvendo 500 até na raiz, e o da banca do Márcio Tricotti tinha menos de
 dois meses de registro.
 
+### Sociedade Individual de Advocacia: o escritório que não tem porteiro
+
+Este é o critério mais útil que apareceu, e ele vem do erro de uma leva inteira. Em 27/10/2026,
+de seis escritórios abordados no WhatsApp, **quatro responderam com atendimento**: o robô da
+Helena Moraes devolveu o questionário de ludopatia, o do Lins Advogados pediu CPF, a assistente
+"Ana Luiza" da Ester Brito recusou em nome dela e a equipe da Vanessa Gonçalves intermediou. O
+único dono que respondeu em pessoa foi o Wilson Alves — e o número dele estava amarrado por
+registro de domínio em nome próprio.
+
+O padrão não é sorte. Escritório com estrutura tem quem atenda o telefone, e o número público é
+o da triagem. Na Receita isso tem nome: quando o CNPJ é **SOCIEDADE INDIVIDUAL DE ADVOCACIA**, o
+QSA traz um sócio só, e não existe "número da equipe" — o número é do dono por definição.
+
+Então, para chegar em quem decide, prefira nesta ordem:
+
+| Sinal | O que significa |
+|---|---|
+| CNPJ é Sociedade Individual, QSA com um nome | Melhor caso. Qualquer contato do escritório é do dono |
+| Titular do domínio é o próprio advogado | O e-mail do contato técnico é pessoal dele, quase sempre um Gmail |
+| `wa.me` direto na bio do **perfil pessoal** | Advogado individual costuma atender o próprio WhatsApp |
+| Telefone **fixo** | É escritório, sempre. Não serve |
+| WhatsApp Business que abre com saudação automática | Triagem. Não serve |
+| Perfil da banca com várias unidades | Tem recepção. Vá pelo perfil pessoal do sócio |
+
+Dois ganhos de lado que valem tanto quanto o telefone. O primeiro: o e-mail pessoal do titular
+do domínio é a porta que **não tem porteiro**, porque ninguém põe robô de triagem no Gmail do
+sócio. O segundo: o perfil pessoal de um sócio frequentemente revela que a banca **já está no
+funil** com outro card. Em 27/10 apareceram três, todos dizendo "Sócio @x" na bio e usando o
+mesmo número de um lead que já existia.
+
 ### O resto, e o limite
 
 Para quem não tem domínio, o que sobra é o que a própria pessoa publicou: página de Facebook,
