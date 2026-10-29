@@ -605,3 +605,47 @@ Antes de fechar o diagnóstico, confirme que você tem:
 Se faltar algo que você não conseguiu checar, registre como não checado na ficha em vez de
 chutar. O campo de anúncios do CRM distingue "não checado" de "zero", e essa diferença importa
 na hora da conversa.
+
+## Pare aqui: o lead ainda encaixa?
+
+**Antes de escrever uma linha de diagnóstico**, responda estas três. Se as três forem sim,
+**descarte o lead e avise o Vinicius**, não escreva o PDF:
+
+1. Ele **anuncia no Google** agora? (anúncio na Central de Transparência, ou tag `AW-` no site)
+2. Ele tem **landing page ou site que converte**, feito por alguém que sabe?
+3. Ele tem **medição instalada**? (pixel, GA4 ou GTM carregando de verdade)
+
+Sim nas três significa que ele **já tem exatamente o que a Shark vende**. Qualquer documento que
+você escrever vira comparação de preço com quem já está lá dentro, e isso é o pior terreno
+possível. Nesse caso o lead sai da carteira: não é "quente com poucos furos", é fora do perfil.
+
+Isso já custou caro duas vezes. Em 28/10/2026 o Halley Advogados foi diagnosticado inteiro antes
+de alguém notar que ele tinha GTM, GA4, Clarity, Tintim, ficha 5,0 e anúncio nas duas
+plataformas. Em 29/10/2026 aconteceu de novo com o Lucas Leal (pixel, tag de conversão do Google
+Ads e GTM) e com o EP Advogados (12 anúncios no Google e landing page própria), e no caso do
+Lucas o PDF chegou a ser enviado. A regra de descartar "quem já tem tudo pronto" está na triagem
+da skill desde o começo: o erro não foi falta de regra, foi não ter um ponto de parada.
+
+**Duas de três ainda pode servir**, e aí o que se vende é exatamente a que falta. Quem anuncia no
+Google e não tem medição compra tráfego no escuro, e isso é um furo real. Mas registre no card
+que ele já anuncia, para a decisão de abordar ser consciente.
+
+## Antes de gerar o PDF: releia cada frase contra isto
+
+O diagnóstico vai ser lido por alguém que conhece o próprio negócio melhor que você. Uma frase
+exagerada derruba o documento inteiro, porque o leitor passa a duvidar do resto.
+
+| Nunca escreva | Por quê | Escreva assim |
+|---|---|---|
+| "prova que vocês sabem fazer conteúdo que sai da bolha" | View de reel **não** distingue orgânico de impulsionado | "não dá para saber daqui se foi entrega natural ou impulsionamento, e essa resposta vocês têm aí dentro" |
+| "isso é raro", "o maior que eu já vi" | Superlativo que o prospect sabe medir e desmentir | o número puro: "1,18 vez a base" |
+| "não virou nada", "dinheiro no chão" | Soa como acusação de incompetência | "o alcance aconteceu e a base não cresceu junto" |
+| "você não tem X" repetido cinco vezes | Vira lista de defeitos, não diagnóstico | misture o que falta com o que já está certo |
+
+**O teste:** leia o furo em voz alta imaginando o sócio lendo na frente da equipe dele. Se ele
+ficaria constrangido em vez de curioso, está errado. O objetivo é que ele queira conversar, não
+que ele se defenda. Um diagnóstico que ofende não fecha, por mais correto que esteja.
+
+E quando o prospect roda mídia, **toda afirmação sobre alcance vira hipótese**, nunca constatação:
+ele pode ter impulsionado qualquer peça. Isso vale inclusive para elogio, e elogiar alcance pago
+achando que é orgânico é o jeito mais rápido de mostrar que você não entende do assunto.
